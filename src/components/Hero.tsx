@@ -58,8 +58,7 @@ export default function Hero() {
           className="max-w-xl pb-16 pt-24 lg:max-w-3xl lg:pb-8 lg:pt-24 xl:max-w-4xl"
         >
           <motion.p variants={item} className="eyebrow mb-6">
-            Web Design <span className="text-brass/50">•</span> Automation{" "}
-            <span className="text-brass/50">•</span> North Georgia
+            Helping North Georgia Businesses Grow
           </motion.p>
 
           <motion.h1
@@ -77,8 +76,7 @@ export default function Hero() {
             className="mt-7 max-w-lg text-lg text-charcoal-soft lg:max-w-xl xl:max-w-2xl"
           >
             Custom websites, practical systems, and reliable support for small
-            businesses in Auburn, Barrow County, Gwinnett County, and across
-            North Georgia.
+            businesses across North Georgia.
           </motion.p>
 
           <motion.div variants={item} className="mt-9 flex flex-wrap gap-4">
@@ -98,7 +96,7 @@ export default function Hero() {
             <div className="ornament mb-3">
               <span className="text-brass">&#9670;</span>
             </div>
-            <p className="font-serif text-lg italic text-taupe">
+            <p className="text-center font-serif text-lg italic text-taupe">
               Modern technology. Local partnership.
             </p>
           </motion.div>
