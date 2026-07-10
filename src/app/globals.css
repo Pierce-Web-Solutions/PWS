@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    height: 100dvh;
+    overflow: hidden;
+    line-height: 1.7;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: theme("colors.brass.DEFAULT");
+    color: #fff;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-[90%] max-w-[1320px];
+  }
+
+  /* Brass, letter-spaced, uppercase eyebrow */
+  .eyebrow {
+    @apply font-sans text-[0.72rem] font-semibold uppercase tracking-eyebrow text-brass;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border px-7 py-3 text-[0.9rem] font-medium tracking-wide transition-all duration-300;
+  }
+
+  /* Filled brass — primary */
+  .btn-brass {
+    @apply btn border-brass bg-brass text-ivory shadow-brass hover:-translate-y-0.5 hover:border-brass-deep hover:bg-brass-deep;
+  }
+
+  /* Outlined — secondary (on light) */
+  .btn-outline {
+    @apply btn border-charcoal/25 bg-transparent text-charcoal hover:-translate-y-0.5 hover:border-charcoal hover:bg-charcoal hover:text-ivory;
+  }
+
+  /* Outlined — on dark */
+  .btn-outline-light {
+    @apply btn border-ivory/45 bg-transparent text-ivory hover:-translate-y-0.5 hover:bg-ivory/10;
+  }
+
+  .heading-serif {
+    @apply font-serif font-medium leading-[1.08] tracking-tight;
+  }
+
+  /* Ornamental divider echoing the logo lockup */
+  .ornament {
+    @apply flex items-center gap-3 text-brass;
+  }
+  .ornament::before,
+  .ornament::after {
+    content: "";
+    @apply h-px flex-1 bg-brass/40;
+  }
+
+  /* Faint blueprint grid texture */
+  .grid-texture {
+    background-image:
+      linear-gradient(to right, rgba(31, 31, 29, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(31, 31, 29, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .grid-texture-light {
+    background-image:
+      linear-gradient(to right, rgba(247, 243, 237, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(247, 243, 237, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: theme("colors.ivory.DEFAULT");
+}
+::-webkit-scrollbar-thumb {
+  background: theme("colors.ivory.deep");
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.brass.light");
+}
+
+/* On touch devices the scrollbar isn't needed and wastes space */
+@media (pointer: coarse) {
+  #window-viewport {
+    scrollbar-width: none;
+  }
+  #window-viewport::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
