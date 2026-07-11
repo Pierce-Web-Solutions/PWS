@@ -1,10 +1,22 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Service } from "@/lib/site";
+import InspectionFrame from "./InspectionFrame";
+
+const frameLabels: Record<string, string> = {
+  "web-design": "01 / WEB",
+  "website-care": "02 / CARE",
+  automation: "03 / SYSTEMS",
+  advertising: "04 / GROWTH",
+};
 
 export default function ServiceSummary({ service }: { service: Service }) {
   return (
-    <article className="group border-t border-charcoal/15 py-8 md:grid md:grid-cols-[5rem_1fr_auto] md:gap-7 md:py-10">
+    <InspectionFrame
+      as="article"
+      label={frameLabels[service.slug]}
+      className="group border-t border-charcoal/15 px-3 py-8 md:grid md:grid-cols-[5rem_1fr_auto] md:gap-7 md:px-5 md:py-10"
+    >
       <span className="font-serif text-xl italic text-foothill">
         {service.number}
       </span>
@@ -22,6 +34,6 @@ export default function ServiceSummary({ service }: { service: Service }) {
       >
         Explore service <ArrowUpRight size={17} />
       </Link>
-    </article>
+    </InspectionFrame>
   );
 }

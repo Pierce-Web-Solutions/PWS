@@ -115,6 +115,70 @@
   .legal-copy a {
     @apply underline decoration-brass underline-offset-4;
   }
+
+  .inspection-frame {
+    @apply relative transition-[transform,box-shadow] duration-200;
+    box-shadow: inset 0 0 0 1px transparent;
+  }
+
+  .inspection-frame__label {
+    @apply pointer-events-none absolute right-5 top-0 z-10 -translate-y-1/2 bg-ivory px-2 font-sans text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-foothill opacity-0 transition-opacity duration-200;
+  }
+
+  .inspection-frame__corner {
+    @apply pointer-events-none absolute z-10 h-3 w-3 border-foothill opacity-0 transition-opacity duration-200;
+  }
+
+  .inspection-frame__corner--tl {
+    @apply left-0 top-0 border-l border-t;
+  }
+  .inspection-frame__corner--tr {
+    @apply right-0 top-0 border-r border-t;
+  }
+  .inspection-frame__corner--bl {
+    @apply bottom-0 left-0 border-b border-l;
+  }
+  .inspection-frame__corner--br {
+    @apply bottom-0 right-0 border-b border-r;
+  }
+
+  .inspection-frame__guide {
+    @apply pointer-events-none absolute top-1/2 z-10 h-px w-5 bg-foothill/35 opacity-0 transition-opacity duration-200;
+  }
+  .inspection-frame__guide--left {
+    @apply -left-5;
+  }
+  .inspection-frame__guide--right {
+    @apply -right-5;
+  }
+
+  .inspection-frame:hover,
+  .inspection-frame:focus-within {
+    transform: translateY(-2px);
+    box-shadow: inset 0 0 0 1px rgba(93, 110, 94, 0.42);
+  }
+
+  .inspection-frame:hover .inspection-frame__label,
+  .inspection-frame:hover .inspection-frame__corner,
+  .inspection-frame:hover .inspection-frame__guide,
+  .inspection-frame:focus-within .inspection-frame__label,
+  .inspection-frame:focus-within .inspection-frame__corner,
+  .inspection-frame:focus-within .inspection-frame__guide {
+    opacity: 1;
+  }
+}
+
+@media (hover: none) {
+  .inspection-frame__corner {
+    opacity: 0.45;
+  }
+  .inspection-frame:active {
+    box-shadow: inset 0 0 0 1px rgba(93, 110, 94, 0.42);
+  }
+  .inspection-frame__guide,
+  .inspection-frame__label {
+    display: none;
+  }
 }
 
 /* Custom scrollbar */

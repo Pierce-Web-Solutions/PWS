@@ -1,5 +1,15 @@
 import clsx from "clsx";
 import { Check } from "lucide-react";
+import InspectionFrame from "./InspectionFrame";
+
+const frameLabels: Record<string, string> = {
+  "Foundation Website": "FOUNDATION",
+  "Growth Website": "GROWTH",
+  "Custom Web Platform": "CUSTOM",
+  "Essential Care": "ESSENTIAL CARE",
+  "Business Care": "BUSINESS CARE",
+  "Priority Care": "PRIORITY CARE",
+};
 
 export default function PricingPackage({
   name,
@@ -15,7 +25,10 @@ export default function PricingPackage({
   note?: string;
 }) {
   return (
-    <article
+    <InspectionFrame
+      as="article"
+      label={frameLabels[name]}
+      focusable
       className={clsx(
         "relative flex h-full flex-col border border-charcoal/15 bg-ivory p-7 md:p-9",
         label && "border-foothill shadow-soft",
@@ -43,6 +56,6 @@ export default function PricingPackage({
           {note}
         </p>
       )}
-    </article>
+    </InspectionFrame>
   );
 }

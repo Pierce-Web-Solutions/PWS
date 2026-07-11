@@ -45,7 +45,7 @@ export default function Navbar() {
   return (
     <header
       className={clsx(
-        "fixed left-0 right-0 top-0 z-30 border-b py-3 transition-all md:left-4 md:right-4 md:top-[3.75rem]",
+        "fixed left-0 right-0 top-0 z-30 border-b py-3 transition-all lg:left-4 lg:right-4 lg:top-[3.75rem]",
         scrolled || pathname !== "/"
           ? "border-charcoal/10 bg-ivory/95 backdrop-blur-md"
           : "border-transparent bg-ivory/70 backdrop-blur-sm",

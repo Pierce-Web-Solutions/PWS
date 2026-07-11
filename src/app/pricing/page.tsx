@@ -160,7 +160,7 @@ export default function PricingPage() {
         consultation, you’ll receive a clear scope, timeline, and fixed project
         price.
       </PageHero>
-      <section className="section-pad bg-ivory-deep">
+      <section id="website-projects" className="section-pad bg-ivory-deep">
         <div className="container-x">
           <SectionHeading
             eyebrow="Website Projects"

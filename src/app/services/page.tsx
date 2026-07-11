@@ -31,7 +31,7 @@ export default function ServicesPage() {
         begins with understanding the business problem and choosing an
         appropriate solution.
       </PageHero>
-      <section className="section-pad bg-ivory">
+      <section id="service-options" className="section-pad bg-ivory">
         <div className="container-x">
           <SectionHeading
             eyebrow="Four Ways We Can Help"

@@ -5,6 +5,7 @@ import SectionHeading from "./SectionHeading";
 import CTASection from "./CTASection";
 import Footer from "./Footer";
 import ServiceSpecificSection from "./ServiceSpecificSection";
+import WireframeReveal from "./WireframeReveal";
 import type { Service } from "@/lib/site";
 
 export default function ServiceDetailPage({ service }: { service: Service }) {
@@ -65,6 +66,20 @@ export default function ServiceDetailPage({ service }: { service: Service }) {
         </div>
       </section>
       <ServiceSpecificSection slug={service.slug} />
+      {service.slug === "web-design" && (
+        <section id="structure-to-experience" className="section-pad bg-ivory">
+          <div className="container-x">
+            <SectionHeading
+              eyebrow="From Structure to Experience"
+              title="Every polished interface begins with a clear plan"
+              copy="We map the customer journey, organize the content, and establish the technical foundation before refining the final visual experience."
+            />
+            <div className="mt-12">
+              <WireframeReveal />
+            </div>
+          </div>
+        </section>
+      )}
       <section className="bg-ivory py-14">
         <div className="container-x">
           <p className="max-w-4xl font-serif text-xl italic leading-relaxed text-charcoal">

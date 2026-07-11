@@ -1,4 +1,5 @@
 import Breadcrumbs from "./Breadcrumbs";
+import TopographicContours from "./TopographicContours";
 
 export default function PageHero({
   eyebrow,
@@ -17,10 +18,7 @@ export default function PageHero({
         className="grid-texture absolute inset-0 opacity-80"
         aria-hidden="true"
       />
-      <div
-        className="absolute -right-24 top-16 h-80 w-80 rounded-full border border-foothill/25"
-        aria-hidden="true"
-      />
+      <TopographicContours className="absolute -right-64 top-2 h-full w-[38rem] opacity-[0.11] sm:-right-40 md:w-[48rem]" />
       <div className="container-x relative">
         {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
         <p className="eyebrow mb-6">{eyebrow}</p>

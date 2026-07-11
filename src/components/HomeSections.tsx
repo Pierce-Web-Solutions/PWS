@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import ServiceSummary from "./ServiceSummary";
 import CTASection from "./CTASection";
+import TopographicContours from "./TopographicContours";
 import { services } from "@/lib/site";
 
 const industries = [
@@ -106,8 +107,12 @@ export default function HomeSections() {
         </div>
       </section>
 
-      <section className="section-pad bg-ivory">
-        <div className="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+      <section
+        id="who-we-help"
+        className="section-pad relative overflow-hidden bg-ivory"
+      >
+        <TopographicContours className="absolute -bottom-20 -right-28 w-[46rem] opacity-[0.09]" />
+        <div className="container-x relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <SectionHeading
             eyebrow="Who We Help"
             title="Built for the Businesses That Keep North Georgia Moving"

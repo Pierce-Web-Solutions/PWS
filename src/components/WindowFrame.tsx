@@ -7,7 +7,7 @@ export default function WindowFrame() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-4 z-40 hidden rounded-2xl border border-brass/40 md:block"
+      className="pointer-events-none fixed inset-4 z-40 hidden rounded-2xl border border-brass/40 lg:block"
     >
       {/* Title-bar divider */}
       <div className="absolute inset-x-0 top-10 h-px bg-brass/25 md:top-11" />
