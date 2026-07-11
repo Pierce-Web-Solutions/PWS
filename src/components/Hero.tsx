@@ -1,18 +1,6 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { EASE } from "@/lib/motion";
 import Image from "next/image";
-
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.11, delayChildren: 0.25 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
-};
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -51,56 +39,44 @@ export default function Hero() {
       <div className="grid-texture pointer-events-none absolute inset-y-0 left-0 w-1/3 opacity-70" />
 
       <div className="container-x relative grid min-h-[calc(100dvh-5rem)] items-center">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="visible"
-          className="max-w-xl pb-16 pt-24 lg:max-w-3xl lg:pb-8 lg:pt-24 xl:max-w-4xl"
-        >
-          <motion.p variants={item} className="eyebrow mb-6">
-            Helping North Georgia Businesses Grow
-          </motion.p>
+        <div className="max-w-xl pb-16 pt-24 lg:max-w-3xl lg:pb-8 lg:pt-24 xl:max-w-4xl">
+          <p className="eyebrow mb-6">Helping North Georgia Businesses Grow</p>
 
-          <motion.h1
-            variants={item}
-            className="heading-serif text-[clamp(2.6rem,5.2vw,4.4rem)] text-charcoal"
-          >
+          <h1 className="heading-serif text-[clamp(2.6rem,5.2vw,4.4rem)] text-charcoal">
             Modern Technology.
             <br />
             Built Around{" "}
             <span className="italic text-brass">Your Business.</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={item}
-            className="mt-7 max-w-lg text-lg text-charcoal-soft lg:max-w-xl xl:max-w-2xl"
-          >
+          <p className="mt-7 max-w-lg text-lg text-charcoal-soft lg:max-w-xl xl:max-w-2xl">
             Custom websites, practical systems, and reliable support for small
-            businesses across North Georgia.
-          </motion.p>
+            businesses in Auburn, Barrow County, Gwinnett County, and across
+            North Georgia.
+          </p>
 
-          <motion.div variants={item} className="mt-9 flex flex-wrap gap-4">
-            <a href="#contact" className="btn-brass group">
+          <div className="mt-9 flex flex-wrap gap-4">
+            <Link href="/contact" className="btn-brass group">
               Request a Consultation
               <ArrowRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
-            </a>
-            <a href="#work" className="btn-outline">
-              View Our Work
-            </a>
-          </motion.div>
+            </Link>
+            <Link href="/services" className="btn-outline">
+              Explore Services
+            </Link>
+          </div>
 
-          <motion.div variants={item} className="mt-12 max-w-sm">
+          <div className="mt-12 max-w-sm">
             <div className="ornament mb-3">
               <span className="text-brass">&#9670;</span>
             </div>
             <p className="text-center font-serif text-lg italic text-taupe">
               Modern technology. Local partnership.
             </p>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Scroll cue */}

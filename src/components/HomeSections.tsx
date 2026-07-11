@@ -1,0 +1,186 @@
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
+import SectionHeading from "./SectionHeading";
+import ServiceSummary from "./ServiceSummary";
+import CTASection from "./CTASection";
+import FounderPortrait from "./FounderPortrait";
+import { services } from "@/lib/site";
+
+const industries = [
+  "Contractors and home-service companies",
+  "Medical and professional offices",
+  "Local retailers",
+  "Churches and nonprofits",
+  "Family-owned businesses",
+  "Growing service companies",
+];
+const reasons = [
+  [
+    "Local understanding",
+    "Recommendations grounded in the needs and pace of North Georgia businesses.",
+  ],
+  [
+    "Direct communication",
+    "You work directly with Jacob from the first conversation through ongoing support.",
+  ],
+  [
+    "A solution that fits",
+    "The business problem comes first; the technology is selected and shaped around it.",
+  ],
+  [
+    "Long-term support",
+    "Launch is a milestone, not the end of the working relationship.",
+  ],
+];
+const process = [
+  "Sit Down and Talk",
+  "Understand the Business",
+  "Design the Right Solution",
+  "Build and Launch",
+  "Continue Improving",
+];
+
+export default function HomeSections() {
+  return (
+    <>
+      <section id="services" className="section-pad bg-ivory">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="What We Do"
+            title="Technology that earns its place in your business"
+            copy="Four focused service areas, brought together by one practical goal: helping your business communicate clearly and operate more effectively."
+          />
+          <div className="mt-14">
+            {services.map((service) => (
+              <ServiceSummary key={service.slug} service={service} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad bg-ivory-deep">
+        <div className="container-x grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+          <div>
+            <SectionHeading
+              eyebrow="Technology Should Feel Personal"
+              title="Direct support from someone who knows your business"
+              copy="You should not have to submit a ticket to a national agency and wait for someone unfamiliar with your goals to catch up. Pierce Web Solutions is built around direct communication, practical recommendations, and a long-term relationship with the person doing the technical work."
+            />
+            <Link
+              href="/about"
+              className="mt-8 inline-flex items-center gap-2 font-medium text-charcoal underline decoration-brass underline-offset-4"
+            >
+              How the partnership works <ArrowRight size={17} />
+            </Link>
+          </div>
+          <div className="relative min-h-[360px] overflow-hidden border border-brass/25 bg-ivory shadow-soft">
+            <Image
+              src="/images/window-wireframe.png"
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 90vw, 45vw"
+              className="object-cover opacity-55"
+            />
+            <div className="absolute inset-8 border border-charcoal/15 md:inset-12">
+              <div className="absolute inset-x-8 top-1/2 border-t border-brass/50" />
+              <p className="absolute bottom-8 left-8 max-w-xs font-serif text-2xl italic text-charcoal">
+                Business strategy before technology.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad bg-ivory">
+        <div className="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <SectionHeading
+            eyebrow="Who We Help"
+            title="Built for the Businesses That Keep North Georgia Moving"
+            copy="The best fit is a locally rooted organization that values clear communication, dependable work, and technology designed around real operations."
+          />
+          <ul className="divide-y divide-charcoal/15 border-y border-charcoal/15">
+            {industries.map((industry, index) => (
+              <li key={industry} className="flex gap-5 py-4 text-charcoal-soft">
+                <span className="font-serif italic text-brass">
+                  0{index + 1}
+                </span>
+                <span>{industry}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section-pad bg-charcoal text-ivory">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="Why Pierce Web Solutions"
+            title="A Technology Partner, Not Just Another Vendor"
+            light
+            copy="Careful technical work matters. So do context, honesty, responsiveness, and understanding what a decision means for the business behind the website."
+          />
+          <div className="mt-14 grid border-y border-ivory/15 md:grid-cols-2">
+            {reasons.map(([title, copy], index) => (
+              <article
+                key={title}
+                className={`py-8 md:p-9 ${index % 2 === 0 ? "md:border-r md:border-ivory/15" : ""} ${index < 2 ? "border-b border-ivory/15" : ""}`}
+              >
+                <h3 className="font-serif text-2xl text-ivory">{title}</h3>
+                <p className="mt-3 text-ivory/65">{copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad bg-ivory">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="A Simple Process"
+            title="Clear steps. Thoughtful decisions. No mystery."
+          />
+          <ol className="mt-14 grid gap-0 border-y border-charcoal/15 md:grid-cols-5">
+            {process.map((step, index) => (
+              <li
+                key={step}
+                className="border-b border-charcoal/15 py-6 last:border-b-0 md:border-b-0 md:border-r md:px-6 md:last:border-r-0"
+              >
+                <span className="font-serif text-xl italic text-brass">
+                  0{index + 1}
+                </span>
+                <h3 className="mt-4 font-serif text-xl text-charcoal">
+                  {step}
+                </h3>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="section-pad bg-ivory-deep">
+        <div className="container-x grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <FounderPortrait />
+          <div>
+            <SectionHeading
+              eyebrow="Founder"
+              title="Meet Jacob Pierce"
+              copy="I’m Jacob Pierce, a North Georgia developer who helps local businesses replace outdated websites and disconnected systems with technology built around how they actually operate. Clients work directly with me from the initial conversation through launch and ongoing support."
+            />
+            <div className="mt-7 flex items-start gap-3 text-charcoal-soft">
+              <Check size={20} className="mt-1 shrink-0 text-foothill" />
+              <p>
+                North Georgia perspective, direct collaboration, and
+                business-first problem solving.
+              </p>
+            </div>
+            <Link href="/about" className="btn-outline mt-8">
+              Learn More About PWS
+            </Link>
+          </div>
+        </div>
+      </section>
+      <CTASection />
+    </>
+  );
+}

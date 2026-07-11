@@ -1,0 +1,79 @@
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
+import PageHero from "./PageHero";
+import SectionHeading from "./SectionHeading";
+import CTASection from "./CTASection";
+import Footer from "./Footer";
+import type { Service } from "@/lib/site";
+
+export default function ServiceDetailPage({ service }: { service: Service }) {
+  return (
+    <>
+      <PageHero
+        eyebrow={service.shortTitle}
+        title={service.title}
+        breadcrumbs={[
+          { label: "Services", href: "/services" },
+          { label: service.shortTitle },
+        ]}
+      >
+        {service.description}
+      </PageHero>
+      <section className="section-pad bg-ivory">
+        <div className="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
+          <div>
+            <SectionHeading
+              eyebrow="The Opportunity"
+              title="Solve the right problem first"
+              copy={service.intro}
+            />
+            <p className="mt-7 border-l-2 border-brass pl-6 text-lg text-charcoal-soft">
+              {service.problem}
+            </p>
+          </div>
+          <aside className="border-y border-charcoal/15 py-8 lg:mt-2">
+            <p className="eyebrow mb-4">A Strong Fit For</p>
+            <p className="text-charcoal-soft">{service.fit}</p>
+            <Link
+              href="/contact"
+              className="mt-7 inline-flex items-center gap-2 font-medium text-charcoal underline decoration-brass underline-offset-4"
+            >
+              Discuss your project <ArrowRight size={17} />
+            </Link>
+          </aside>
+        </div>
+      </section>
+      <section className="section-pad bg-ivory-deep">
+        <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <SectionHeading
+            eyebrow="Typical Deliverables"
+            title="A focused scope built around your goals"
+            copy="The final project may include a combination of the following, confirmed in a written proposal after discovery."
+          />
+          <ul className="grid gap-x-10 sm:grid-cols-2">
+            {service.deliverables.map((item) => (
+              <li
+                key={item}
+                className="flex gap-3 border-b border-charcoal/15 py-4 text-charcoal-soft"
+              >
+                <Check size={18} className="mt-1 shrink-0 text-foothill" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      <section className="bg-ivory py-14">
+        <div className="container-x">
+          <p className="max-w-4xl font-serif text-xl italic leading-relaxed text-charcoal">
+            {service.closing}
+          </p>
+        </div>
+      </section>
+      <CTASection
+        title={`Let’s talk about ${service.shortTitle.toLowerCase()}.`}
+      />
+      <Footer />
+    </>
+  );
+}

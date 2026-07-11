@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import clsx from "clsx";
 
 export default function Brand({
@@ -12,8 +13,8 @@ export default function Brand({
   // pair the color icon with a light wordmark instead.
   if (light) {
     return (
-      <a
-        href="#top"
+      <Link
+        href="/"
         className={clsx(
           "group flex items-center gap-3 no-underline",
           className,
@@ -35,14 +36,14 @@ export default function Brand({
             Web Solutions
           </span>
         </span>
-      </a>
+      </Link>
     );
   }
 
   // Light backgrounds (the navbar): the full brand lockup.
   return (
-    <a
-      href="#top"
+    <Link
+      href="/"
       className={clsx("group inline-flex no-underline", className)}
     >
       <Image
@@ -53,6 +54,6 @@ export default function Brand({
         priority
         className="h-12 w-auto transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14"
       />
-    </a>
+    </Link>
   );
 }
