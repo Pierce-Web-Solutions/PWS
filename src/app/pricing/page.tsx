@@ -112,6 +112,33 @@ const additional = [
   ["Advertising Launch", "starting at $1,250"],
   ["Advertising Management", "starting at $750/month"],
 ];
+const faqs = [
+  {
+    question: "How are payments structured?",
+    answer:
+      "The payment schedule is defined in the written proposal before work begins. Website projects are generally divided between an initial deposit and one or more milestone or completion payments, depending on scope.",
+  },
+  {
+    question: "Are hosting and third-party subscriptions included?",
+    answer:
+      "Not unless they are specifically listed in the proposal. Hosting, domains, premium software, advertising spend, and other third-party services are normally billed separately so ownership and ongoing costs stay clear.",
+  },
+  {
+    question: "Can an existing website be improved instead of rebuilt?",
+    answer:
+      "Yes, when the current platform and technical condition support the requested improvements. An initial review helps determine whether focused updates or a rebuild is the more responsible investment.",
+  },
+  {
+    question: "Do you work with businesses outside North Georgia?",
+    answer:
+      "Yes. Pierce Web Solutions is locally focused and works best with relationship-driven businesses, but selected projects can be completed remotely outside North Georgia.",
+  },
+  {
+    question: "What happens after the included post-launch support period?",
+    answer:
+      "You can move into a qualifying care plan, request separately scoped improvements as needed, or manage the website independently according to the platform and project agreement.",
+  },
+];
 
 export default function PricingPage() {
   return (
@@ -122,7 +149,7 @@ export default function PricingPage() {
           <>
             Straightforward Pricing.
             <br />
-            <span className="italic text-brass">
+            <span className="italic text-foothill">
               Solutions Built Around Your Business.
             </span>
           </>
@@ -151,7 +178,20 @@ export default function PricingPage() {
           <SectionHeading
             eyebrow="Website Care Plans"
             title="Responsive ongoing support after launch"
-            copy="Response targets describe the initial reply during business days. Completion timing depends on the scope and complexity of the request."
+            copy={
+              <>
+                <p>
+                  Care plans are available for Pierce Web Solutions projects and
+                  qualifying existing websites following an initial technical
+                  review.
+                </p>
+                <p className="mt-3 text-base">
+                  Response targets describe the initial reply during business
+                  days. Completion timing depends on the scope and complexity of
+                  the request.
+                </p>
+              </>
+            }
           />
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {care.map((pkg) => (
@@ -179,10 +219,37 @@ export default function PricingPage() {
                 className="flex flex-col justify-between gap-2 py-5 sm:flex-row"
               >
                 <dt className="font-serif text-xl text-charcoal">{name}</dt>
-                <dd className="text-brass-deep">{price}</dd>
+                <dd className="text-foothill-deep">{price}</dd>
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+      <section className="section-pad bg-ivory">
+        <div className="container-x grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+          <SectionHeading
+            eyebrow="Pricing FAQ"
+            title="A few practical questions before we begin"
+            copy="Project-specific details are always confirmed in a written proposal."
+          />
+          <div className="divide-y divide-charcoal/15 border-y border-charcoal/15">
+            {faqs.map((faq) => (
+              <details key={faq.question} className="group py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 font-serif text-xl text-charcoal marker:content-none">
+                  {faq.question}
+                  <span
+                    className="text-2xl font-light text-foothill transition-transform group-open:rotate-45"
+                    aria-hidden="true"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="max-w-2xl pb-2 pt-4 text-charcoal-soft">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
       <CTASection

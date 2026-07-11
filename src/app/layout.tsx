@@ -69,7 +69,7 @@ export default function RootLayout({
         <Navbar />
         <div
           id="window-viewport"
-          className="fixed bottom-2 left-2 right-2 top-12 z-10 overflow-y-auto overflow-x-hidden scroll-pt-28 rounded-b-2xl scroll-smooth sm:bottom-3 sm:left-3 sm:right-3 sm:top-[3.25rem] md:bottom-4 md:left-4 md:right-4 md:top-[3.75rem]"
+          className="fixed inset-0 z-10 overflow-y-auto overflow-x-hidden scroll-pt-28 scroll-smooth md:bottom-4 md:left-4 md:right-4 md:top-[3.75rem] md:rounded-b-2xl"
         >
           <main id="main-content">{children}</main>
         </div>

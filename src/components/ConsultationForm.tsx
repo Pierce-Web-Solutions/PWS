@@ -193,7 +193,7 @@ export default function ConsultationForm() {
       <p
         id="form-status"
         role="status"
-        className="border-l-2 border-brass pl-4 text-sm text-charcoal-soft"
+        className="border-l-2 border-foothill pl-4 text-sm text-charcoal-soft"
       >
         {notice ||
           "This form currently validates your details but does not transmit them. No information is sent until delivery is connected."}
@@ -203,7 +203,7 @@ export default function ConsultationForm() {
 }
 
 const inputClass =
-  "w-full border border-charcoal/20 bg-ivory px-4 py-3 text-base text-charcoal placeholder:text-taupe focus:border-brass focus:outline-none aria-[invalid=true]:border-red-700";
+  "w-full border border-charcoal/20 bg-ivory px-4 py-3 text-base text-charcoal placeholder:text-taupe focus:border-foothill focus:outline-none aria-[invalid=true]:border-red-700";
 function Label({ text, required }: { text: string; required?: boolean }) {
   return (
     <span className="text-xs font-semibold uppercase tracking-[0.14em] text-charcoal-soft">

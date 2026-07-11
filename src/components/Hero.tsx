@@ -46,13 +46,12 @@ export default function Hero() {
             Modern Technology.
             <br />
             Built Around{" "}
-            <span className="italic text-brass">Your Business.</span>
+            <span className="italic text-foothill">Your Business.</span>
           </h1>
 
           <p className="mt-7 max-w-lg text-lg text-charcoal-soft lg:max-w-xl xl:max-w-2xl">
             Custom websites, practical systems, and reliable support for small
-            businesses in Auburn, Barrow County, Gwinnett County, and across
-            North Georgia.
+            businesses across North Georgia.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">
@@ -70,7 +69,7 @@ export default function Hero() {
 
           <div className="mt-12 max-w-sm">
             <div className="ornament mb-3">
-              <span className="text-brass">&#9670;</span>
+              <span className="text-foothill">&#9670;</span>
             </div>
             <p className="text-center font-serif text-lg italic text-taupe">
               Modern technology. Local partnership.

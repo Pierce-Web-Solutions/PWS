@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import ServiceSummary from "./ServiceSummary";
 import CTASection from "./CTASection";
-import FounderPortrait from "./FounderPortrait";
 import { services } from "@/lib/site";
 
 const industries = [
@@ -34,11 +33,26 @@ const reasons = [
   ],
 ];
 const process = [
-  "Sit Down and Talk",
-  "Understand the Business",
-  "Design the Right Solution",
-  "Build and Launch",
-  "Continue Improving",
+  {
+    title: "Sit Down and Talk",
+    copy: "Start with the goals, frustrations, and opportunities you see in the business.",
+  },
+  {
+    title: "Understand the Business",
+    copy: "Review the customer journey, current tools, workflow, and constraints.",
+  },
+  {
+    title: "Design the Right Solution",
+    copy: "Define a practical scope before selecting technology.",
+  },
+  {
+    title: "Build and Launch",
+    copy: "Develop, test, refine, and introduce the solution carefully.",
+  },
+  {
+    title: "Continue Improving",
+    copy: "Review performance and make useful changes as the business evolves.",
+  },
 ];
 
 export default function HomeSections() {
@@ -69,12 +83,12 @@ export default function HomeSections() {
             />
             <Link
               href="/about"
-              className="mt-8 inline-flex items-center gap-2 font-medium text-charcoal underline decoration-brass underline-offset-4"
+              className="mt-8 inline-flex items-center gap-2 font-medium text-charcoal underline decoration-foothill underline-offset-4"
             >
               How the partnership works <ArrowRight size={17} />
             </Link>
           </div>
-          <div className="relative min-h-[360px] overflow-hidden border border-brass/25 bg-ivory shadow-soft">
+          <div className="relative hidden min-h-[360px] overflow-hidden border border-foothill/30 bg-ivory shadow-soft lg:block">
             <Image
               src="/images/window-wireframe.png"
               alt=""
@@ -83,7 +97,7 @@ export default function HomeSections() {
               className="object-cover opacity-55"
             />
             <div className="absolute inset-8 border border-charcoal/15 md:inset-12">
-              <div className="absolute inset-x-8 top-1/2 border-t border-brass/50" />
+              <div className="absolute inset-x-8 top-1/2 border-t border-foothill/60" />
               <p className="absolute bottom-8 left-8 max-w-xs font-serif text-2xl italic text-charcoal">
                 Business strategy before technology.
               </p>
@@ -102,7 +116,7 @@ export default function HomeSections() {
           <ul className="divide-y divide-charcoal/15 border-y border-charcoal/15">
             {industries.map((industry, index) => (
               <li key={industry} className="flex gap-5 py-4 text-charcoal-soft">
-                <span className="font-serif italic text-brass">
+                <span className="font-serif italic text-foothill">
                   0{index + 1}
                 </span>
                 <span>{industry}</span>
@@ -143,43 +157,24 @@ export default function HomeSections() {
           <ol className="mt-14 grid gap-0 border-y border-charcoal/15 md:grid-cols-5">
             {process.map((step, index) => (
               <li
-                key={step}
+                key={step.title}
                 className="border-b border-charcoal/15 py-6 last:border-b-0 md:border-b-0 md:border-r md:px-6 md:last:border-r-0"
               >
-                <span className="font-serif text-xl italic text-brass">
+                <span className="font-serif text-xl italic text-foothill">
                   0{index + 1}
                 </span>
                 <h3 className="mt-4 font-serif text-xl text-charcoal">
-                  {step}
+                  {step.title}
                 </h3>
+                <p className="mt-3 text-sm leading-relaxed text-charcoal-soft">
+                  {step.copy}
+                </p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section className="section-pad bg-ivory-deep">
-        <div className="container-x grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <FounderPortrait />
-          <div>
-            <SectionHeading
-              eyebrow="Founder"
-              title="Meet Jacob Pierce"
-              copy="I’m Jacob Pierce, a North Georgia developer who helps local businesses replace outdated websites and disconnected systems with technology built around how they actually operate. Clients work directly with me from the initial conversation through launch and ongoing support."
-            />
-            <div className="mt-7 flex items-start gap-3 text-charcoal-soft">
-              <Check size={20} className="mt-1 shrink-0 text-foothill" />
-              <p>
-                North Georgia perspective, direct collaboration, and
-                business-first problem solving.
-              </p>
-            </div>
-            <Link href="/about" className="btn-outline mt-8">
-              Learn More About PWS
-            </Link>
-          </div>
-        </div>
-      </section>
       <CTASection />
     </>
   );

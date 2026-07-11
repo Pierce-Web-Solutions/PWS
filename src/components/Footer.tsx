@@ -4,7 +4,7 @@ import { services, site } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="bg-charcoal py-16 text-ivory/70">
+    <footer className="border-t-4 border-foothill bg-charcoal py-16 text-ivory/70">
       <div className="container-x grid gap-12 border-b border-ivory/15 pb-12 md:grid-cols-[1.3fr_0.7fr_1fr]">
         <div>
           <Brand light />
@@ -17,7 +17,7 @@ export default function Footer() {
           </p>
         </div>
         <div>
-          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-brass-light">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-foothill-light">
             Navigate
           </h2>
           <nav className="mt-5 grid gap-3" aria-label="Footer navigation">
@@ -28,7 +28,7 @@ export default function Footer() {
           </nav>
         </div>
         <div>
-          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-brass-light">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-foothill-light">
             Services
           </h2>
           <div className="mt-5 grid gap-3">

@@ -19,7 +19,7 @@ export default function ContactPage() {
           <>
             Tell me what your business
             <br />
-            <span className="italic text-brass">needs next.</span>
+            <span className="italic text-foothill">needs next.</span>
           </>
         }
       >
@@ -40,7 +40,7 @@ export default function ContactPage() {
                 </dt>
                 <dd className="mt-2">
                   <a
-                    className="text-charcoal underline decoration-brass underline-offset-4"
+                    className="text-charcoal underline decoration-foothill underline-offset-4"
                     href={`mailto:${site.email}`}
                   >
                     {site.email}
@@ -52,14 +52,6 @@ export default function ContactPage() {
                   Service area
                 </dt>
                 <dd className="mt-2 text-charcoal-soft">{site.area}</dd>
-              </div>
-              <div className="py-5">
-                <dt className="text-xs uppercase tracking-[0.14em] text-taupe">
-                  Phone
-                </dt>
-                <dd className="mt-2 text-charcoal-soft">
-                  Phone contact will be added here when available.
-                </dd>
               </div>
             </dl>
           </aside>

@@ -21,7 +21,9 @@ export default function ServicesPage() {
           <>
             Thoughtful technology.
             <br />
-            <span className="italic text-brass">Practical business value.</span>
+            <span className="italic text-foothill">
+              Practical business value.
+            </span>
           </>
         }
       >

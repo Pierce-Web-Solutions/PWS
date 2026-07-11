@@ -27,6 +27,7 @@ const config: Config = {
         foothill: {
           DEFAULT: "#5D6E5E",
           deep: "#495847",
+          light: "#A8B6A6",
         },
       },
       fontFamily: {

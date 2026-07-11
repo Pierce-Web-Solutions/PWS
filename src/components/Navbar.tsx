@@ -8,6 +8,7 @@ import clsx from "clsx";
 import Brand from "./Brand";
 
 const links = [
+  { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
@@ -44,7 +45,7 @@ export default function Navbar() {
   return (
     <header
       className={clsx(
-        "fixed left-2 right-2 top-[3rem] z-30 border-b py-3 transition-all sm:left-3 sm:right-3 sm:top-[3.25rem] md:left-4 md:right-4 md:top-[3.75rem]",
+        "fixed left-0 right-0 top-0 z-30 border-b py-3 transition-all md:left-4 md:right-4 md:top-[3.75rem]",
         scrolled || pathname !== "/"
           ? "border-charcoal/10 bg-ivory/95 backdrop-blur-md"
           : "border-transparent bg-ivory/70 backdrop-blur-sm",
@@ -65,7 +66,7 @@ export default function Navbar() {
               className={clsx(
                 "relative py-2 text-[0.88rem] tracking-wide transition-colors hover:text-charcoal",
                 active(link.href)
-                  ? "text-charcoal after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-brass"
+                  ? "text-foothill-deep after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-foothill"
                   : "text-charcoal-soft",
               )}
             >
@@ -106,7 +107,7 @@ export default function Navbar() {
                 aria-current={active(link.href) ? "page" : undefined}
                 className={clsx(
                   "border-b border-charcoal/10 py-4 text-lg",
-                  active(link.href) ? "text-brass-deep" : "text-charcoal",
+                  active(link.href) ? "text-foothill-deep" : "text-charcoal",
                 )}
               >
                 {link.label}

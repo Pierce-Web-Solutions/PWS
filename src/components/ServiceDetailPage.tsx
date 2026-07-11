@@ -4,6 +4,7 @@ import PageHero from "./PageHero";
 import SectionHeading from "./SectionHeading";
 import CTASection from "./CTASection";
 import Footer from "./Footer";
+import ServiceSpecificSection from "./ServiceSpecificSection";
 import type { Service } from "@/lib/site";
 
 export default function ServiceDetailPage({ service }: { service: Service }) {
@@ -27,7 +28,7 @@ export default function ServiceDetailPage({ service }: { service: Service }) {
               title="Solve the right problem first"
               copy={service.intro}
             />
-            <p className="mt-7 border-l-2 border-brass pl-6 text-lg text-charcoal-soft">
+            <p className="mt-7 border-l-2 border-foothill pl-6 text-lg text-charcoal-soft">
               {service.problem}
             </p>
           </div>
@@ -36,7 +37,7 @@ export default function ServiceDetailPage({ service }: { service: Service }) {
             <p className="text-charcoal-soft">{service.fit}</p>
             <Link
               href="/contact"
-              className="mt-7 inline-flex items-center gap-2 font-medium text-charcoal underline decoration-brass underline-offset-4"
+              className="mt-7 inline-flex items-center gap-2 font-medium text-charcoal underline decoration-foothill underline-offset-4"
             >
               Discuss your project <ArrowRight size={17} />
             </Link>
@@ -63,6 +64,7 @@ export default function ServiceDetailPage({ service }: { service: Service }) {
           </ul>
         </div>
       </section>
+      <ServiceSpecificSection slug={service.slug} />
       <section className="bg-ivory py-14">
         <div className="container-x">
           <p className="max-w-4xl font-serif text-xl italic leading-relaxed text-charcoal">

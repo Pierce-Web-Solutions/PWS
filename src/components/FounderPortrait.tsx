@@ -25,7 +25,7 @@ export default function FounderPortrait({
             sizes="(max-width: 640px) 86vw, 460px"
             quality={90}
             loading={eager ? "eager" : "lazy"}
-            className="object-cover object-center"
+            className="origin-center scale-[1.2] object-cover object-[58%_center]"
           />
           <div
             className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal/25 via-transparent to-ivory/5"

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 import { pageMetadata } from "@/lib/site";
-// LEGAL REVIEW REQUIRED: Attorney review is required before production publication.
+
 export const metadata: Metadata = pageMetadata(
   "Website Terms",
-  "Draft website terms for Pierce Web Solutions, provided for attorney review before production use.",
+  "Website terms governing use of the Pierce Web Solutions public website.",
   "/terms",
 );
+
 export default function TermsPage() {
   return (
     <LegalPage title="Website Terms" updated="July 11, 2026">
@@ -34,20 +35,19 @@ export default function TermsPage() {
       <p>
         The website’s original branding, copy, design, and other materials may
         not be reproduced or presented as another business’s work without
-        permission. The final terms should address approved sharing, trademarks,
-        and any licensed third-party materials.
+        permission. Third-party materials remain subject to their respective
+        owners’ terms and licenses.
       </p>
       <h2>External services</h2>
       <p>
-        This website may eventually link to or use services operated by other
-        providers. Pierce Web Solutions does not control third-party services,
-        availability, or policies. Vendor-specific language should be confirmed
-        before launch.
+        This website may link to or use services operated by other providers.
+        Pierce Web Solutions does not control third-party services,
+        availability, content, or policies.
       </p>
       <h2>Changes and contact</h2>
       <p>
-        These draft terms may change as the website and business practices are
-        finalized. Questions may be sent to{" "}
+        These terms may be updated as the website and business practices change.
+        Questions may be sent to{" "}
         <a href="mailto:contact@piercewebsolutions.com">
           contact@piercewebsolutions.com
         </a>

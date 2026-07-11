@@ -21,7 +21,7 @@ export default function AboutPage() {
           <>
             Local perspective.
             <br />
-            <span className="italic text-brass">Direct partnership.</span>
+            <span className="italic text-foothill">Direct partnership.</span>
           </>
         }
       >

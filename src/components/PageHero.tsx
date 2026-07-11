@@ -18,7 +18,7 @@ export default function PageHero({
         aria-hidden="true"
       />
       <div
-        className="absolute -right-24 top-16 h-80 w-80 rounded-full border border-brass/20"
+        className="absolute -right-24 top-16 h-80 w-80 rounded-full border border-foothill/25"
         aria-hidden="true"
       />
       <div className="container-x relative">

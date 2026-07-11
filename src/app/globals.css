@@ -40,9 +40,9 @@
     @apply mx-auto w-[90%] max-w-[1320px];
   }
 
-  /* Brass, letter-spaced, uppercase eyebrow */
+  /* Green, letter-spaced, uppercase eyebrow */
   .eyebrow {
-    @apply font-sans text-[0.72rem] font-semibold uppercase tracking-eyebrow text-brass;
+    @apply font-sans text-[0.72rem] font-semibold uppercase tracking-eyebrow text-foothill;
   }
 
   .btn {
@@ -64,7 +64,7 @@
 
   /* Outlined — secondary (on light) */
   .btn-outline {
-    @apply btn border-charcoal/25 bg-transparent text-charcoal hover:-translate-y-0.5 hover:border-charcoal hover:bg-charcoal hover:text-ivory;
+    @apply btn border-charcoal/25 bg-transparent text-charcoal hover:-translate-y-0.5 hover:border-foothill hover:bg-foothill hover:text-ivory;
   }
 
   /* Outlined — on dark */
@@ -78,12 +78,12 @@
 
   /* Ornamental divider echoing the logo lockup */
   .ornament {
-    @apply flex items-center gap-3 text-brass;
+    @apply flex items-center gap-3 text-foothill;
   }
   .ornament::before,
   .ornament::after {
     content: "";
-    @apply h-px flex-1 bg-brass/40;
+    @apply h-px flex-1 bg-foothill/40;
   }
 
   /* Faint blueprint grid texture */

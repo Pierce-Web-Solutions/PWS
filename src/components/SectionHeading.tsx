@@ -16,7 +16,7 @@ export default function SectionHeading({
   return (
     <div className={clsx("max-w-3xl", center && "mx-auto text-center")}>
       {eyebrow && (
-        <p className={clsx("eyebrow mb-5", light && "text-brass-light")}>
+        <p className={clsx("eyebrow mb-5", light && "text-foothill-light")}>
           {eyebrow}
         </p>
       )}
