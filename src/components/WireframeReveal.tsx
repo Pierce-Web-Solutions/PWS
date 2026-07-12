@@ -1,28 +1,60 @@
 "use client";
 
-import { useRef, type CSSProperties, type FormEvent } from "react";
+import {
+  useRef,
+  type CSSProperties,
+  type FormEvent,
+  type PointerEvent,
+} from "react";
 import TopographicContours from "./TopographicContours";
 
 export default function WireframeReveal() {
   const comparisonRef = useRef<HTMLDivElement>(null);
 
-  function handleInput(event: FormEvent<HTMLInputElement>) {
-    const position = event.currentTarget.valueAsNumber;
+  function applyPosition(position: number, input: HTMLInputElement) {
     comparisonRef.current?.style.setProperty(
       "--reveal-position",
       `${position}%`,
     );
-    event.currentTarget.setAttribute(
+    input.value = String(position);
+    input.setAttribute(
       "aria-valuetext",
-      `${100 - position}% finished experience visible`,
+      `${Math.round(100 - position)}% finished experience visible`,
     );
+  }
+
+  function handleInput(event: FormEvent<HTMLInputElement>) {
+    applyPosition(event.currentTarget.valueAsNumber, event.currentTarget);
+  }
+
+  function updateFromPointer(event: PointerEvent<HTMLInputElement>) {
+    const bounds = comparisonRef.current?.getBoundingClientRect();
+    if (!bounds) return;
+    const position = Math.min(
+      100,
+      Math.max(0, ((event.clientX - bounds.left) / bounds.width) * 100),
+    );
+    applyPosition(position, event.currentTarget);
+  }
+
+  function handlePointerDown(event: PointerEvent<HTMLInputElement>) {
+    event.preventDefault();
+    event.currentTarget.focus();
+    event.currentTarget.setPointerCapture(event.pointerId);
+    updateFromPointer(event);
+  }
+
+  function handlePointerMove(event: PointerEvent<HTMLInputElement>) {
+    if (!event.currentTarget.hasPointerCapture(event.pointerId)) return;
+    event.preventDefault();
+    updateFromPointer(event);
   }
 
   return (
     <div>
       <div
         ref={comparisonRef}
-        className="relative aspect-[4/5] min-h-[34rem] overflow-hidden border border-charcoal/20 bg-ivory shadow-panel sm:aspect-[16/10] sm:min-h-0"
+        className="relative h-[50rem] w-full min-w-0 max-w-full overflow-hidden border border-charcoal/20 bg-ivory shadow-panel sm:h-[42rem] lg:h-auto lg:aspect-[16/10]"
         style={{ "--reveal-position": "54%" } as CSSProperties}
       >
         <StructureView />
@@ -48,24 +80,33 @@ export default function WireframeReveal() {
 
         <input
           type="range"
-          min="20"
-          max="80"
+          min="0"
+          max="100"
+          step="1"
           defaultValue="54"
           onInput={handleInput}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
           className="peer absolute inset-0 z-30 h-full w-full touch-pan-y cursor-ew-resize opacity-0"
           aria-label="Compare the structural wireframe with the finished interface"
           aria-describedby="comparison-instructions"
           aria-valuetext="46% finished experience visible"
         />
         <div
-          className="pointer-events-none absolute inset-y-0 z-20 w-px bg-brass shadow-[0_0_0_1px_rgba(247,243,237,0.55)] peer-focus-visible:ring-2 peer-focus-visible:ring-foothill peer-focus-visible:ring-offset-4"
+          className="pointer-events-none absolute inset-y-0 z-20 w-px bg-brass shadow-[0_0_0_1px_rgba(247,243,237,0.55)]"
           style={{ left: "var(--reveal-position)", willChange: "left" }}
           aria-hidden="true"
+        />
+        <span
+          className="pointer-events-none absolute top-1/2 z-20 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brass bg-ivory text-[0.65rem] tracking-[-0.2em] text-brass-deep shadow-soft peer-focus-visible:ring-2 peer-focus-visible:ring-foothill peer-focus-visible:ring-offset-4"
+          style={{
+            left: "clamp(1.125rem, var(--reveal-position), calc(100% - 1.125rem))",
+            willChange: "left",
+          }}
+          aria-hidden="true"
         >
-          <span className="absolute left-1/2 top-1/2 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brass bg-ivory text-[0.65rem] tracking-[-0.2em] text-brass-deep shadow-soft">
-            ‹›
-          </span>
-        </div>
+          ‹›
+        </span>
       </div>
       <p
         id="comparison-instructions"
@@ -179,7 +220,7 @@ function ExperienceView() {
           <div className="relative h-44 overflow-hidden bg-foothill-deep sm:h-60">
             <TopographicContours className="absolute -bottom-12 -right-20 w-[28rem] text-foothill-light opacity-25" />
             <div className="absolute bottom-5 left-5 right-5 border-t border-ivory/40 pt-3 text-xs text-ivory/80">
-              Serving the foothills and surrounding communities
+              Clear service. Thoughtful follow-through.
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import WindowFrame from "@/components/WindowFrame";
 import Navbar from "@/components/Navbar";
 import { site } from "@/lib/site";
+import AttributionCapture from "@/components/AttributionCapture";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -62,6 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="bg-ivory font-sans text-charcoal antialiased">
+        <AttributionCapture />
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>

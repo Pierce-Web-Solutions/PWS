@@ -27,22 +27,26 @@ export default function PrivacyPage() {
       </p>
       <h2>Website and analytics information</h2>
       <p>
-        This website may use basic server logs and analytics tools to understand
-        visits, device types, referral sources, site performance, and potential
-        security issues.
+        This website may use basic server logs, analytics tools, and marketing
+        attribution parameters when they are present in a landing URL. This may
+        include referral information, campaign parameters, and advertising click
+        identifiers. Contact submissions are also checked by anti-spam
+        infrastructure.
       </p>
       <h2>How information may be used</h2>
       <p>
         Information may be used to respond to inquiries, evaluate a potential
         project, provide requested services, maintain website security, and
-        understand how the website is used.
+        understand how the website is used. Pierce Web Solutions does not sell
+        information submitted through the contact form.
       </p>
       <h2>Service providers and retention</h2>
       <p>
-        Hosting, analytics, email, form-delivery, or other vendors may process
-        information on behalf of Pierce Web Solutions. Information is retained
-        only as reasonably needed for the inquiry, service relationship,
-        security, recordkeeping, or applicable business obligations.
+        Hosting, analytics, email-delivery, and anti-spam providers may process
+        information on behalf of Pierce Web Solutions to operate the website and
+        deliver inquiries. Information is retained only as reasonably needed for
+        the inquiry, service relationship, security, recordkeeping, or
+        applicable business obligations.
       </p>
       <h2>Your questions</h2>
       <p>
