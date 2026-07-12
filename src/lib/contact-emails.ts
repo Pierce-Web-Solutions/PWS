@@ -10,6 +10,25 @@ const escapeHtml = (value: unknown) =>
 
 const display = (value?: string) => value || "Not provided";
 
+const confirmationSignature = `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;color:#1f1f1d">
+  <tr>
+    <td style="padding-right:18px;vertical-align:top">
+      <img src="https://www.piercewebsolutions.com/logos/pws-icon.png" alt="Pierce Web Solutions" width="82" style="display:block;width:82px;height:auto;border:0">
+    </td>
+    <td style="border-left:2px solid #b89456;padding-left:18px;vertical-align:top">
+      <div style="font-size:17px;line-height:21px;font-weight:700;color:#1f1f1d">Jacob Pierce</div>
+      <div style="font-size:12px;line-height:18px;color:#8e8578">Founder &amp; Web Solutions Architect</div>
+      <div style="margin-top:3px;font-size:13px;line-height:18px;font-weight:700;color:#1f1f1d">Pierce Web Solutions</div>
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:12px;line-height:18px;font-style:italic;color:#8e8578">Modern technology. Local partnership.</div>
+      <div style="margin-top:9px;font-size:12px;line-height:19px;color:#1f1f1d">
+        <a href="mailto:jacob@piercewebsolutions.com" style="color:#5d6e5e;text-decoration:none">jacob@piercewebsolutions.com</a>
+        <span style="color:#b89456"> &nbsp;|&nbsp; </span>
+        <a href="https://piercewebsolutions.com" style="color:#5d6e5e;text-decoration:none">piercewebsolutions.com</a>
+      </div>
+    </td>
+  </tr>
+</table>`;
+
 export function internalEmail(
   submission: ContactSubmission,
   submittedAt: Date,
@@ -71,7 +90,7 @@ export function internalEmail(
 }
 
 export function confirmationEmail(submission: ContactSubmission) {
-  const html = `<!doctype html><html><body style="margin:0;background:#efe8dc;padding:28px"><div style="max-width:620px;margin:auto;background:#F7F3ED;border:1px solid #d7c7aa"><div style="padding:26px 30px;background:#1F1F1D;color:#F7F3ED"><p style="margin:0;color:#A8B6A6;font:600 11px Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase">Pierce Web Solutions</p><h1 style="margin:10px 0 0;font:28px Georgia,serif">Thank you for reaching out.</h1></div><div style="padding:28px 30px;color:#3a3a37;font:15px Arial,sans-serif;line-height:1.75"><p>Hi ${escapeHtml(submission.firstName)},</p><p>Thank you for contacting Pierce Web Solutions. I’ve received the information you submitted and will review it personally.</p><p>You can expect a response within one business day.</p><p>In the meantime, no further action is required.</p><p style="margin-top:28px">Thanks,<br><strong>Jacob Pierce</strong><br>Pierce Web Solutions<br><a style="color:#495847" href="mailto:contact@piercewebsolutions.com">contact@piercewebsolutions.com</a><br><a style="color:#495847" href="https://piercewebsolutions.com">piercewebsolutions.com</a></p></div></div></body></html>`;
+  const html = `<!doctype html><html><body style="margin:0;background:#efe8dc;padding:28px"><div style="max-width:620px;margin:auto;background:#F7F3ED;border:1px solid #d7c7aa"><div style="padding:26px 30px;background:#1F1F1D;color:#F7F3ED"><p style="margin:0;color:#A8B6A6;font:600 11px Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase">Pierce Web Solutions</p><h1 style="margin:10px 0 0;font:28px Georgia,serif">Thank you for reaching out.</h1></div><div style="padding:28px 30px;color:#3a3a37;font:15px Arial,sans-serif;line-height:1.75"><p>Hi ${escapeHtml(submission.firstName)},</p><p>Thank you for contacting Pierce Web Solutions. I’ve received the information you submitted and will review it personally.</p><p>You can expect a response within one business day.</p><p>In the meantime, no further action is required.</p><div style="margin-top:30px">${confirmationSignature}</div></div></div></body></html>`;
   const text = `Hi ${submission.firstName},
 
 Thank you for contacting Pierce Web Solutions. I’ve received the information you submitted and will review it personally.
@@ -82,8 +101,9 @@ In the meantime, no further action is required.
 
 Thanks,
 Jacob Pierce
+Founder & Web Solutions Architect
 Pierce Web Solutions
-contact@piercewebsolutions.com
+jacob@piercewebsolutions.com
 piercewebsolutions.com`;
   return {
     subject: "We received your inquiry | Pierce Web Solutions",

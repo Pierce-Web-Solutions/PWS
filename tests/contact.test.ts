@@ -6,7 +6,7 @@ import {
   type ContactDependencies,
 } from "../src/lib/contact-service";
 import { requestOriginIsAllowed } from "../src/app/api/contact/route";
-import { internalEmail } from "../src/lib/contact-emails";
+import { confirmationEmail, internalEmail } from "../src/lib/contact-emails";
 import { processStoredLead } from "../src/lib/lead-conversion";
 
 const now = new Date("2026-07-11T16:00:00.000Z");
@@ -194,6 +194,25 @@ test("HTML email escapes visitor content", () => {
   );
   assert.equal(email.html.includes("<script>alert(1)</script>"), false);
   assert.equal(email.html.includes("&lt;script&gt;"), true);
+});
+
+test("confirmation email includes the branded Jacob Pierce signature", () => {
+  const email = confirmationEmail(valid as never);
+  assert.equal(
+    email.html.includes(
+      "https://www.piercewebsolutions.com/logos/pws-icon.png",
+    ),
+    true,
+  );
+  assert.equal(
+    email.html.includes("Founder &amp; Web Solutions Architect"),
+    true,
+  );
+  assert.equal(
+    email.html.includes("mailto:jacob@piercewebsolutions.com"),
+    true,
+  );
+  assert.equal(email.text.includes("jacob@piercewebsolutions.com"), true);
 });
 
 test("direct thank-you visits do not send a lead event", () => {
