@@ -30,22 +30,57 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
-  keywords: [
-    "North Georgia web design",
-    "Georgia web developer",
-    "small business website",
-    "business automation",
-    "website care",
-  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": ["Organization", "ProfessionalService"],
-  name: site.name,
-  url: site.url,
-  email: site.email,
-  areaServed: ["North Georgia", "Georgia", "United States"],
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      description: site.description,
+      email: site.email,
+      logo: {
+        "@type": "ImageObject",
+        url: `${site.url}/logos/pws-icon.png`,
+      },
+      areaServed: [
+        "North Georgia",
+        "Gwinnett County, Georgia",
+        "Hall County, Georgia",
+        "Barrow County, Georgia",
+        "Forsyth County, Georgia",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: site.email,
+        contactType: "sales and customer support",
+        availableLanguage: "English",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      publisher: { "@id": `${site.url}/#organization` },
+      inLanguage: "en-US",
+    },
+  ],
 };
 
 export default function RootLayout({

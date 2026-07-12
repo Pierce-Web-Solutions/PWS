@@ -24,7 +24,13 @@ const serviceIcons: Record<string, LucideIcon> = {
   advertising: Megaphone,
 };
 
-export default function ServiceSummary({ service }: { service: Service }) {
+export default function ServiceSummary({
+  service,
+  description,
+}: {
+  service: Service;
+  description?: string;
+}) {
   const Icon = serviceIcons[service.slug];
   return (
     <InspectionFrame
@@ -45,7 +51,7 @@ export default function ServiceSummary({ service }: { service: Service }) {
           {service.shortTitle}
         </h3>
         <p className="mt-3 max-w-2xl text-charcoal-soft">
-          {service.description}
+          {description ?? service.description}
         </p>
       </div>
       <Link

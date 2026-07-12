@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import { pageMetadata, services } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Services",
+  "Web & Technology Services in North Georgia",
   "Web design, website care, automation, custom systems, and advertising for North Georgia small businesses.",
   "/services",
 );

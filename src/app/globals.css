@@ -347,6 +347,59 @@
     @apply relative z-10 border-l-2 border-brass pl-4 text-sm text-ivory/70;
   }
 
+  .growth-lifecycle {
+    @apply relative grid gap-5 pl-6 md:grid-cols-3 md:gap-6 md:pl-0 md:pt-6;
+  }
+  .growth-lifecycle::before {
+    content: "";
+    @apply absolute bottom-0 left-[0.35rem] top-0 w-px bg-brass/45 md:bottom-auto md:left-0 md:right-0 md:top-[0.35rem] md:h-px md:w-auto;
+    animation: lifecycle-reveal 650ms ease-out both;
+    transform-origin: top left;
+  }
+  .growth-lifecycle__stage {
+    @apply relative border border-ivory/15 bg-ivory/5 p-6 md:p-7;
+  }
+  .growth-lifecycle__node {
+    @apply absolute -left-[1.9rem] top-6 h-3 w-3 rotate-45 border border-brass bg-charcoal md:-top-[1.9rem] md:left-7;
+  }
+
+  .support-principles {
+    @apply relative border border-charcoal/15 bg-ivory/70 p-6 md:p-8;
+  }
+  .support-principles::after {
+    content: "";
+    @apply pointer-events-none absolute bottom-4 right-4 h-12 w-12 border-b border-r border-brass/35;
+  }
+  .support-principles__list {
+    @apply relative;
+  }
+  .support-principles__list::before {
+    content: "";
+    @apply absolute bottom-7 left-[0.3rem] top-7 w-px bg-brass/45;
+  }
+  .support-principles__item {
+    @apply relative grid grid-cols-[3.25rem_1fr] gap-3 border-b border-charcoal/15 py-6 pl-5 last:border-b-0;
+  }
+  .support-principles__node {
+    @apply absolute left-0 top-[1.9rem] h-2.5 w-2.5 rotate-45 border border-brass bg-ivory-deep;
+  }
+
+  .simple-process {
+    @apply relative grid gap-5 pl-6 md:grid-cols-3 md:gap-0 md:pl-0 md:pt-7;
+  }
+  .simple-process::before {
+    content: "";
+    @apply absolute bottom-0 left-[0.35rem] top-0 w-px bg-foothill/45 md:bottom-auto md:left-0 md:right-0 md:top-[0.35rem] md:h-px md:w-auto;
+    animation: lifecycle-reveal 650ms ease-out both;
+    transform-origin: top left;
+  }
+  .simple-process__step {
+    @apply relative border border-charcoal/15 bg-ivory-deep p-6 md:border-r-0 md:p-8 md:last:border-r;
+  }
+  .simple-process__node {
+    @apply absolute -left-[1.9rem] top-6 h-3 w-3 rotate-45 border border-foothill bg-ivory md:-top-[2.05rem] md:left-8;
+  }
+
   @media (min-width: 1024px) {
     .foundation-map {
       @apply grid-cols-[1fr_0.9fr_1fr] items-center;

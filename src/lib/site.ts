@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 
 export const site = {
   name: "Pierce Web Solutions",
-  url: "https://piercewebsolutions.com",
+  url: "https://www.piercewebsolutions.com",
   email: "contact@piercewebsolutions.com",
   location: "North Georgia",
-  area: "North Georgia, with select projects supported remotely",
+  area: "Gwinnett, Hall, Barrow, Forsyth, and surrounding North Georgia communities",
   description:
     "Custom websites, practical systems, and reliable support for small businesses across North Georgia.",
 };
@@ -26,6 +26,7 @@ export function pageMetadata(
       url,
       siteName: site.name,
       type: "website",
+      locale: "en_US",
       images: [
         {
           url: "/images/hero3.png",

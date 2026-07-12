@@ -23,7 +23,7 @@ const confirmationSignature = `<table cellpadding="0" cellspacing="0" border="0"
       <div style="margin-top:9px;font-size:12px;line-height:19px;color:#1f1f1d">
         <a href="mailto:jacob@piercewebsolutions.com" style="color:#5d6e5e;text-decoration:none">jacob@piercewebsolutions.com</a>
         <span style="color:#b89456"> &nbsp;|&nbsp; </span>
-        <a href="https://piercewebsolutions.com" style="color:#5d6e5e;text-decoration:none">piercewebsolutions.com</a>
+        <a href="https://www.piercewebsolutions.com" style="color:#5d6e5e;text-decoration:none">piercewebsolutions.com</a>
       </div>
     </td>
   </tr>

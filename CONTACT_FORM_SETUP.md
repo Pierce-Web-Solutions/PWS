@@ -40,7 +40,7 @@ Add every variable from `.env.example` in the Vercel project’s Environment Var
 
 Required production variables:
 
-- `NEXT_PUBLIC_SITE_URL=https://piercewebsolutions.com`
+- `NEXT_PUBLIC_SITE_URL=https://www.piercewebsolutions.com`
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
 - `TURNSTILE_SECRET_KEY`
 - `RESEND_API_KEY`

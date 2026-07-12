@@ -66,7 +66,7 @@ export default function AboutPage() {
             <GeorgiaSeal className="h-20 w-20 text-brass" />
             <div className="max-w-3xl">
               <p className="text-[0.62rem] font-semibold uppercase tracking-[0.17em] text-brass-light">
-                Home Base / Auburn, Georgia
+                Based in Auburn, Georgia
               </p>
               <h2 className="mt-3 font-serif text-3xl">Why North Georgia</h2>
               <p className="mt-3 text-ivory/70">

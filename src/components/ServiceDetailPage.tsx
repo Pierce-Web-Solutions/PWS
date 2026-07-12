@@ -6,7 +6,7 @@ import CTASection from "./CTASection";
 import Footer from "./Footer";
 import ServiceSpecificSection from "./ServiceSpecificSection";
 import WireframeReveal from "./WireframeReveal";
-import type { Service } from "@/lib/site";
+import { site, type Service } from "@/lib/site";
 
 export default function ServiceDetailPage({ service }: { service: Service }) {
   return (
@@ -16,11 +16,35 @@ export default function ServiceDetailPage({ service }: { service: Service }) {
         title={service.title}
         breadcrumbs={[
           { label: "Services", href: "/services" },
-          { label: service.shortTitle },
+          {
+            label: service.shortTitle,
+            href: `/services/${service.slug}`,
+          },
         ]}
       >
         {service.description}
       </PageHero>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: service.shortTitle,
+            serviceType: service.shortTitle,
+            description: service.description,
+            url: `${site.url}/services/${service.slug}`,
+            provider: { "@id": `${site.url}/#organization` },
+            areaServed: [
+              "North Georgia",
+              "Gwinnett County, Georgia",
+              "Hall County, Georgia",
+              "Barrow County, Georgia",
+              "Forsyth County, Georgia",
+            ],
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       <section className="section-pad bg-ivory">
         <div className="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
           <div>

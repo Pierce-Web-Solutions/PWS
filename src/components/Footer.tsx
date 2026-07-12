@@ -16,12 +16,13 @@ export default function Footer() {
           <div className="mt-6 flex max-w-md items-center gap-4 border-t border-ivory/15 pt-5">
             <GeorgiaSeal className="h-14 w-14 shrink-0 text-brass-light" />
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ivory/80">
-                Built in Auburn, Georgia
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-ivory/50">
-                Serving Barrow, Gwinnett, Hall, and businesses across North
-                Georgia
+              <p className="text-xs leading-relaxed text-ivory/60">
+                <span className="font-semibold uppercase tracking-[0.14em] text-ivory/80">
+                  Based in North Georgia
+                </span>
+                <span className="mx-2 text-brass-light">·</span>
+                Serving Gwinnett, Hall, Barrow, Forsyth, and surrounding
+                communities
               </p>
             </div>
           </div>
