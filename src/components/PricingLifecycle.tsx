@@ -74,6 +74,9 @@ export default function PricingLifecycle() {
               key={stage.name}
               as="a"
               href={stage.href}
+              dataAnalyticsEvent="Pricing Navigation Clicked"
+              dataAnalyticsLocation="pricing_lifecycle"
+              dataAnalyticsTarget={stage.name.toLowerCase()}
               label={stage.type}
               className="pricing-lifecycle__stage"
             >

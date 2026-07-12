@@ -10,6 +10,7 @@ import {
 import { useRouter } from "next/navigation";
 import { LoaderCircle, Send } from "lucide-react";
 import clsx from "clsx";
+import { track } from "@vercel/analytics";
 import { site } from "@/lib/site";
 import { getInitialAttribution } from "@/lib/attribution";
 import {
@@ -43,6 +44,7 @@ export default function ConsultationForm() {
   const statusRef = useRef<HTMLParagraphElement>(null);
   const sectionRefs = useRef<(HTMLFieldSetElement | null)[]>([]);
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
+  const formStartedTrackedRef = useRef(false);
   const [errors, setErrors] = useState<Errors>({});
   const [notice, setNotice] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -134,6 +136,8 @@ export default function ConsultationForm() {
       return;
     }
 
+    track("Contact Form Attempted", { path: window.location.pathname });
+
     const attribution = getInitialAttribution();
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 15000);
@@ -213,10 +217,18 @@ export default function ConsultationForm() {
     setCompletedSections(sectionCompletion(form, turnstileToken));
   }
 
+  function handleFormInput(form: HTMLFormElement) {
+    if (!formStartedTrackedRef.current) {
+      formStartedTrackedRef.current = true;
+      track("Contact Form Started", { path: window.location.pathname });
+    }
+    updateProgress(form);
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
-      onInput={(event) => updateProgress(event.currentTarget)}
+      onInput={(event) => handleFormInput(event.currentTarget)}
       onChange={(event) => updateProgress(event.currentTarget)}
       noValidate
       className="relative"

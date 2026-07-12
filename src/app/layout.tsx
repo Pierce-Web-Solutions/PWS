@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import { site } from "@/lib/site";
 import AttributionCapture from "@/components/AttributionCapture";
 import { Analytics } from "@vercel/analytics/next";
+import AnalyticsClickTracker from "@/components/AnalyticsClickTracker";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({
         <WindowFrame />
         <Navbar />
         <Analytics />
+        <AnalyticsClickTracker />
         <div
           id="window-viewport"
           className="fixed inset-0 z-10 overflow-y-auto overflow-x-hidden scroll-pt-28 scroll-smooth lg:bottom-4 lg:left-4 lg:right-4 lg:top-[3.75rem] lg:rounded-b-2xl"

@@ -73,10 +73,22 @@ function WhatCustomUnlocksSection() {
           your business rather than inherited from a generic template.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
-          <Link href="/pricing#build" className="btn-brass">
+          <Link
+            href="/pricing#build"
+            className="btn-brass"
+            data-analytics-event="Pricing Navigation Clicked"
+            data-analytics-location="web_design_custom_unlocks"
+            data-analytics-target="build"
+          >
             View Website Packages
           </Link>
-          <Link href="/contact" className="btn-outline">
+          <Link
+            href="/contact"
+            className="btn-outline"
+            data-analytics-event="Consultation CTA Clicked"
+            data-analytics-location="web_design_custom_unlocks"
+            data-analytics-target="contact"
+          >
             Start a Conversation
           </Link>
         </div>
@@ -355,6 +367,9 @@ function AdvertisingSection() {
             </p>
             <Link
               href="/pricing#launch"
+              data-analytics-event="Pricing Navigation Clicked"
+              data-analytics-location="advertising_service"
+              data-analytics-target="launch"
               className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ivory underline decoration-foothill-light underline-offset-4"
             >
               View launch pricing <ArrowRight size={16} aria-hidden="true" />
@@ -373,6 +388,9 @@ function AdvertisingSection() {
             </p>
             <Link
               href="/pricing#grow"
+              data-analytics-event="Pricing Navigation Clicked"
+              data-analytics-location="advertising_service"
+              data-analytics-target="grow"
               className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ivory underline decoration-foothill-light underline-offset-4"
             >
               Compare management plans{" "}

@@ -552,6 +552,9 @@ function PricingSection({
   return (
     <section
       id={id}
+      data-analytics-view="Pricing Section Viewed"
+      data-analytics-location="pricing_page"
+      data-analytics-target={id}
       className={`pricing-anchor section-pad ${tone === "deep" ? "bg-ivory-deep" : "bg-ivory"}`}
     >
       <div className="container-x">

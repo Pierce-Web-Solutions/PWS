@@ -38,6 +38,9 @@ export default function ServiceDetailPage({ service }: { service: Service }) {
             <p className="text-charcoal-soft">{service.fit}</p>
             <Link
               href="/contact"
+              data-analytics-event="Consultation CTA Clicked"
+              data-analytics-location="service_detail_fit"
+              data-analytics-target={service.slug}
               className="mt-7 inline-flex items-center gap-2 font-medium text-charcoal underline decoration-foothill underline-offset-4"
             >
               Discuss your project <ArrowRight size={17} />

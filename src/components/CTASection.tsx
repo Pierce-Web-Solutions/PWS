@@ -22,7 +22,13 @@ export default function CTASection({
           </h2>
           <p className="mt-5 max-w-2xl text-lg text-ivory/75">{copy}</p>
         </div>
-        <Link href="/contact" className="btn-brass group w-fit">
+        <Link
+          href="/contact"
+          className="btn-brass group w-fit"
+          data-analytics-event="Consultation CTA Clicked"
+          data-analytics-location="section_cta"
+          data-analytics-target="contact"
+        >
           Request a Consultation{" "}
           <ArrowRight
             size={18}

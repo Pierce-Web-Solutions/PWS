@@ -347,19 +347,6 @@
     @apply relative z-10 border-l-2 border-brass pl-4 text-sm text-ivory/70;
   }
 
-  .georgia-map {
-    @apply border border-charcoal/15 bg-ivory-deep p-5 shadow-soft md:p-8;
-  }
-  .georgia-map__canvas {
-    @apply relative mx-auto max-w-[38rem] text-brass;
-  }
-  .georgia-map__region {
-    @apply text-brass;
-  }
-  .georgia-map__places {
-    @apply mt-4 grid sm:grid-cols-2 sm:gap-x-8;
-  }
-
   @media (min-width: 1024px) {
     .foundation-map {
       @apply grid-cols-[1fr_0.9fr_1fr] items-center;

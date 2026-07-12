@@ -13,7 +13,6 @@ import CTASection from "./CTASection";
 import TopographicContours from "./TopographicContours";
 import { services } from "@/lib/site";
 import CustomFoundationMap from "./CustomFoundationMap";
-import GeorgiaServiceAreaMap from "./GeorgiaServiceAreaMap";
 
 const industries = [
   "Contractors and home-service companies",
@@ -120,10 +119,22 @@ export default function HomeSections() {
               flexible foundation for the business.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/services/web-design" className="btn-brass">
+              <Link
+                href="/services/web-design"
+                className="btn-brass"
+                data-analytics-event="Service Explored"
+                data-analytics-location="homepage_custom_foundation"
+                data-analytics-target="web-design"
+              >
                 Explore Custom Web Design
               </Link>
-              <Link href="/pricing#build" className="btn-outline-light">
+              <Link
+                href="/pricing#build"
+                className="btn-outline-light"
+                data-analytics-event="Pricing Navigation Clicked"
+                data-analytics-location="homepage_custom_foundation"
+                data-analytics-target="build"
+              >
                 View Website Pricing
               </Link>
             </div>
@@ -162,35 +173,6 @@ export default function HomeSections() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="section-pad bg-ivory">
-        <div className="container-x grid items-center gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
-          <div>
-            <SectionHeading
-              eyebrow="/ Rooted in North Georgia"
-              title="Built Here. Focused on the Businesses Around Us."
-              copy={
-                <div className="grid gap-4">
-                  <p>
-                    Pierce Web Solutions is based in Auburn and works closely
-                    with businesses throughout Barrow County, Gwinnett County,
-                    Hall County, and the surrounding North Georgia communities.
-                  </p>
-                  <p>
-                    Local context matters, from how customers search to how
-                    quickly a business needs support.
-                  </p>
-                </div>
-              }
-            />
-            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-taupe">
-              <span>Based / Auburn, GA</span>
-              <span>Serving / North Georgia</span>
-            </div>
-          </div>
-          <GeorgiaServiceAreaMap />
         </div>
       </section>
 

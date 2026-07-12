@@ -76,6 +76,9 @@ export default function Navbar() {
           <Link
             href="/contact"
             className="btn-outline px-5 py-2 text-[0.82rem]"
+            data-analytics-event="Consultation CTA Clicked"
+            data-analytics-location="desktop_nav"
+            data-analytics-target="contact"
           >
             Request a Consultation
           </Link>
@@ -117,6 +120,9 @@ export default function Navbar() {
               href="/contact"
               onClick={() => setOpen(false)}
               className="btn-brass mt-5 w-fit"
+              data-analytics-event="Consultation CTA Clicked"
+              data-analytics-location="mobile_nav"
+              data-analytics-target="contact"
             >
               Request a Consultation
             </Link>

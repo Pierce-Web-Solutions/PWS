@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import clsx from "clsx";
+import { track } from "@vercel/analytics";
 
 export default function PlanFitGuide({
   planName,
@@ -38,7 +39,16 @@ export default function PlanFitGuide({
         aria-label={`Who is ${planName} for?`}
         aria-expanded={open}
         aria-controls={id}
-        onClick={() => setOpen((value) => !value)}
+        onClick={() =>
+          setOpen((value) => {
+            if (!value)
+              track("Plan Fit Opened", {
+                plan: planName,
+                path: window.location.pathname,
+              });
+            return !value;
+          })
+        }
         className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-foothill-deep underline decoration-brass/60 underline-offset-4"
       >
         Who&apos;s this for?

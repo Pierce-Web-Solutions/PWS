@@ -55,14 +55,26 @@ export default function Hero() {
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">
-            <Link href="/contact" className="btn-brass group">
+            <Link
+              href="/contact"
+              className="btn-brass group"
+              data-analytics-event="Consultation CTA Clicked"
+              data-analytics-location="homepage_hero"
+              data-analytics-target="contact"
+            >
               Request a Consultation
               <ArrowRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </Link>
-            <Link href="/services" className="btn-outline">
+            <Link
+              href="/services"
+              className="btn-outline"
+              data-analytics-event="Services Overview Clicked"
+              data-analytics-location="homepage_hero"
+              data-analytics-target="services"
+            >
               Explore Services
             </Link>
           </div>

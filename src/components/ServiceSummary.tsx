@@ -50,6 +50,9 @@ export default function ServiceSummary({ service }: { service: Service }) {
       </div>
       <Link
         href={`/services/${service.slug}`}
+        data-analytics-event="Service Explored"
+        data-analytics-location="homepage_services"
+        data-analytics-target={service.slug}
         className="mt-5 inline-flex items-center gap-2 self-center text-sm font-medium text-charcoal underline decoration-foothill/60 underline-offset-4 transition-colors hover:text-foothill-deep md:mt-0"
       >
         Explore service <ArrowUpRight size={17} />

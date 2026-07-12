@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import { site } from "@/lib/site";
 import { internalEmail, confirmationEmail } from "@/lib/contact-emails";
 import { processContactSubmission } from "@/lib/contact-service";
+import { track } from "@vercel/analytics/server";
 
 export const runtime = "nodejs";
 
@@ -177,6 +178,15 @@ export async function POST(request: NextRequest) {
       },
       { status: result.status },
     );
+  try {
+    await track("Inquiry Accepted", {
+      service: result.submission.service,
+      budget: result.submission.budget,
+      source: result.submission.utmSource || "direct",
+    });
+  } catch {
+    console.error("Vercel inquiry analytics delivery failed.");
+  }
   return NextResponse.json({
     ok: true,
     lead: {

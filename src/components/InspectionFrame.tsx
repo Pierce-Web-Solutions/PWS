@@ -8,6 +8,9 @@ export default function InspectionFrame({
   className,
   focusable = false,
   href,
+  dataAnalyticsEvent,
+  dataAnalyticsLocation,
+  dataAnalyticsTarget,
 }: {
   as?: ElementType;
   label?: string;
@@ -15,12 +18,18 @@ export default function InspectionFrame({
   className?: string;
   focusable?: boolean;
   href?: string;
+  dataAnalyticsEvent?: string;
+  dataAnalyticsLocation?: string;
+  dataAnalyticsTarget?: string;
 }) {
   return (
     <Tag
       className={clsx("inspection-frame", className)}
       tabIndex={focusable ? 0 : undefined}
       href={href}
+      data-analytics-event={dataAnalyticsEvent}
+      data-analytics-location={dataAnalyticsLocation}
+      data-analytics-target={dataAnalyticsTarget}
     >
       <span className="inspection-frame__label" aria-hidden="true">
         {label}
