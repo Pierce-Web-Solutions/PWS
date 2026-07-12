@@ -11,13 +11,15 @@ const requiredText = (label: string, min: number, max: number) =>
 const optionalText = (max: number) =>
   z
     .union([z.literal(""), trimmed(max)])
-    .transform((value) => value || undefined);
+    .transform((value) => value || undefined)
+    .optional();
 const optionalUrl = z
   .union([
     z.literal(""),
     z.string().trim().max(500).url("Enter a valid website URL."),
   ])
-  .transform((value) => value || undefined);
+  .transform((value) => value || undefined)
+  .optional();
 
 export const contactSchema = z
   .object({

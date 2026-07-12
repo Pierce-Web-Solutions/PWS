@@ -57,6 +57,46 @@ test("valid submission succeeds and normalizes email", async () => {
   if (result.ok) assert.equal(result.submission.email, "jacob@example.com");
 });
 
+test("optional attribution and contact fields may be omitted", async () => {
+  const {
+    phone,
+    website,
+    referral,
+    landingPage,
+    referrer,
+    utmSource,
+    utmMedium,
+    utmCampaign,
+    utmTerm,
+    utmContent,
+    gclid,
+    msclkid,
+    fbclid,
+    ...withoutOptionalFields
+  } = valid;
+  void [
+    phone,
+    website,
+    referral,
+    landingPage,
+    referrer,
+    utmSource,
+    utmMedium,
+    utmCampaign,
+    utmTerm,
+    utmContent,
+    gclid,
+    msclkid,
+    fbclid,
+  ];
+
+  const result = await processContactSubmission(
+    withoutOptionalFields,
+    dependencies(),
+  );
+  assert.equal(result.ok, true, JSON.stringify(result));
+});
+
 for (const [name, input, field] of [
   ["missing required field", { ...valid, firstName: " " }, "firstName"],
   ["invalid email", { ...valid, email: "not-an-email" }, "email"],
