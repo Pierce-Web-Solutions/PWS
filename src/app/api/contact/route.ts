@@ -19,7 +19,16 @@ function allowedHosts(): Set<string> {
   const hosts = new Set<string>();
   const configured = process.env.NEXT_PUBLIC_SITE_URL || site.url;
   try {
-    hosts.add(new URL(configured).host.toLowerCase());
+    const configuredHost = new URL(configured).host.toLowerCase();
+    hosts.add(configuredHost);
+
+    // Treat the canonical apex domain and its www alias as the same site.
+    // Vercel can serve either hostname before a redirect has completed.
+    if (configuredHost.startsWith("www.")) {
+      hosts.add(configuredHost.slice(4));
+    } else {
+      hosts.add(`www.${configuredHost}`);
+    }
   } catch {}
   if (process.env.VERCEL_URL) hosts.add(process.env.VERCEL_URL.toLowerCase());
   if (process.env.NODE_ENV !== "production") {
@@ -134,7 +143,10 @@ export async function POST(request: NextRequest) {
         replyTo: submission.email,
         ...email,
       });
-      if (response.error) throw new Error("Internal delivery failed");
+      if (response.error) {
+        console.error("Contact inquiry delivery failed.", response.error);
+        throw new Error("Internal delivery failed");
+      }
     },
     sendConfirmation: async (submission) => {
       const email = confirmationEmail(submission);
@@ -144,7 +156,10 @@ export async function POST(request: NextRequest) {
         replyTo: process.env.CONTACT_REPLY_EMAIL || site.email,
         ...email,
       });
-      if (response.error) throw new Error("Confirmation delivery failed");
+      if (response.error) {
+        console.error("Contact confirmation delivery failed.", response.error);
+        throw new Error("Confirmation delivery failed");
+      }
     },
     logConfirmationFailure: () =>
       console.error(
