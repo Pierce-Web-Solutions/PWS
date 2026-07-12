@@ -4,6 +4,8 @@ import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FounderPortrait from "@/components/FounderPortrait";
+import TopographicContours from "@/components/TopographicContours";
+import { GeorgiaSeal } from "@/components/GeorgiaServiceAreaMap";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
@@ -54,6 +56,26 @@ export default function AboutPage() {
                 </>
               }
             />
+          </div>
+        </div>
+      </section>
+      <section className="bg-charcoal py-14 text-ivory md:py-16">
+        <div className="container-x relative overflow-hidden border border-ivory/15 px-7 py-9 md:px-10">
+          <TopographicContours className="absolute -bottom-24 -right-24 w-[34rem] text-foothill-light opacity-10" />
+          <div className="relative grid items-center gap-7 md:grid-cols-[auto_1fr]">
+            <GeorgiaSeal className="h-20 w-20 text-brass" />
+            <div className="max-w-3xl">
+              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.17em] text-brass-light">
+                Home Base / Auburn, Georgia
+              </p>
+              <h2 className="mt-3 font-serif text-3xl">Why North Georgia</h2>
+              <p className="mt-3 text-ivory/70">
+                This is home. I understand the businesses, communities, and
+                relationships that keep this area moving, and I built Pierce Web
+                Solutions to provide those businesses with a more direct and
+                capable technology partner.
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -33,6 +33,18 @@ export default function ContactPage() {
             <h2 className="heading-serif text-3xl">
               Start with a straightforward conversation.
             </h2>
+            <div className="mt-7 border-l-2 border-brass pl-4">
+              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-foothill-deep">
+                Based / Auburn, GA
+              </p>
+              <p className="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-taupe">
+                Serving / North Georgia
+              </p>
+              <p className="mt-3 text-sm text-charcoal-soft">
+                Local businesses across Barrow, Gwinnett, Hall, and nearby
+                communities are welcome to reach out.
+              </p>
+            </div>
             <dl className="mt-8 divide-y divide-charcoal/15 border-y border-charcoal/15">
               <div className="py-5">
                 <dt className="text-xs uppercase tracking-[0.14em] text-taupe">

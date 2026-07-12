@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Brand from "./Brand";
 import { services, site } from "@/lib/site";
+import { GeorgiaSeal } from "./GeorgiaServiceAreaMap";
 
 export default function Footer() {
   return (
@@ -12,9 +13,18 @@ export default function Footer() {
             Custom websites, practical systems, and reliable support for small
             businesses across North Georgia.
           </p>
-          <p className="mt-4 text-sm text-ivory/50">
-            Based in North Georgia · Serving businesses near and far
-          </p>
+          <div className="mt-6 flex max-w-md items-center gap-4 border-t border-ivory/15 pt-5">
+            <GeorgiaSeal className="h-14 w-14 shrink-0 text-brass-light" />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ivory/80">
+                Built in Auburn, Georgia
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-ivory/50">
+                Serving Barrow, Gwinnett, Hall, and businesses across North
+                Georgia
+              </p>
+            </div>
+          </div>
         </div>
         <div>
           <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-foothill-light">

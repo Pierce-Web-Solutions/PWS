@@ -13,6 +13,7 @@ import CTASection from "./CTASection";
 import TopographicContours from "./TopographicContours";
 import { services } from "@/lib/site";
 import CustomFoundationMap from "./CustomFoundationMap";
+import GeorgiaServiceAreaMap from "./GeorgiaServiceAreaMap";
 
 const industries = [
   "Contractors and home-service companies",
@@ -164,6 +165,35 @@ export default function HomeSections() {
         </div>
       </section>
 
+      <section className="section-pad bg-ivory">
+        <div className="container-x grid items-center gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+          <div>
+            <SectionHeading
+              eyebrow="/ Rooted in North Georgia"
+              title="Built Here. Focused on the Businesses Around Us."
+              copy={
+                <div className="grid gap-4">
+                  <p>
+                    Pierce Web Solutions is based in Auburn and works closely
+                    with businesses throughout Barrow County, Gwinnett County,
+                    Hall County, and the surrounding North Georgia communities.
+                  </p>
+                  <p>
+                    Local context matters, from how customers search to how
+                    quickly a business needs support.
+                  </p>
+                </div>
+              }
+            />
+            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-taupe">
+              <span>Based / Auburn, GA</span>
+              <span>Serving / North Georgia</span>
+            </div>
+          </div>
+          <GeorgiaServiceAreaMap />
+        </div>
+      </section>
+
       <section
         id="who-we-help"
         className="section-pad relative overflow-hidden bg-ivory"
@@ -185,6 +215,35 @@ export default function HomeSections() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="relative min-h-[26rem] overflow-hidden bg-charcoal md:min-h-[32rem]">
+        <Image
+          src="/images/hero3.png"
+          alt="A downtown streetscape in warm evening light"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-charcoal/80 via-charcoal/35 to-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-5 border border-ivory/25 md:inset-8"
+          aria-hidden="true"
+        />
+        <div className="container-x relative flex min-h-[26rem] items-end py-14 md:min-h-[32rem] md:items-center">
+          <div className="max-w-2xl text-ivory">
+            <h2 className="heading-serif text-[clamp(2.2rem,5vw,4.5rem)]">
+              Close Enough to Know the Business.
+              <br />
+              <span className="italic">
+                Capable Enough to Build What It Needs.
+              </span>
+            </h2>
+          </div>
         </div>
       </section>
 

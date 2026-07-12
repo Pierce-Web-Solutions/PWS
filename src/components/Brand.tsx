@@ -4,9 +4,11 @@ import clsx from "clsx";
 
 export default function Brand({
   light = false,
+  compact = false,
   className,
 }: {
   light?: boolean;
+  compact?: boolean;
   className?: string;
 }) {
   // Dark backgrounds (e.g. the footer): the color lockup wouldn't read, so
@@ -52,7 +54,10 @@ export default function Brand({
         width={1287}
         height={613}
         priority
-        className="h-12 w-auto transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14"
+        className={clsx(
+          "w-auto transition-[height,transform] duration-300 group-hover:-translate-y-0.5",
+          compact ? "h-10 md:h-11" : "h-12 md:h-14",
+        )}
       />
     </Link>
   );
