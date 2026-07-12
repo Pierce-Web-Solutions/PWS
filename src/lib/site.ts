@@ -4,8 +4,8 @@ export const site = {
   name: "Pierce Web Solutions",
   url: "https://piercewebsolutions.com",
   email: "contact@piercewebsolutions.com",
-  location: "Auburn, Georgia",
-  area: "Auburn, Barrow County, Gwinnett County, and North Georgia",
+  location: "North Georgia",
+  area: "North Georgia, with select projects supported remotely",
   description:
     "Custom websites, practical systems, and reliable support for small businesses across North Georgia.",
 };
@@ -82,7 +82,7 @@ export const services: Service[] = [
       "Business-tool integrations",
     ],
     closing:
-      "Every build is shaped around your business, content, customers, and practical goals—without guarantees about rankings, leads, or perfect scores.",
+      "Every build is shaped around your business, content, customers, and practical goals, without guarantees about rankings, leads, or perfect scores.",
   },
   {
     slug: "website-care",
@@ -120,7 +120,7 @@ export const services: Service[] = [
       "Disconnected tools and repeated manual tasks cost time, create inconsistent follow-up, and make it harder to see what is happening across the business.",
     fit: "Growing service companies and professional teams with a clear operational bottleneck, repetitive workflow, or reporting need.",
     intro:
-      "Useful automation starts with understanding the real workflow. The goal is not technology for its own sake—it is a simpler, more reliable way to move work forward.",
+      "Useful automation starts with understanding the real workflow. The goal is not technology for its own sake. It is a simpler, more reliable way to move work forward.",
     deliverables: [
       "Lead routing",
       "Automated follow-up",

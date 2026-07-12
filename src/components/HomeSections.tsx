@@ -1,11 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Handshake,
+  MapPinned,
+  MessageSquareText,
+  Shapes,
+} from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import ServiceSummary from "./ServiceSummary";
 import CTASection from "./CTASection";
 import TopographicContours from "./TopographicContours";
 import { services } from "@/lib/site";
+import CustomFoundationMap from "./CustomFoundationMap";
 
 const industries = [
   "Contractors and home-service companies",
@@ -16,22 +23,26 @@ const industries = [
   "Growing service companies",
 ];
 const reasons = [
-  [
-    "Local understanding",
-    "Recommendations grounded in the needs and pace of North Georgia businesses.",
-  ],
-  [
-    "Direct communication",
-    "You work directly with Jacob from the first conversation through ongoing support.",
-  ],
-  [
-    "A solution that fits",
-    "The business problem comes first; the technology is selected and shaped around it.",
-  ],
-  [
-    "Long-term support",
-    "Launch is a milestone, not the end of the working relationship.",
-  ],
+  {
+    title: "Local understanding",
+    copy: "Recommendations grounded in the needs and pace of North Georgia businesses.",
+    icon: MapPinned,
+  },
+  {
+    title: "Direct communication",
+    copy: "You work directly with Jacob from the first conversation through ongoing support.",
+    icon: MessageSquareText,
+  },
+  {
+    title: "A solution that fits",
+    copy: "The business problem comes first; the technology is selected and shaped around it.",
+    icon: Shapes,
+  },
+  {
+    title: "Long-term support",
+    copy: "Launch is a milestone, not the end of the working relationship.",
+    icon: Handshake,
+  },
 ];
 const process = [
   {
@@ -71,6 +82,52 @@ export default function HomeSections() {
               <ServiceSummary key={service.slug} service={service} />
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section-pad overflow-hidden bg-charcoal text-ivory">
+        <div className="container-x grid items-start gap-12 xl:grid-cols-[0.78fr_1.22fr] xl:gap-16">
+          <div className="xl:sticky xl:top-28">
+            <SectionHeading
+              eyebrow="/ Built Beyond the Template"
+              title="Your Business Shouldn't Have to Fit Inside a Template"
+              light
+              copy={
+                <div className="grid gap-4">
+                  <p>
+                    Many website platforms begin with a predefined theme,
+                    feature set, and way of doing things. The business is then
+                    expected to fit inside those boundaries.
+                  </p>
+                  <p>
+                    Pierce Web Solutions takes the opposite approach. We begin
+                    with your customers, services, workflows, and long-term
+                    goals, then build a solution around them.
+                  </p>
+                  <p>
+                    Your website can begin as a focused marketing platform today
+                    and expand into something more capable tomorrow, with
+                    landing pages, booking integrations, automated follow-up,
+                    dashboards, portals, internal tools, and other features
+                    added as the business evolves.
+                  </p>
+                </div>
+              }
+            />
+            <p className="mt-7 border-l-2 border-brass pl-5 font-serif text-xl italic text-ivory">
+              You are not simply purchasing pages. You are investing in a
+              flexible foundation for the business.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/services/web-design" className="btn-brass">
+                Explore Custom Web Design
+              </Link>
+              <Link href="/pricing#build" className="btn-outline-light">
+                View Website Pricing
+              </Link>
+            </div>
+          </div>
+          <CustomFoundationMap />
         </div>
       </section>
 
@@ -140,12 +197,17 @@ export default function HomeSections() {
             copy="Careful technical work matters. So do context, honesty, responsiveness, and understanding what a decision means for the business behind the website."
           />
           <div className="mt-14 grid border-y border-ivory/15 md:grid-cols-2">
-            {reasons.map(([title, copy], index) => (
+            {reasons.map(({ title, copy, icon: Icon }, index) => (
               <article
                 key={title}
                 className={`py-8 md:p-9 ${index % 2 === 0 ? "md:border-r md:border-ivory/15" : ""} ${index < 2 ? "border-b border-ivory/15" : ""}`}
               >
-                <h3 className="font-serif text-2xl text-ivory">{title}</h3>
+                <div className="flex items-center gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-brass/50 text-foothill-light">
+                    <Icon size={19} strokeWidth={1.5} aria-hidden="true" />
+                  </span>
+                  <h3 className="font-serif text-2xl text-ivory">{title}</h3>
+                </div>
                 <p className="mt-3 text-ivory/65">{copy}</p>
               </article>
             ))}

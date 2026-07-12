@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   budgetOptions,
+  referralOptions,
   serviceOptions,
   timelineOptions,
 } from "./contact-options";
@@ -51,7 +52,10 @@ export const contactSchema = z
       .trim()
       .pipe(z.enum(timelineOptions, { error: "Choose a valid timeline." })),
     message: requiredText("Message", 10, 5000),
-    referral: optionalText(200),
+    referral: z
+      .union([z.literal(""), z.enum(referralOptions)])
+      .transform((value) => value || undefined)
+      .optional(),
     consent: z.literal(true, { error: "Consent is required." }),
     honeypot: optionalText(200),
     turnstileToken: requiredText("Spam verification", 1, 2048),

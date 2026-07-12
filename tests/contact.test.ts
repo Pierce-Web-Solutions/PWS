@@ -21,7 +21,7 @@ const valid = {
   budget: "$3,000–$5,499",
   timeline: "Within 1–2 months",
   message: "I would like to discuss a new website project.",
-  referral: "Google",
+  referral: "Google Search",
   consent: true,
   honeypot: "",
   turnstileToken: "valid-token",

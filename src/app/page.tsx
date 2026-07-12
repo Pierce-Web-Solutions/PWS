@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
   "North Georgia Web Design & Technology Partner",
-  "Custom websites, practical systems, advertising, and reliable support for small businesses in Auburn and across North Georgia.",
+  "Custom websites, practical systems, advertising, and reliable support for small businesses across North Georgia and beyond.",
   "/",
 );
 

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   applicationName: site.name,
   keywords: [
     "North Georgia web design",
-    "Auburn GA web developer",
+    "Georgia web developer",
     "small business website",
     "business automation",
     "website care",
@@ -43,18 +43,7 @@ const structuredData = {
   name: site.name,
   url: site.url,
   email: site.email,
-  areaServed: [
-    "Auburn, Georgia",
-    "Barrow County, Georgia",
-    "Gwinnett County, Georgia",
-    "North Georgia",
-  ],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Auburn",
-    addressRegion: "GA",
-    addressCountry: "US",
-  },
+  areaServed: ["North Georgia", "Georgia", "United States"],
 };
 
 export default function RootLayout({

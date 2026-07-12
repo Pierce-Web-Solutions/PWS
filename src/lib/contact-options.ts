@@ -26,6 +26,16 @@ export const timelineOptions = [
   "Just exploring",
 ] as const;
 
+export const referralOptions = [
+  "Google Search",
+  "Social Media",
+  "AI Assistant or Search",
+  "Referral or Word of Mouth",
+  "Local Event or Networking",
+  "Existing Client",
+  "Other",
+] as const;
+
 export const attributionKeys = [
   "utmSource",
   "utmMedium",

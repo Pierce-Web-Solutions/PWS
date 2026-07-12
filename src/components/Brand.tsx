@@ -48,7 +48,7 @@ export default function Brand({
     >
       <Image
         src="/logos/pws-half-lockup.png"
-        alt="Pierce Web Solutions — Modern technology. Local partnership."
+        alt="Pierce Web Solutions: Modern technology. Local partnership."
         width={1287}
         height={613}
         priority

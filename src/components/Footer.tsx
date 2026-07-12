@@ -13,7 +13,7 @@ export default function Footer() {
             businesses across North Georgia.
           </p>
           <p className="mt-4 text-sm text-ivory/50">
-            Auburn, Georgia · Serving North Georgia
+            Based in North Georgia · Serving businesses near and far
           </p>
         </div>
         <div>

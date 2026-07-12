@@ -64,7 +64,7 @@ export function internalEmail(
     .map(([label, value]) => `${label}: ${display(value)}`)
     .join("\n");
   return {
-    subject: `New PWS Inquiry — ${(submission.business || name).replace(/[\r\n]+/g, " ")}`,
+    subject: `New PWS Inquiry: ${(submission.business || name).replace(/[\r\n]+/g, " ")}`,
     html,
     text: `NEW PWS CONSULTATION INQUIRY\n\n${textRows}`,
   };
@@ -86,7 +86,7 @@ Pierce Web Solutions
 contact@piercewebsolutions.com
 piercewebsolutions.com`;
   return {
-    subject: "We received your inquiry — Pierce Web Solutions",
+    subject: "We received your inquiry | Pierce Web Solutions",
     html,
     text,
   };

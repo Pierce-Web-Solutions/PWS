@@ -9,15 +9,18 @@ import {
 } from "react";
 import { useRouter } from "next/navigation";
 import { LoaderCircle, Send } from "lucide-react";
+import clsx from "clsx";
 import { site } from "@/lib/site";
 import { getInitialAttribution } from "@/lib/attribution";
 import {
   budgetOptions,
+  referralOptions,
   serviceOptions,
   timelineOptions,
 } from "@/lib/contact-options";
 import { LEAD_MARKER_KEY } from "@/lib/analytics";
 import TurnstileWidget from "./TurnstileWidget";
+import FormProgress, { formSections } from "./FormProgress";
 
 type Errors = Record<string, string>;
 type ApiResponse = {
@@ -38,11 +41,22 @@ export default function ConsultationForm() {
   const startedAt = useRef(0);
   const submittingRef = useRef(false);
   const statusRef = useRef<HTMLParagraphElement>(null);
+  const sectionRefs = useRef<(HTMLFieldSetElement | null)[]>([]);
+  const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const [errors, setErrors] = useState<Errors>({});
   const [notice, setNotice] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileReset, setTurnstileReset] = useState(0);
+  const [activeSection, setActiveSection] = useState(0);
+  const [completedSections, setCompletedSections] = useState<boolean[]>([
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const [isTransmitting, setIsTransmitting] = useState(false);
+  const [sectionPositions, setSectionPositions] = useState([0, 0, 0, 0]);
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const handleToken = useCallback(
     (token: string) => setTurnstileToken(token),
@@ -51,6 +65,56 @@ export default function ConsultationForm() {
 
   useEffect(() => {
     startedAt.current = Date.now();
+  }, []);
+
+  useEffect(() => {
+    const ratios = new Map<number, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = Number((entry.target as HTMLElement).dataset.section);
+          ratios.set(index, entry.isIntersecting ? entry.intersectionRatio : 0);
+        });
+        const focused = document.activeElement?.closest("[data-section]");
+        if (focused) return;
+        const visible = [...ratios.entries()].sort((a, b) => b[1] - a[1])[0];
+        if (visible && visible[1] > 0) setActiveSection(visible[0]);
+      },
+      { rootMargin: "-20% 0px -45% 0px", threshold: [0.1, 0.35, 0.65] },
+    );
+    sectionRefs.current.forEach(
+      (section) => section && observer.observe(section),
+    );
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const form = sectionRefs.current[0]?.form;
+    if (form) setCompletedSections(sectionCompletion(form, turnstileToken));
+  }, [turnstileToken]);
+
+  useEffect(() => {
+    const container = sectionsContainerRef.current;
+    if (!container) return;
+    const updatePositions = () => {
+      const containerTop = container.getBoundingClientRect().top;
+      setSectionPositions(
+        sectionRefs.current.map((section) =>
+          section ? section.getBoundingClientRect().top - containerTop : 0,
+        ),
+      );
+    };
+    const resizeObserver = new ResizeObserver(updatePositions);
+    resizeObserver.observe(container);
+    sectionRefs.current.forEach(
+      (section) => section && resizeObserver.observe(section),
+    );
+    updatePositions();
+    window.addEventListener("resize", updatePositions);
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updatePositions);
+    };
   }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -122,7 +186,17 @@ export default function ConsultationForm() {
           JSON.stringify({ createdAt: Date.now(), ...result.lead }),
         );
       } catch {}
-      router.push("/thank-you");
+      setCompletedSections([true, true, true, true]);
+      setActiveSection(3);
+      setIsTransmitting(true);
+      setNotice("Inquiry sent. Redirecting…");
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      window.setTimeout(
+        () => router.push("/thank-you"),
+        reducedMotion ? 0 : 600,
+      );
     } catch {
       setNotice(genericError);
       setTurnstileToken("");
@@ -135,14 +209,27 @@ export default function ConsultationForm() {
     }
   }
 
+  function updateProgress(form: HTMLFormElement) {
+    setCompletedSections(sectionCompletion(form, turnstileToken));
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
+      onInput={(event) => updateProgress(event.currentTarget)}
+      onChange={(event) => updateProgress(event.currentTarget)}
       noValidate
-      className="relative grid gap-6"
+      className="relative"
       aria-describedby="form-status"
-      aria-busy={isSubmitting}
+      aria-busy={isSubmitting || isTransmitting}
     >
+      <div className="mb-8 border-l border-brass/60 pl-4">
+        <p className="eyebrow">/ Start a Project</p>
+        <p className="mt-2 max-w-2xl text-sm text-charcoal-soft">
+          Four short sections designed to give me enough context for a useful
+          first conversation.
+        </p>
+      </div>
       <div
         className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden"
         aria-hidden="true"
@@ -152,161 +239,265 @@ export default function ConsultationForm() {
           <input name="companyWebsite" tabIndex={-1} autoComplete="off" />
         </label>
       </div>
-      <div className="grid gap-6 sm:grid-cols-2">
-        <Field
-          name="firstName"
-          label="First name"
-          error={errors.firstName}
-          required
-          maxLength={100}
+      <div className="md:grid md:grid-cols-[8.5rem_minmax(0,1fr)] md:gap-10 lg:grid-cols-[9.5rem_minmax(0,1fr)] lg:gap-14">
+        <FormProgress
+          active={activeSection}
+          completed={completedSections}
+          transmitting={isTransmitting}
+          positions={sectionPositions}
         />
-        <Field
-          name="lastName"
-          label="Last name"
-          error={errors.lastName}
-          required
-          maxLength={100}
-        />
-      </div>
-      <div className="grid gap-6 sm:grid-cols-2">
-        <Field
-          name="email"
-          label="Email"
-          type="email"
-          error={errors.email}
-          required
-          maxLength={254}
-        />
-        <Field
-          name="phone"
-          label="Phone (optional)"
-          type="tel"
-          error={errors.phone}
-          maxLength={40}
-        />
-      </div>
-      <div className="grid gap-6 sm:grid-cols-2">
-        <Field
-          name="business"
-          label="Business name"
-          error={errors.business}
-          required
-          maxLength={200}
-        />
-        <Field
-          name="website"
-          label="Website URL (optional)"
-          type="url"
-          error={errors.website}
-          placeholder="https://"
-          maxLength={500}
-        />
-      </div>
-      <div className="grid gap-6 sm:grid-cols-3">
-        <SelectField
-          name="service"
-          label="Service interest"
-          options={serviceOptions}
-          error={errors.service}
-        />
-        <SelectField
-          name="budget"
-          label="Estimated budget"
-          options={budgetOptions}
-          error={errors.budget}
-        />
-        <SelectField
-          name="timeline"
-          label="Desired timeline"
-          options={timelineOptions}
-          error={errors.timeline}
-        />
-      </div>
-      <label className="grid gap-2" htmlFor="message">
-        <Label text="Message" required />
-        <textarea
-          id="message"
-          name="message"
-          rows={6}
-          maxLength={5000}
-          aria-invalid={Boolean(errors.message)}
-          aria-describedby={errors.message ? "message-error" : undefined}
-          className={inputClass}
-          placeholder="What would you like to improve or build?"
-        />
-        {errors.message && (
-          <ErrorText id="message-error">{errors.message}</ErrorText>
-        )}
-      </label>
-      <Field
-        name="referral"
-        label="How did you hear about us?"
-        maxLength={200}
-      />
-      <div>
-        <label className="flex items-start gap-3 text-sm text-charcoal-soft">
-          <input
-            type="checkbox"
-            name="consent"
-            value="yes"
-            aria-invalid={Boolean(errors.consent)}
-            aria-describedby={errors.consent ? "consent-error" : undefined}
-            className="mt-1 h-4 w-4 accent-foothill"
-          />
-          <span>
-            I consent to being contacted by Pierce Web Solutions about this
-            inquiry. <span aria-hidden="true">*</span>
-          </span>
-        </label>
-        {errors.consent && (
-          <ErrorText id="consent-error">{errors.consent}</ErrorText>
-        )}
-      </div>
-      <div>
-        <TurnstileWidget
-          siteKey={siteKey}
-          resetKey={turnstileReset}
-          onToken={handleToken}
-        />
-        {errors.turnstileToken && (
-          <ErrorText id="turnstile-error">{errors.turnstileToken}</ErrorText>
-        )}
-      </div>
-      <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-        <button
-          type="submit"
-          disabled={isSubmitting || !turnstileToken || !siteKey}
-          className="btn-brass group disabled:cursor-not-allowed disabled:opacity-60"
+        <div
+          ref={sectionsContainerRef}
+          className={clsx(isTransmitting && "form-transmission-settle")}
         >
-          {isSubmitting ? (
-            <>
-              <LoaderCircle size={17} className="animate-spin" />
-              Sending…
-            </>
-          ) : (
-            <>
-              Send Inquiry{" "}
-              <Send
-                size={17}
-                className="transition-transform group-hover:translate-x-1"
+          <fieldset
+            ref={(node) => {
+              sectionRefs.current[0] = node;
+            }}
+            data-section="0"
+            onFocusCapture={() => setActiveSection(0)}
+            className="form-section"
+          >
+            <legend className="sr-only">01 / {formSections[0]}</legend>
+            <p className="form-section__heading" aria-hidden="true">
+              01 / {formSections[0]}
+            </p>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <Field
+                name="firstName"
+                label="First name"
+                error={errors.firstName}
+                required
+                maxLength={100}
+                annotation="INPUT / NAME"
               />
-            </>
-          )}
-        </button>
-        <p className="text-sm text-taupe">
-          Required fields are marked with an asterisk.
-        </p>
+              <Field
+                name="lastName"
+                label="Last name"
+                error={errors.lastName}
+                required
+                maxLength={100}
+                annotation="INPUT / NAME"
+              />
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <Field
+                name="email"
+                label="Email"
+                type="email"
+                error={errors.email}
+                required
+                maxLength={254}
+                annotation="INPUT / EMAIL"
+              />
+              <Field
+                name="phone"
+                label="Phone (optional)"
+                type="tel"
+                error={errors.phone}
+                maxLength={40}
+                annotation="INPUT / PHONE"
+              />
+            </div>
+          </fieldset>
+          <fieldset
+            ref={(node) => {
+              sectionRefs.current[1] = node;
+            }}
+            data-section="1"
+            onFocusCapture={() => setActiveSection(1)}
+            className="form-section"
+          >
+            <legend className="sr-only">02 / {formSections[1]}</legend>
+            <p className="form-section__heading" aria-hidden="true">
+              02 / {formSections[1]}
+            </p>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <Field
+                name="business"
+                label="Business name"
+                error={errors.business}
+                required
+                maxLength={200}
+                annotation="INPUT / BUSINESS"
+              />
+              <Field
+                name="website"
+                label="Website URL (optional)"
+                type="url"
+                error={errors.website}
+                placeholder="https://"
+                maxLength={500}
+                annotation="INPUT / URL"
+              />
+            </div>
+          </fieldset>
+          <fieldset
+            ref={(node) => {
+              sectionRefs.current[2] = node;
+            }}
+            data-section="2"
+            onFocusCapture={() => setActiveSection(2)}
+            className="form-section"
+          >
+            <legend className="sr-only">03 / {formSections[2]}</legend>
+            <p className="form-section__heading" aria-hidden="true">
+              03 / {formSections[2]}
+            </p>
+            <div className="grid gap-6 xl:grid-cols-3">
+              <SelectField
+                name="service"
+                label="Service interest"
+                options={serviceOptions}
+                error={errors.service}
+                annotation="SELECT / SERVICE"
+              />
+              <SelectField
+                name="budget"
+                label="Estimated budget"
+                options={budgetOptions}
+                error={errors.budget}
+                annotation="SELECT / BUDGET"
+              />
+              <SelectField
+                name="timeline"
+                label="Desired timeline"
+                options={timelineOptions}
+                error={errors.timeline}
+                annotation="SELECT / TIMELINE"
+              />
+            </div>
+          </fieldset>
+          <fieldset
+            ref={(node) => {
+              sectionRefs.current[3] = node;
+            }}
+            data-section="3"
+            onFocusCapture={() => setActiveSection(3)}
+            className="form-section"
+          >
+            <legend className="sr-only">04 / {formSections[3]}</legend>
+            <p className="form-section__heading" aria-hidden="true">
+              04 / {formSections[3]}
+            </p>
+            <label
+              className={clsx(
+                "form-inspection grid gap-2",
+                errors.message && "has-error",
+              )}
+              htmlFor="message"
+            >
+              <InspectionDecoration annotation="INPUT / MESSAGE" />
+              <Label text="Message" required />
+              <textarea
+                id="message"
+                name="message"
+                rows={6}
+                maxLength={5000}
+                aria-invalid={Boolean(errors.message)}
+                aria-describedby={errors.message ? "message-error" : undefined}
+                className={inputClass}
+                placeholder="What would you like to improve or build?"
+              />
+              {errors.message && (
+                <ErrorText id="message-error">{errors.message}</ErrorText>
+              )}
+            </label>
+            <SelectField
+              name="referral"
+              label="How did you hear about us?"
+              options={referralOptions}
+              required={false}
+              annotation="SELECT / SOURCE"
+            />
+            <div
+              className={clsx("form-inspection", errors.consent && "has-error")}
+            >
+              <InspectionDecoration annotation="INPUT / CONSENT" />
+              <label className="flex items-start gap-3 text-sm text-charcoal-soft">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  value="yes"
+                  aria-invalid={Boolean(errors.consent)}
+                  aria-describedby={
+                    errors.consent ? "consent-error" : undefined
+                  }
+                  className="mt-1 h-4 w-4 accent-foothill"
+                />
+                <span>
+                  I consent to being contacted by Pierce Web Solutions about
+                  this inquiry. <span aria-hidden="true">*</span>
+                </span>
+              </label>
+              {errors.consent && (
+                <ErrorText id="consent-error">{errors.consent}</ErrorText>
+              )}
+            </div>
+            <div
+              className={clsx(
+                "form-inspection",
+                errors.turnstileToken && "has-error",
+              )}
+            >
+              <InspectionDecoration annotation="VERIFY / SPAM" />
+              <TurnstileWidget
+                siteKey={siteKey}
+                resetKey={turnstileReset}
+                onToken={handleToken}
+              />
+              {errors.turnstileToken && (
+                <ErrorText id="turnstile-error">
+                  {errors.turnstileToken}
+                </ErrorText>
+              )}
+            </div>
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <button
+                type="submit"
+                disabled={
+                  isSubmitting || isTransmitting || !turnstileToken || !siteKey
+                }
+                className="btn-brass group disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isTransmitting ? (
+                  <>Inquiry Sent</>
+                ) : isSubmitting ? (
+                  <>
+                    <LoaderCircle size={17} className="animate-spin" />
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    Send Inquiry{" "}
+                    <Send
+                      size={17}
+                      className="transition-transform group-hover:translate-x-1"
+                    />
+                  </>
+                )}
+              </button>
+              <p className="text-sm text-taupe">
+                Required fields are marked with an asterisk.
+              </p>
+            </div>
+            <p
+              ref={statusRef}
+              id="form-status"
+              role={
+                notice && notice !== "Sending your inquiry…" && !isTransmitting
+                  ? "alert"
+                  : "status"
+              }
+              tabIndex={-1}
+              className="border-l-2 border-foothill pl-4 text-sm text-charcoal-soft"
+            >
+              {notice ||
+                "Your information is securely verified before it is delivered."}
+            </p>
+          </fieldset>
+        </div>
       </div>
-      <p
-        ref={statusRef}
-        id="form-status"
-        role={notice && notice !== "Sending your inquiry…" ? "alert" : "status"}
-        tabIndex={-1}
-        className="border-l-2 border-foothill pl-4 text-sm text-charcoal-soft"
-      >
-        {notice ||
-          "Your information is securely verified before it is delivered."}
-      </p>
     </form>
   );
 }
@@ -350,6 +541,36 @@ function validateForm(data: FormData, token: string): Errors {
   return errors;
 }
 
+function sectionCompletion(form: HTMLFormElement, token: string): boolean[] {
+  const data = new FormData(form);
+  const email = value(data, "email");
+  const website = value(data, "website");
+  let websiteValid = true;
+  if (website) {
+    try {
+      new URL(website);
+    } catch {
+      websiteValid = false;
+    }
+  }
+  return [
+    Boolean(
+      value(data, "firstName") &&
+      value(data, "lastName") &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+    ),
+    Boolean(value(data, "business") && websiteValid),
+    Boolean(
+      value(data, "service") &&
+      value(data, "budget") &&
+      value(data, "timeline"),
+    ),
+    Boolean(
+      value(data, "message").length >= 10 && data.get("consent") && token,
+    ),
+  ];
+}
+
 const inputClass =
   "w-full border border-charcoal/20 bg-ivory px-4 py-3 text-base text-charcoal placeholder:text-taupe focus:border-foothill focus:outline-none aria-[invalid=true]:border-red-700";
 function Label({ text, required }: { text: string; required?: boolean }) {
@@ -381,6 +602,7 @@ function Field({
   required,
   placeholder,
   maxLength,
+  annotation,
 }: {
   name: string;
   label: string;
@@ -389,9 +611,14 @@ function Field({
   required?: boolean;
   placeholder?: string;
   maxLength?: number;
+  annotation: string;
 }) {
   return (
-    <label className="grid gap-2" htmlFor={name}>
+    <label
+      className={clsx("form-inspection grid gap-2", error && "has-error")}
+      htmlFor={name}
+    >
+      <InspectionDecoration annotation={annotation} />
       <Label text={label} required={required} />
       <input
         id={name}
@@ -412,15 +639,23 @@ function SelectField({
   label,
   options,
   error,
+  required = true,
+  annotation,
 }: {
   name: string;
   label: string;
   options: readonly string[];
   error?: string;
+  required?: boolean;
+  annotation: string;
 }) {
   return (
-    <label className="grid gap-2" htmlFor={name}>
-      <Label text={label} required />
+    <label
+      className={clsx("form-inspection grid gap-2", error && "has-error")}
+      htmlFor={name}
+    >
+      <InspectionDecoration annotation={annotation} />
+      <Label text={label} required={required} />
       <select
         id={name}
         name={name}
@@ -430,7 +665,7 @@ function SelectField({
         className={inputClass}
       >
         <option value="" disabled>
-          Select one
+          Select one{required ? "" : " (optional)"}
         </option>
         {options.map((option) => (
           <option key={option}>{option}</option>
@@ -438,5 +673,16 @@ function SelectField({
       </select>
       {error && <ErrorText id={`${name}-error`}>{error}</ErrorText>}
     </label>
+  );
+}
+
+function InspectionDecoration({ annotation }: { annotation: string }) {
+  return (
+    <>
+      <span className="form-inspection__annotation" aria-hidden="true">
+        {annotation}
+      </span>
+      <span className="form-inspection__guide" aria-hidden="true" />
+    </>
   );
 }

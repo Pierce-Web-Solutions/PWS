@@ -7,17 +7,20 @@ export default function InspectionFrame({
   children,
   className,
   focusable = false,
+  href,
 }: {
   as?: ElementType;
   label?: string;
   children: ReactNode;
   className?: string;
   focusable?: boolean;
+  href?: string;
 }) {
   return (
     <Tag
       className={clsx("inspection-frame", className)}
       tabIndex={focusable ? 0 : undefined}
+      href={href}
     >
       <span className="inspection-frame__label" aria-hidden="true">
         {label}

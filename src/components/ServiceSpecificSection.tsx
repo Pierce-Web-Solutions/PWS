@@ -1,12 +1,88 @@
 import { ArrowRight, Check } from "lucide-react";
+import Link from "next/link";
 import SectionHeading from "./SectionHeading";
 
 export default function ServiceSpecificSection({ slug }: { slug: string }) {
-  if (slug === "web-design") return <WebDesignSection />;
+  if (slug === "web-design")
+    return (
+      <>
+        <WebDesignSection />
+        <WhatCustomUnlocksSection />
+      </>
+    );
   if (slug === "website-care") return <WebsiteCareSection />;
   if (slug === "automation") return <AutomationSection />;
   if (slug === "advertising") return <AdvertisingSection />;
   return null;
+}
+
+function WhatCustomUnlocksSection() {
+  const capabilities = [
+    [
+      "A design unique to the business",
+      "The layout, visual system, and interactions are shaped around the company rather than adapted from a generic theme demonstration.",
+    ],
+    [
+      "A better customer journey",
+      "Pages, forms, calls to action, and booking paths can be organized around how customers actually discover, evaluate, and choose the business.",
+    ],
+    [
+      "Deeper business integrations",
+      "The website can connect to booking systems, CRMs, analytics, email platforms, payments, and internal workflows.",
+    ],
+    [
+      "Room to add new capabilities",
+      "New services, locations, landing pages, portals, dashboards, and custom tools can be added without replacing the entire platform.",
+    ],
+    [
+      "More control over performance and tracking",
+      "The technical implementation can be optimized and measured more directly than many closed website-builder environments allow.",
+    ],
+    [
+      "A platform that can evolve",
+      "The first project can remain practical and appropriately scoped while providing a foundation for future improvements.",
+    ],
+  ];
+  return (
+    <section className="section-pad bg-ivory">
+      <div className="container-x">
+        <SectionHeading
+          eyebrow="/ What Custom Unlocks"
+          title="What a Custom Foundation Makes Possible"
+          copy="A custom build creates room to solve today's needs without locking the business into today's limitations. The initial website can remain focused while preserving a clear path toward deeper integrations, new services, and more capable tools."
+        />
+        <div className="mt-12 grid border-y border-charcoal/15 md:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map(([title, copy], index) => (
+            <article
+              key={title}
+              className={`border-b border-charcoal/15 py-8 last:border-b-0 md:p-8 ${index % 2 === 0 ? "md:border-r" : ""} ${index >= 4 ? "md:border-b-0" : ""} lg:border-b-0 ${index >= 3 ? "lg:border-t" : ""} ${index % 3 !== 2 ? "lg:border-r" : "lg:border-r-0"}`}
+            >
+              <span className="font-serif italic text-brass-deep">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-4 font-serif text-2xl text-charcoal">
+                {title}
+              </h3>
+              <p className="mt-3 text-sm text-charcoal-soft">{copy}</p>
+            </article>
+          ))}
+        </div>
+        <p className="mt-8 max-w-4xl border-l-2 border-foothill pl-5 text-charcoal-soft">
+          Custom-built does not mean complexity for its own sake. It means the
+          design, structure, and functionality are selected intentionally around
+          your business rather than inherited from a generic template.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-4">
+          <Link href="/pricing#build" className="btn-brass">
+            View Website Packages
+          </Link>
+          <Link href="/contact" className="btn-outline">
+            Start a Conversation
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function WebDesignSection() {
@@ -39,7 +115,7 @@ function WebDesignSection() {
           eyebrow="How Websites Are Built"
           title="A deliberate path from business goals to launch"
           light
-          copy="Custom work starts with the information and actions your customers need—not with a theme demo that has to be filled in afterward."
+          copy="Custom work starts with the information and actions your customers need, not with a theme demo that has to be filled in afterward."
         />
         <ol className="mt-12 grid border-y border-ivory/15 md:grid-cols-4">
           {steps.map(([number, title, copy]) => (
@@ -179,7 +255,7 @@ function AutomationSection() {
       <div className="container-x">
         <SectionHeading
           eyebrow="Automation in Practice"
-          title="Three practical workflows—not technology for its own sake"
+          title="Three practical workflows, not technology for its own sake"
           copy="The exact tools depend on the systems already in place, but useful automation usually connects a clear trigger, a business rule, and a visible outcome."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
@@ -262,9 +338,60 @@ function AdvertisingSection() {
         </ol>
         <p className="mt-10 max-w-3xl border-l-2 border-foothill-light pl-5 text-ivory/70">
           Reporting should connect campaign activity to qualified leads or
-          completed bookings—not stop at impressions and clicks. Results still
+          completed bookings, not stop at impressions and clicks. Results still
           depend on the offer, market, budget, competition, and follow-up.
         </p>
+        <div className="mt-14 grid gap-8 border-y border-ivory/15 py-9 lg:grid-cols-2">
+          <article>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foothill-light">
+              Start at launch
+            </p>
+            <h3 className="mt-3 font-serif text-2xl">Lead Generation Launch</h3>
+            <p className="mt-3 text-sm text-ivory/65">
+              This add-on can accompany a new website project with campaign
+              setup, conversion tracking, landing-page alignment, and the first
+              90 days of Local Ads Management. Ongoing management is optional
+              after that initial period.
+            </p>
+            <Link
+              href="/pricing#launch"
+              className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ivory underline decoration-foothill-light underline-offset-4"
+            >
+              View launch pricing <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </article>
+          <article>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foothill-light">
+              Continue as needed
+            </p>
+            <h3 className="mt-3 font-serif text-2xl">Advertising management</h3>
+            <p className="mt-3 text-sm text-ivory/65">
+              Advertising Oversight, Local Ads Management, and Growth Ads
+              Management support different account sizes and optimization needs.
+              The focus remains qualified leads and measurable business
+              outcomes.
+            </p>
+            <Link
+              href="/pricing#grow"
+              className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ivory underline decoration-foothill-light underline-offset-4"
+            >
+              Compare management plans{" "}
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </article>
+        </div>
+        <div className="mt-8 grid gap-3 text-sm text-ivory/60">
+          <p>
+            Advertising spend is separate and client accounts remain
+            client-owned. Pierce Web Solutions receives only the access needed
+            to manage them.
+          </p>
+          <p>
+            Results are not guaranteed. Tracking repairs, landing-page
+            development, creative production, and major website changes may
+            require a separate initial project or scope.
+          </p>
+        </div>
       </div>
     </section>
   );

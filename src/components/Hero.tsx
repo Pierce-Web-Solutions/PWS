@@ -8,7 +8,7 @@ export default function Hero() {
       id="top"
       className="relative min-h-[calc(100dvh-5rem)] overflow-hidden bg-ivory"
     >
-      {/* Video — right column on desktop, full bleed on mobile */}
+      {/* Video: right column on desktop, full bleed on mobile */}
       <div className="absolute inset-0 overflow-hidden lg:left-[46%]">
         {/* <video
           src="/videos/drone.mp4"
