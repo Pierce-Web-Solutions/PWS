@@ -33,7 +33,7 @@ const websites = [
       "Basic accessibility and performance review",
       "Two revision rounds",
       "Launch assistance",
-      "30 days of post-launch support",
+      "30 days of managed launch hosting and post-launch support",
     ],
   },
   {
@@ -56,7 +56,7 @@ const websites = [
       "Conversion-event tracking",
       "Expanded on-page SEO",
       "Three revision rounds",
-      "60 days of post-launch support",
+      "60 days of managed launch hosting and post-launch support",
     ],
   },
   {
@@ -76,7 +76,7 @@ const websites = [
       "Complex intake or quoting systems",
       "Custom administration tools",
     ],
-    note: "Custom platforms begin with a paid discovery and planning process.",
+    note: "Custom Platform Discovery & Planning is required and starts at $1,500. Discovery evaluates workflows, users, integrations, data requirements, security considerations, technical feasibility, implementation phases, timeline, and estimated development investment.",
   },
 ];
 
@@ -85,14 +85,16 @@ const care = [
     name: "Essential Care",
     price: "$149/month",
     bestFor:
-      "Best for informational websites that require monitoring and occasional small updates.",
-    fit: "A practical choice for businesses whose website does not change frequently but still needs reliable oversight, form checks, and limited monthly assistance.",
+      "Best for informational websites that need dependable hosting, monitoring, and regular minor updates.",
+    fit: "A practical choice for businesses whose website does not change frequently but still needs reliable technical oversight and timely support.",
     features: [
-      "Uptime monitoring",
+      "Managed website hosting for a qualifying website",
+      "SSL certificate management",
+      "Uptime and deployment monitoring",
       "Basic security and platform oversight",
       "Form-delivery checks",
-      "Up to 30 minutes of minor updates each month",
-      "Target initial response within three business days",
+      "Up to 60 minutes of minor updates each month",
+      "Target initial response within one business day",
     ],
   },
   {
@@ -100,30 +102,31 @@ const care = [
     price: "$299/month",
     label: "Recommended",
     bestFor:
-      "Best for businesses that depend on their website for regular inquiries and updates.",
-    fit: "Designed for an active business that wants more monthly update time, analytics visibility, conversion checks, and periodic performance review.",
+      "Best for active businesses that depend on their website for regular inquiries, updates, and measurable customer activity.",
+    fit: "Designed for companies that need more monthly support time, faster assistance, analytics visibility, and ongoing performance oversight.",
     features: [
-      "Everything in Essential",
-      "Up to 90 minutes of updates each month",
+      "Everything in Essential Care",
+      "Up to 120 minutes of updates each month",
       "Monthly analytics summary",
       "Conversion-tracking checks",
-      "Quarterly performance review",
-      "Target initial response within two business days",
+      "Routine performance review",
+      "Target initial response within four business hours",
     ],
   },
   {
     name: "Priority Care",
     price: "$599/month",
     bestFor:
-      "Best for businesses treating the website as an important sales or operational system.",
-    fit: "Best for businesses that need faster responses, regular development assistance, closer performance review, and ongoing recommendations for improving the customer journey.",
+      "Best for businesses that treat their website as an important sales or operational system and need faster access to technical support, regular development assistance, closer performance review, and ongoing recommendations.",
+    fit: "Priority Care provides the largest monthly allowance, the fastest response target, and an ongoing strategy cadence.",
     features: [
-      "Everything in Business",
-      "Up to three hours of updates or development each month",
+      "Everything in Business Care",
+      "Up to 240 minutes of updates or development each month",
       "Monthly website and lead-performance review",
       "Usability and conversion recommendations",
       "Quarterly strategy session",
-      "Target initial response within one business day",
+      "Priority support queue",
+      "Target initial response within two business hours",
     ],
   },
 ];
@@ -196,7 +199,7 @@ const evolve = [
   ["Focused Landing Page", "Starting at $1,500"],
   ["Workflow Audit & Roadmap", "Starting at $750"],
   ["Automation Implementation", "Starting at $2,000"],
-  ["Advertising Setup or Remediation", "Typical projects: $500–$1,250"],
+  ["Advertising Setup or Remediation", "Typical projects: $500 to $1,250"],
 ] as const;
 
 const faqs = [
@@ -206,7 +209,7 @@ const faqs = [
   ],
   [
     "Are hosting and third-party subscriptions included?",
-    "Not unless they are specifically listed in the proposal. Hosting, domains, premium software, advertising spend, and other third-party services are normally billed separately so ownership and ongoing costs stay clear.",
+    "Managed hosting is included with every active Website Care plan for qualifying websites. Foundation and Growth Website projects also include a limited managed launch-hosting period as stated in the proposal. Domains, business email, premium software, advertising spend, third-party subscriptions, unusually high resource usage, and advanced application infrastructure are billed separately unless expressly included.",
   ],
   [
     "Can an existing website be improved instead of rebuilt?",
@@ -218,7 +221,7 @@ const faqs = [
   ],
   [
     "What happens after the included post-launch support period?",
-    "You can move into a qualifying care plan, request separately scoped improvements as needed, or manage the website independently according to the platform and project agreement.",
+    "The website can move into an active Website Care plan with managed hosting, be transferred to a compatible client-owned hosting account, or receive separately scoped improvements as needed. Hosting and transition responsibilities are confirmed in the project proposal and agreement.",
   ],
   [
     "Can advertising be added to any website package?",
@@ -359,13 +362,15 @@ export default function PricingPage() {
         id="care"
         eyebrow="03 / Care"
         title="Care"
-        copy="Choose the level of ongoing monitoring, updates, and support appropriate for the role your website plays in your business."
+        copy="Choose the level of managed hosting, monitoring, updates, and support appropriate for the role your website plays in your business."
         tone="deep"
       >
         <p className="mb-9 max-w-3xl text-sm text-charcoal-soft">
           Care plans are available for Pierce Web Solutions projects and
           qualifying existing websites following an initial technical review.
-          Response targets describe the initial reply during business days.
+          Response targets refer to the initial acknowledgment and assessment
+          during normal business hours. They do not guarantee final resolution
+          within that period.
         </p>
         <div className="grid gap-6 lg:grid-cols-3">
           {care.map((pkg) => (
@@ -375,6 +380,10 @@ export default function PricingPage() {
         <div className="mt-10 grid gap-3 border-y border-charcoal/15 py-7 text-sm text-charcoal-soft sm:grid-cols-2">
           <p>Included time does not roll over.</p>
           <p>Major redesigns and new systems require separate scope.</p>
+          <p>
+            Additional work beyond the included monthly allowance requires
+            approval and is billed separately at the applicable support rate.
+          </p>
           <p>Third-party subscriptions and ad spend are separate.</p>
           <p>Final pricing is confirmed in a written proposal.</p>
         </div>

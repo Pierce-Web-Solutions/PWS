@@ -1,4 +1,3 @@
-import Image from "next/image";
 import SectionHeading from "./SectionHeading";
 import ServiceSummary from "./ServiceSummary";
 import CTASection from "./CTASection";
@@ -48,38 +47,6 @@ export default function HomeSections() {
       <GrowthLifecycle />
       <DirectSupportSection />
       <SimplifiedProcess />
-
-      <section
-        id="north-georgia"
-        className="relative min-h-[26rem] scroll-mt-24 overflow-hidden bg-charcoal md:min-h-[32rem]"
-      >
-        <Image
-          src="/images/hero3.png"
-          alt="A downtown streetscape in warm evening light"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-charcoal/80 via-charcoal/35 to-transparent"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-5 border border-ivory/25 md:inset-8"
-          aria-hidden="true"
-        />
-        <div className="container-x relative flex min-h-[26rem] items-end py-14 md:min-h-[32rem] md:items-center">
-          <div className="max-w-2xl text-ivory">
-            <h2 className="heading-serif text-[clamp(2.2rem,5vw,4.5rem)]">
-              Close Enough to Know the Business.
-              <br />
-              <span className="italic">
-                Capable Enough to Build What It Needs.
-              </span>
-            </h2>
-          </div>
-        </div>
-      </section>
 
       <CTASection />
     </>

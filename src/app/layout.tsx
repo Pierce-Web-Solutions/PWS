@@ -87,7 +87,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`${playfair.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <body className="bg-ivory font-sans text-charcoal antialiased">
         <AttributionCapture />
         <a href="#main-content" className="skip-link">
@@ -99,7 +103,7 @@ export default function RootLayout({
         <AnalyticsClickTracker />
         <div
           id="window-viewport"
-          className="fixed inset-0 z-10 overflow-y-auto overflow-x-hidden scroll-pt-28 scroll-smooth lg:bottom-4 lg:left-4 lg:right-4 lg:top-[3.75rem] lg:rounded-b-2xl"
+          className="relative z-10 min-h-[100dvh] overflow-x-clip scroll-pt-28 scroll-smooth lg:fixed lg:bottom-4 lg:left-4 lg:right-4 lg:top-[3.75rem] lg:min-h-0 lg:overflow-y-auto lg:overflow-x-hidden lg:rounded-b-2xl"
         >
           <main id="main-content">{children}</main>
         </div>

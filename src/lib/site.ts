@@ -29,10 +29,11 @@ export function pageMetadata(
       locale: "en_US",
       images: [
         {
-          url: "/images/hero3.png",
-          width: 1536,
-          height: 1024,
-          alt: "A North Georgia Main Street at golden hour",
+          url: "/images/landing-preview.png",
+          width: 1200,
+          height: 630,
+          type: "image/png",
+          alt: "Pierce Web Solutions homepage featuring a North Georgia lake and custom website services",
         },
       ],
     },
@@ -40,7 +41,7 @@ export function pageMetadata(
       card: "summary_large_image",
       title,
       description,
-      images: ["/images/hero3.png"],
+      images: ["/images/landing-preview.png"],
     },
   };
 }
@@ -91,13 +92,15 @@ export const services: Service[] = [
     shortTitle: "Website Care & Support",
     title: "Responsive Website Care After Launch",
     description:
-      "Ongoing updates, monitoring, improvements, and direct support after your website launches.",
+      "Managed hosting, ongoing updates, monitoring, improvements, and direct support after your website launches.",
     problem:
       "Websites need attention after launch. Unchecked forms, stale content, platform updates, and small technical issues can quietly erode customer trust.",
     fit: "Businesses that want a dependable local partner to keep their site current, review its performance, and handle routine technical needs.",
     intro:
-      "Website care provides consistent oversight and a direct point of contact, so small issues are addressed and useful improvements do not get lost in a support queue.",
+      "Website care provides managed hosting, consistent oversight, and a direct point of contact, so small issues are addressed and useful improvements do not get lost in a support queue.",
     deliverables: [
+      "Managed website hosting for qualifying websites",
+      "SSL certificate management",
       "Uptime and platform monitoring",
       "Software and content updates",
       "Form-delivery checks",
@@ -108,7 +111,7 @@ export const services: Service[] = [
       "Continued improvements",
     ],
     closing:
-      "Care-plan response targets refer to the initial reply during business days, not a guaranteed completion time. Timing depends on the scope of each request.",
+      "Response targets refer to the initial acknowledgment and assessment during normal business hours. They do not guarantee final resolution within that period.",
   },
   {
     slug: "automation",
