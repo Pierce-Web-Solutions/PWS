@@ -1,5 +1,5 @@
 /**
- * Decorative browser-window chrome that frames the whole viewport —
+ * Decorative browser-window chrome that frames the whole viewport.
  * echoing the arched-window motif of the Pierce Web Solutions logo.
  * Purely presentational; never intercepts pointer events.
  */
@@ -7,12 +7,12 @@ export default function WindowFrame() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-2 z-40 rounded-2xl border border-brass/40 sm:inset-3 md:inset-4"
+      className="pointer-events-none fixed inset-4 z-40 hidden rounded-2xl border border-brass/40 lg:block"
     >
       {/* Title-bar divider */}
       <div className="absolute inset-x-0 top-10 h-px bg-brass/25 md:top-11" />
 
-      {/* Traffic-light dots — subtle brass outlines that each light up into the
+      {/* Traffic-light dots: subtle brass outlines that each light up into the
           classic macOS close/minimize/maximize colors when hovered individually.
           pointer-events re-enabled here since the frame is inert. */}
       <div className="pointer-events-auto absolute left-4 top-[13px] flex gap-2 md:left-5 md:top-4">

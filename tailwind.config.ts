@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Pierce Web Solutions — rebrand palette
+        // Pierce Web Solutions rebrand palette
         charcoal: {
           DEFAULT: "#1F1F1D",
           soft: "#3a3a37",
@@ -27,6 +27,7 @@ const config: Config = {
         foothill: {
           DEFAULT: "#5D6E5E",
           deep: "#495847",
+          light: "#A8B6A6",
         },
       },
       fontFamily: {

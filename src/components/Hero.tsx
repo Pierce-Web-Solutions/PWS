@@ -1,115 +1,99 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { EASE } from "@/lib/motion";
 import Image from "next/image";
-
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.11, delayChildren: 0.25 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
-};
+import Link from "next/link";
 
 export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-[calc(100dvh-5rem)] overflow-hidden bg-ivory"
+      className="relative min-h-screen overflow-hidden bg-charcoal text-ivory min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]"
     >
-      {/* Video — right column on desktop, full bleed on mobile */}
-      <div className="absolute inset-0 overflow-hidden lg:left-[46%]">
-        {/* <video
-          src="/videos/drone.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-label="Golden-hour view over a historic North Georgia town framed by the foothills"
-          className="animate-slow-zoom absolute inset-0 h-full w-full object-cover object-center"
-        /> */}
-
+      <div className="absolute inset-0 overflow-hidden">
         <Image
-          src="/images/hero3.png"
-          alt="Golden-hour view over a historic North Georgia town framed by the foothills"
+          src="/images/hero7.jpg"
+          alt="Golden-hour aerial view of a North Georgia lake and wooded shoreline"
           fill
           priority
-          // quality={90}
-          sizes="(max-width: 1024px) 100vw, 55vw"
-          className="animate-slow-zoom object-cover object-center"
+          // quality={100}
+          sizes="100vw"
+          className="animate-slow-zoom object-cover object-[58%_32%] saturate-[0.86] contrast-[1.01] brightness-[0.95] sm:object-[center_30%]"
         />
-        {/* Desktop seam fade into ivory */}
-        <div className="absolute inset-0 hidden bg-gradient-to-r from-ivory from-0% via-ivory/60 via-18% to-transparent to-45% lg:block" />
-        {/* Mobile readability wash */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ivory via-ivory/80 to-ivory/30 lg:hidden" />
+        <div
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,17,23,0.74)_0%,rgba(11,24,28,0.56)_35%,rgba(20,33,31,0.26)_62%,rgba(15,25,24,0.06)_100%)]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,13,18,0.28)_0%,transparent_40%,rgba(4,12,16,0.12)_100%)]"
+          aria-hidden="true"
+        />
       </div>
 
-      {/* Faint blueprint grid on the far left */}
-      <div className="grid-texture pointer-events-none absolute inset-y-0 left-0 w-1/3 opacity-70" />
+      <div
+        className="grid-texture-light pointer-events-none absolute inset-y-0 left-0 w-1/2 opacity-35"
+        aria-hidden="true"
+      />
 
-      <div className="container-x relative grid min-h-[calc(100dvh-5rem)] items-center">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="visible"
-          className="max-w-xl pb-16 pt-24 lg:max-w-3xl lg:pb-8 lg:pt-24 xl:max-w-4xl"
-        >
-          <motion.p variants={item} className="eyebrow mb-6">
+      <div className="container-x relative grid min-h-screen items-center min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]">
+        <div className="max-w-xl pb-16 pt-24 lg:max-w-3xl lg:pb-8 lg:pt-24 xl:max-w-4xl">
+          <p className="eyebrow mb-6 text-foothill-light">
             Helping North Georgia Businesses Grow
-          </motion.p>
+          </p>
 
-          <motion.h1
-            variants={item}
-            className="heading-serif text-[clamp(2.6rem,5.2vw,4.4rem)] text-charcoal"
-          >
+          <h1 className="heading-serif text-[clamp(2.25rem,10vw,4.4rem)] text-ivory sm:text-[clamp(2.6rem,5.2vw,4.4rem)]">
             Modern Technology.
             <br />
             Built Around{" "}
-            <span className="italic text-brass">Your Business.</span>
-          </motion.h1>
+            <span className="italic text-[#9eab77]">Your Business.</span>
+          </h1>
 
-          <motion.p
-            variants={item}
-            className="mt-7 max-w-lg text-lg text-charcoal-soft lg:max-w-xl xl:max-w-2xl"
-          >
+          <p className="mt-7 max-w-lg text-lg text-ivory/78 lg:max-w-xl xl:max-w-2xl">
             Custom websites, practical systems, and reliable support for small
             businesses across North Georgia.
-          </motion.p>
+          </p>
 
-          <motion.div variants={item} className="mt-9 flex flex-wrap gap-4">
-            <a href="#contact" className="btn-brass group">
+          <div className="mt-9 flex flex-wrap gap-4">
+            <Link
+              href="/contact"
+              className="btn-brass group"
+              data-analytics-event="Consultation CTA Clicked"
+              data-analytics-location="homepage_hero"
+              data-analytics-target="contact"
+            >
               Request a Consultation
               <ArrowRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
-            </a>
-            <a href="#work" className="btn-outline">
-              View Our Work
-            </a>
-          </motion.div>
+            </Link>
+            <Link
+              href="/services"
+              className="btn-outline-light"
+              data-analytics-event="Services Overview Clicked"
+              data-analytics-location="homepage_hero"
+              data-analytics-target="services"
+            >
+              Explore Services
+            </Link>
+          </div>
 
-          <motion.div variants={item} className="mt-12 max-w-sm">
+          <div className="mt-12 max-w-sm">
             <div className="ornament mb-3">
-              <span className="text-brass">&#9670;</span>
+              <span className="text-[#9eab77]">&#9670;</span>
             </div>
-            <p className="text-center font-serif text-lg italic text-taupe">
+            <p className="text-center font-serif text-lg italic text-ivory/60">
               Modern technology. Local partnership.
             </p>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Scroll cue */}
       <a
         href="#services"
         aria-label="Scroll to services"
-        className="absolute bottom-8 left-1/2 hidden h-11 w-7 -translate-x-1/2 justify-center rounded-full border border-charcoal/30 pt-2 lg:flex"
+        className="absolute bottom-8 left-1/2 hidden h-11 w-7 -translate-x-1/2 justify-center rounded-full border border-ivory/40 pt-2 lg:flex"
       >
-        <span className="h-2 w-[3px] animate-scroll-dot rounded-full bg-charcoal/60" />
+        <span className="h-2 w-[3px] animate-scroll-dot rounded-full bg-ivory/65" />
       </a>
     </section>
   );

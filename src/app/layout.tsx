@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import WindowFrame from "@/components/WindowFrame";
 import Navbar from "@/components/Navbar";
+import { site } from "@/lib/site";
+import AttributionCapture from "@/components/AttributionCapture";
+import { Analytics } from "@vercel/analytics/next";
+import AnalyticsClickTracker from "@/components/AnalyticsClickTracker";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -11,7 +15,6 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
   display: "swap",
 });
-
 const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
@@ -20,25 +23,64 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Pierce Web Solutions — Web Design & Automation for North Georgia",
-  description:
-    "Custom websites, practical systems, and reliable support for small businesses in Auburn, Barrow County, Gwinnett County, and across North Georgia. Modern technology. Local partnership.",
-  keywords: [
-    "web design",
-    "web development",
-    "automation",
-    "North Georgia",
-    "Auburn GA",
-    "Barrow County",
-    "Gwinnett County",
-    "small business websites",
-  ],
-  openGraph: {
-    title: "Pierce Web Solutions",
-    description:
-      "Modern technology. Local partnership. Custom websites and automation for North Georgia businesses.",
-    type: "website",
+  metadataBase: new URL(site.url),
+  title: {
+    default: "Pierce Web Solutions | North Georgia Web Design & Technology",
+    template: "%s | Pierce Web Solutions",
   },
+  description: site.description,
+  applicationName: site.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      description: site.description,
+      email: site.email,
+      logo: {
+        "@type": "ImageObject",
+        url: `${site.url}/logos/pws-icon.png`,
+      },
+      areaServed: [
+        "North Georgia",
+        "Gwinnett County, Georgia",
+        "Hall County, Georgia",
+        "Barrow County, Georgia",
+        "Forsyth County, Georgia",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: site.email,
+        contactType: "sales and customer support",
+        availableLanguage: "English",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      publisher: { "@id": `${site.url}/#organization` },
+      inLanguage: "en-US",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -46,17 +88,27 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="bg-ivory text-charcoal font-sans antialiased">
+      <body className="bg-ivory font-sans text-charcoal antialiased">
+        <AttributionCapture />
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <WindowFrame />
         <Navbar />
-        {/* The window's content area — the only scroll container, so content
-            stays clipped inside the browser-window chrome as you scroll. */}
+        <Analytics />
+        <AnalyticsClickTracker />
         <div
           id="window-viewport"
-          className="fixed bottom-2 left-2 right-2 top-12 z-10 overflow-y-auto overflow-x-hidden scroll-pt-24 rounded-b-2xl scroll-smooth sm:bottom-3 sm:left-3 sm:right-3 sm:top-[3.25rem] md:bottom-4 md:left-4 md:right-4 md:top-[3.75rem]"
+          className="fixed inset-0 z-10 overflow-y-auto overflow-x-hidden scroll-pt-28 scroll-smooth lg:bottom-4 lg:left-4 lg:right-4 lg:top-[3.75rem] lg:rounded-b-2xl"
         >
-          {children}
+          <main id="main-content">{children}</main>
         </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          }}
+        />
       </body>
     </html>
   );

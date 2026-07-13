@@ -1,58 +1,51 @@
 import Image from "next/image";
+import Link from "next/link";
 import clsx from "clsx";
 
 export default function Brand({
   light = false,
+  compact = false,
   className,
 }: {
   light?: boolean;
+  compact?: boolean;
   className?: string;
 }) {
-  // Dark backgrounds (e.g. the footer): the color lockup wouldn't read, so
-  // pair the color icon with a light wordmark instead.
-  if (light) {
-    return (
-      <a
-        href="#top"
-        className={clsx(
-          "group flex items-center gap-3 no-underline",
-          className,
-        )}
-      >
-        <Image
-          src="/logos/pws-icon-color.png"
-          alt="Pierce Web Solutions logo"
-          width={44}
-          height={54}
-          className="h-11 w-auto transition-transform duration-500 group-hover:-translate-y-0.5"
-          priority
-        />
-        <span className="leading-none">
-          <span className="block font-serif text-2xl font-semibold tracking-tight text-ivory">
-            Pierce
-          </span>
-          <span className="mt-1 block font-sans text-[0.6rem] font-semibold uppercase tracking-[0.34em] text-ivory/70">
-            Web Solutions
-          </span>
-        </span>
-      </a>
-    );
-  }
-
-  // Light backgrounds (the navbar): the full brand lockup.
   return (
-    <a
-      href="#top"
-      className={clsx("group inline-flex no-underline", className)}
+    <Link
+      href="/"
+      aria-label="Pierce Web Solutions home"
+      className={clsx(
+        "group relative inline-flex h-12 w-[9.75rem] shrink-0 items-center no-underline md:h-14 md:w-[10.75rem]",
+        className,
+      )}
     >
       <Image
-        src="/logos/pws-half-lockup.png"
-        alt="Pierce Web Solutions — Modern technology. Local partnership."
+        src="/logos/pws-half-lockup-dark.png"
+        alt=""
+        aria-hidden="true"
         width={1287}
-        height={613}
+        height={399}
         priority
-        className="h-12 w-auto transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14"
+        className={clsx(
+          "absolute left-0 top-1/2 w-auto -translate-y-1/2 transition-[height,opacity,transform] duration-500 ease-out group-hover:-translate-y-[52%]",
+          compact ? "h-10 md:h-11" : "h-11 md:h-12",
+          light ? "opacity-100" : "opacity-0",
+        )}
       />
-    </a>
+      <Image
+        src="/logos/pws-half-lockup.png"
+        alt=""
+        aria-hidden="true"
+        width={1287}
+        height={399}
+        priority
+        className={clsx(
+          "absolute left-0 top-1/2 w-auto -translate-y-1/2 transition-[height,opacity,transform] duration-500 ease-out group-hover:-translate-y-[52%]",
+          compact ? "h-10 md:h-11" : "h-11 md:h-12",
+          light ? "opacity-0" : "delay-150 opacity-100",
+        )}
+      />
+    </Link>
   );
 }
