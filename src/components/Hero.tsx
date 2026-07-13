@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen overflow-hidden bg-charcoal text-ivory min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]"
+      className="relative overflow-hidden bg-charcoal text-ivory min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]"
     >
       <div className="absolute inset-0 overflow-hidden">
         <Image
@@ -14,9 +14,19 @@ export default function Hero() {
           alt="Golden-hour aerial view of a North Georgia lake and wooded shoreline"
           fill
           priority
-          // quality={100}
+          quality={100}
           sizes="100vw"
-          className="animate-slow-zoom object-cover object-[58%_32%] saturate-[0.86] contrast-[1.01] brightness-[0.95] sm:object-[center_30%]"
+          className="
+      animate-slow-zoom
+      lg:animate-none
+      motion-reduce:animate-none
+      object-cover
+      object-[58%_32%]
+      saturate-[0.86]
+      contrast-[1.01]
+      brightness-[0.95]
+      sm:object-[center_30%]
+    "
         />
         <div
           className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,17,23,0.74)_0%,rgba(11,24,28,0.56)_35%,rgba(20,33,31,0.26)_62%,rgba(15,25,24,0.06)_100%)]"
@@ -33,7 +43,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container-x relative grid min-h-screen items-center min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]">
+      <div className="container-x relative grid items-center min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]">
         <div className="max-w-xl pb-16 pt-24 lg:max-w-3xl lg:pb-8 lg:pt-24 xl:max-w-4xl">
           <p className="eyebrow mb-6 text-foothill-light">
             Helping North Georgia Businesses Grow

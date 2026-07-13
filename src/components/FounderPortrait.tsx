@@ -10,7 +10,10 @@ export default function FounderPortrait({
 }) {
   return (
     <figure
-      className={clsx("relative mx-auto w-full max-w-[460px]", className)}
+      className={clsx(
+        "pointer-events-none relative mx-auto w-full max-w-[460px] select-none",
+        className,
+      )}
     >
       <div className="relative pb-3 pr-3">
         <div
@@ -25,7 +28,8 @@ export default function FounderPortrait({
             sizes="(max-width: 640px) 86vw, 460px"
             quality={90}
             loading={eager ? "eager" : "lazy"}
-            className="origin-center scale-[1.2] object-cover object-[58%_center]"
+            draggable={false}
+            className="pointer-events-none origin-center scale-[1.2] select-none object-cover object-[58%_center]"
           />
           <div
             className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal/25 via-transparent to-ivory/5"
