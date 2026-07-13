@@ -53,6 +53,10 @@ export default function Navbar() {
           : "border-transparent bg-transparent py-3 backdrop-blur-none",
       )}
     >
+      <div
+        className="h-[env(safe-area-inset-top)] lg:hidden"
+        aria-hidden="true"
+      />
       <div className="container-x flex items-center justify-between">
         <Brand light={lightAtTop} compact={scrolled || open} />
         <nav

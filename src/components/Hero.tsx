@@ -44,8 +44,8 @@ export default function Hero() {
       />
 
       <div className="container-x relative grid items-center min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]">
-        <div className="max-w-xl pb-16 pt-24 lg:max-w-3xl lg:pb-8 lg:pt-24 xl:max-w-4xl">
-          <p className="eyebrow mb-6 text-foothill-light">
+        <div className="hero-content max-w-xl pb-16 pt-24 lg:max-w-3xl lg:pb-8 lg:pt-24 xl:max-w-4xl">
+          <p className="hero-eyebrow eyebrow mb-6 text-foothill-light">
             Helping North Georgia Businesses Grow
           </p>
 
@@ -56,12 +56,12 @@ export default function Hero() {
             <span className="italic text-[#9eab77]">Your Business.</span>
           </h1>
 
-          <p className="mt-7 max-w-lg text-lg text-ivory/78 lg:max-w-xl xl:max-w-2xl">
+          <p className="hero-description mt-7 max-w-lg text-lg text-ivory/78 lg:max-w-xl xl:max-w-2xl">
             Custom websites, practical systems, and reliable support for small
             businesses across North Georgia.
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-4">
+          <div className="hero-actions mt-9 flex flex-wrap gap-4">
             <Link
               href="/contact"
               className="btn-brass group"
@@ -86,7 +86,7 @@ export default function Hero() {
             </Link>
           </div>
 
-          <div className="mt-12 max-w-sm">
+          <div className="hero-signoff mt-12 max-w-sm">
             <div className="ornament mb-3">
               <span className="text-[#9eab77]">&#9670;</span>
             </div>

@@ -53,6 +53,33 @@
     @apply py-20 md:py-28;
   }
 
+  @media (max-width: 639px) and (max-height: 760px) {
+    .hero-content {
+      @apply pb-10 pt-20;
+    }
+    .hero-eyebrow {
+      @apply mb-4;
+    }
+    .hero-description {
+      @apply mt-5;
+    }
+    .hero-actions {
+      @apply mt-6 gap-3;
+    }
+    .hero-signoff {
+      @apply mt-7;
+    }
+  }
+
+  @media (max-width: 639px) and (max-height: 620px) {
+    .hero-content {
+      @apply pb-8 pt-16;
+    }
+    .hero-signoff {
+      @apply hidden;
+    }
+  }
+
   .skip-link {
     @apply fixed left-6 top-2 z-50 -translate-y-20 bg-charcoal px-4 py-2 text-ivory transition-transform focus:translate-y-0;
   }
