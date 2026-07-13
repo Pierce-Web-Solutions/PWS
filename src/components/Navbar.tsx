@@ -42,6 +42,8 @@ export default function Navbar() {
   const active = (href: string) =>
     pathname === href ||
     (href === "/services" && pathname.startsWith("/services/"));
+  const lightAtTop = pathname === "/" && !scrolled && !open;
+
   return (
     <header
       className={clsx(
@@ -52,7 +54,7 @@ export default function Navbar() {
       )}
     >
       <div className="container-x flex items-center justify-between">
-        <Brand compact={scrolled || open} />
+        <Brand light={lightAtTop} compact={scrolled || open} />
         <nav
           className="hidden items-center gap-8 lg:flex"
           aria-label="Primary navigation"
@@ -64,10 +66,14 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               aria-current={active(link.href) ? "page" : undefined}
               className={clsx(
-                "relative py-2 text-[0.88rem] tracking-wide transition-colors hover:text-charcoal",
-                active(link.href)
-                  ? "text-foothill-deep after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-foothill"
-                  : "text-charcoal-soft",
+                "relative py-2 text-[0.88rem] tracking-wide transition-colors",
+                lightAtTop
+                  ? active(link.href)
+                    ? "text-ivory after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-brass"
+                    : "text-ivory/75 hover:text-ivory"
+                  : active(link.href)
+                    ? "text-foothill-deep after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-foothill"
+                    : "text-charcoal-soft hover:text-charcoal",
               )}
             >
               {link.label}
@@ -75,7 +81,12 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="btn-outline px-5 py-2 text-[0.82rem]"
+            className={clsx(
+              "px-5 py-2 text-[0.82rem]",
+              lightAtTop
+                ? "btn-outline-light border-brass/70 text-brass-light hover:bg-brass/10"
+                : "btn-outline",
+            )}
             data-analytics-event="Consultation CTA Clicked"
             data-analytics-location="desktop_nav"
             data-analytics-target="contact"
@@ -87,7 +98,10 @@ export default function Navbar() {
           ref={closeRef}
           type="button"
           onClick={() => setOpen((value) => !value)}
-          className="rounded-md p-2 text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass lg:hidden"
+          className={clsx(
+            "rounded-md p-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass lg:hidden",
+            lightAtTop ? "text-ivory" : "text-charcoal",
+          )}
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close navigation menu" : "Open navigation menu"}

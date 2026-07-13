@@ -32,7 +32,6 @@ export default function PlanFitGuide({
 
   return (
     <div className={clsx("mt-6 border-t border-charcoal/15 pt-5", className)}>
-      <p className="text-sm font-medium text-charcoal">{bestFor}</p>
       <button
         ref={triggerRef}
         type="button"
@@ -49,10 +48,15 @@ export default function PlanFitGuide({
             return !value;
           })
         }
-        className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-foothill-deep underline decoration-brass/60 underline-offset-4"
+        className="flex min-h-11 w-full items-center justify-between gap-4 text-left text-sm font-semibold text-foothill-deep"
       >
         Who&apos;s this for?
-        <span aria-hidden="true">{open ? "−" : "+"}</span>
+        <span
+          aria-hidden="true"
+          className="text-lg font-normal text-brass-deep"
+        >
+          {open ? "\u2212" : "+"}
+        </span>
       </button>
       <div
         id={id}
@@ -60,7 +64,10 @@ export default function PlanFitGuide({
         className={clsx("plan-fit-panel", open && "is-open")}
       >
         <div>
-          <p className="pb-1 pt-3 text-sm text-charcoal-soft">{children}</p>
+          <div className="grid gap-3 pb-1 pt-3 text-sm text-charcoal-soft">
+            <p className="font-medium text-charcoal">{bestFor}</p>
+            <p>{children}</p>
+          </div>
         </div>
       </div>
     </div>

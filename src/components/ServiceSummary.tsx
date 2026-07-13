@@ -42,7 +42,7 @@ export default function ServiceSummary({
         <span className="flex h-11 w-11 items-center justify-center border border-brass/50 bg-ivory-deep text-foothill transition-colors duration-200 group-hover:border-brass">
           <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
         </span>
-        <span className="font-serif text-lg italic text-foothill">
+        <span className="hidden font-serif text-lg italic text-foothill md:inline">
           {service.number}
         </span>
       </div>

@@ -31,10 +31,10 @@ export default function SimplifiedProcess() {
           {steps.map((step) => (
             <li key={step.number} className="simple-process__step">
               <span className="simple-process__node" aria-hidden="true" />
-              <span className="font-serif text-xl italic text-foothill">
+              <span className="hidden font-serif text-xl italic text-foothill md:inline">
                 {step.number}
               </span>
-              <h3 className="mt-4 font-serif text-2xl text-charcoal">
+              <h3 className="font-serif text-2xl text-charcoal md:mt-4">
                 {step.title}
               </h3>
               <p className="mt-3 max-w-sm text-charcoal-soft">{step.copy}</p>

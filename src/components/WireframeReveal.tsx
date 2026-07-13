@@ -10,6 +10,7 @@ import TopographicContours from "./TopographicContours";
 
 export default function WireframeReveal() {
   const comparisonRef = useRef<HTMLDivElement>(null);
+  const dragOffsetRef = useRef(0);
 
   function applyPosition(position: number, input: HTMLInputElement) {
     comparisonRef.current?.style.setProperty(
@@ -32,7 +33,11 @@ export default function WireframeReveal() {
     if (!bounds) return;
     const position = Math.min(
       100,
-      Math.max(0, ((event.clientX - bounds.left) / bounds.width) * 100),
+      Math.max(
+        0,
+        ((event.clientX - dragOffsetRef.current - bounds.left) / bounds.width) *
+          100,
+      ),
     );
     applyPosition(position, event.currentTarget);
   }
@@ -40,8 +45,10 @@ export default function WireframeReveal() {
   function handlePointerDown(event: PointerEvent<HTMLInputElement>) {
     event.preventDefault();
     event.currentTarget.focus();
+    const handleBounds = event.currentTarget.getBoundingClientRect();
+    dragOffsetRef.current =
+      event.clientX - (handleBounds.left + handleBounds.width / 2);
     event.currentTarget.setPointerCapture(event.pointerId);
-    updateFromPointer(event);
   }
 
   function handlePointerMove(event: PointerEvent<HTMLInputElement>) {
@@ -87,7 +94,11 @@ export default function WireframeReveal() {
           onInput={handleInput}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
-          className="peer absolute inset-0 z-30 h-full w-full touch-pan-y cursor-ew-resize opacity-0"
+          className="peer absolute top-1/2 z-30 h-11 w-11 -translate-x-1/2 -translate-y-1/2 touch-none cursor-ew-resize opacity-0"
+          style={{
+            left: "clamp(1.375rem, var(--reveal-position), calc(100% - 1.375rem))",
+            willChange: "left",
+          }}
           aria-label="Compare the structural wireframe with the finished interface"
           aria-describedby="comparison-instructions"
           aria-valuetext="46% finished experience visible"
@@ -112,7 +123,7 @@ export default function WireframeReveal() {
         id="comparison-instructions"
         className="mt-4 text-center text-sm text-taupe"
       >
-        Drag the divider or use the left and right arrow keys to compare
+        Drag the circular handle or use the left and right arrow keys to compare
         structure and experience.
       </p>
     </div>
