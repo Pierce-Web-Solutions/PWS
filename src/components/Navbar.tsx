@@ -24,11 +24,40 @@ export default function Navbar() {
   useEffect(() => {
     const el = document.getElementById("window-viewport");
     if (!el) return;
-    const onScroll = () => setScrolled(el.scrollTop > 24);
+    const onScroll = () => {
+      const documentScroll = Math.max(
+        window.scrollY,
+        document.scrollingElement?.scrollTop ?? 0,
+        document.documentElement.scrollTop,
+        document.body.scrollTop,
+      );
+      setScrolled(
+        (window.innerWidth < 1024 ? documentScroll : el.scrollTop) > 24,
+      );
+    };
     onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    window.visualViewport?.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
+    window.visualViewport?.addEventListener("resize", onScroll, {
+      passive: true,
+    });
+    document.addEventListener("scroll", onScroll, {
+      passive: true,
+      capture: true,
+    });
     el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.visualViewport?.removeEventListener("scroll", onScroll);
+      window.visualViewport?.removeEventListener("resize", onScroll);
+      document.removeEventListener("scroll", onScroll, true);
+      el.removeEventListener("scroll", onScroll);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -47,7 +76,7 @@ export default function Navbar() {
   return (
     <header
       className={clsx(
-        "fixed left-0 right-0 top-0 z-30 border-b transition-[padding,background-color,border-color,backdrop-filter] duration-300 lg:left-4 lg:right-4 lg:top-[3.75rem]",
+        "pointer-events-auto fixed left-0 right-0 top-0 z-50 border-b transition-[padding,background-color,border-color,backdrop-filter] duration-300 lg:left-4 lg:right-4 lg:top-[3.75rem]",
         scrolled || open
           ? "border-charcoal/10 bg-ivory/90 py-1.5 backdrop-blur-md"
           : "border-transparent bg-transparent py-3 backdrop-blur-none",
@@ -103,7 +132,7 @@ export default function Navbar() {
           type="button"
           onClick={() => setOpen((value) => !value)}
           className={clsx(
-            "rounded-md p-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass lg:hidden",
+            "pointer-events-auto relative z-10 touch-manipulation rounded-md p-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass lg:hidden",
             lightAtTop ? "text-ivory" : "text-charcoal",
           )}
           aria-expanded={open}
@@ -113,13 +142,25 @@ export default function Navbar() {
           {open ? <X size={25} /> : <Menu size={25} />}
         </button>
       </div>
-      {open && (
-        <nav
-          id="mobile-menu"
-          aria-label="Mobile navigation"
-          className="border-t border-charcoal/10 bg-ivory lg:hidden"
-        >
-          <div className="container-x flex flex-col py-5">
+      <nav
+        id="mobile-menu"
+        aria-label="Mobile navigation"
+        aria-hidden={!open}
+        inert={!open}
+        className={clsx(
+          "grid overflow-hidden bg-ivory transition-[grid-template-rows,opacity,border-color] duration-300 ease-out motion-reduce:transition-none lg:hidden",
+          open
+            ? "grid-rows-[1fr] border-t border-charcoal/10 opacity-100"
+            : "pointer-events-none grid-rows-[0fr] border-t border-transparent opacity-0",
+        )}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div
+            className={clsx(
+              "container-x flex flex-col py-5 transition-transform duration-300 ease-out motion-reduce:transition-none",
+              open ? "translate-y-0" : "-translate-y-3",
+            )}
+          >
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -145,8 +186,8 @@ export default function Navbar() {
               Request a Consultation
             </Link>
           </div>
-        </nav>
-      )}
+        </div>
+      </nav>
     </header>
   );
 }

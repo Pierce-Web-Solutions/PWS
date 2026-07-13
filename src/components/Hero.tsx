@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-charcoal text-ivory min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]"
+      className="relative min-h-[100svh] overflow-hidden bg-charcoal text-ivory lg:min-h-[calc(100dvh-5rem)]"
     >
       <div className="absolute inset-0 overflow-hidden">
         <Image
@@ -43,7 +43,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container-x relative grid items-center min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]">
+      <div className="container-x relative grid min-h-[100svh] items-center lg:min-h-[calc(100dvh-5rem)]">
         <div className="hero-content max-w-xl pb-16 pt-24 lg:max-w-3xl lg:pb-8 lg:pt-24 xl:max-w-4xl">
           <p className="hero-eyebrow eyebrow mb-6 text-foothill-light">
             Helping North Georgia Businesses Grow

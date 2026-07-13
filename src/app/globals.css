@@ -5,11 +5,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
   }
 
   html,
   body {
-    height: 100%;
+    min-height: 100%;
   }
 
   a {
@@ -22,11 +23,19 @@
   }
 
   body {
-    height: 100dvh;
-    overflow: hidden;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
     line-height: 1.7;
     font-weight: 300;
     text-rendering: optimizeLegibility;
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      height: 100dvh;
+      overflow: hidden;
+    }
   }
 
   ::selection {
