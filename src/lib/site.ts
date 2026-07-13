@@ -29,10 +29,11 @@ export function pageMetadata(
       locale: "en_US",
       images: [
         {
-          url: "/images/hero3.png",
-          width: 1536,
-          height: 1024,
-          alt: "A North Georgia Main Street at golden hour",
+          url: "/images/landing-preview.png",
+          width: 1200,
+          height: 630,
+          type: "image/png",
+          alt: "Pierce Web Solutions homepage featuring a North Georgia lake and custom website services",
         },
       ],
     },
@@ -40,7 +41,7 @@ export function pageMetadata(
       card: "summary_large_image",
       title,
       description,
-      images: ["/images/hero3.png"],
+      images: ["/images/landing-preview.png"],
     },
   };
 }

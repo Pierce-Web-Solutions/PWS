@@ -3,32 +3,30 @@
 import {
   useRef,
   type CSSProperties,
-  type FormEvent,
+  type KeyboardEvent,
   type PointerEvent,
 } from "react";
 import TopographicContours from "./TopographicContours";
 
 export default function WireframeReveal() {
   const comparisonRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLButtonElement>(null);
   const dragOffsetRef = useRef(0);
 
-  function applyPosition(position: number, input: HTMLInputElement) {
+  function applyPosition(position: number) {
+    const nextPosition = Math.min(100, Math.max(0, position));
     comparisonRef.current?.style.setProperty(
       "--reveal-position",
-      `${position}%`,
+      `${nextPosition}%`,
     );
-    input.value = String(position);
-    input.setAttribute(
+    handleRef.current?.setAttribute("aria-valuenow", String(nextPosition));
+    handleRef.current?.setAttribute(
       "aria-valuetext",
-      `${Math.round(100 - position)}% finished experience visible`,
+      `${Math.round(100 - nextPosition)}% finished experience visible`,
     );
   }
 
-  function handleInput(event: FormEvent<HTMLInputElement>) {
-    applyPosition(event.currentTarget.valueAsNumber, event.currentTarget);
-  }
-
-  function updateFromPointer(event: PointerEvent<HTMLInputElement>) {
+  function updateFromPointer(event: PointerEvent<HTMLButtonElement>) {
     const bounds = comparisonRef.current?.getBoundingClientRect();
     if (!bounds) return;
     const position = Math.min(
@@ -39,10 +37,15 @@ export default function WireframeReveal() {
           100,
       ),
     );
-    applyPosition(position, event.currentTarget);
+    applyPosition(position);
   }
 
-  function handlePointerDown(event: PointerEvent<HTMLInputElement>) {
+  function handlePointerDown(event: PointerEvent<HTMLButtonElement>) {
+    if (
+      !event.isPrimary ||
+      (event.pointerType === "mouse" && event.button !== 0)
+    )
+      return;
     event.preventDefault();
     event.currentTarget.focus();
     const handleBounds = event.currentTarget.getBoundingClientRect();
@@ -51,10 +54,50 @@ export default function WireframeReveal() {
     event.currentTarget.setPointerCapture(event.pointerId);
   }
 
-  function handlePointerMove(event: PointerEvent<HTMLInputElement>) {
+  function handlePointerMove(event: PointerEvent<HTMLButtonElement>) {
     if (!event.currentTarget.hasPointerCapture(event.pointerId)) return;
     event.preventDefault();
     updateFromPointer(event);
+  }
+
+  function handlePointerUp(event: PointerEvent<HTMLButtonElement>) {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
+    const currentPosition = Number(
+      event.currentTarget.getAttribute("aria-valuenow") ?? 54,
+    );
+    let nextPosition: number | undefined;
+
+    switch (event.key) {
+      case "ArrowLeft":
+      case "ArrowDown":
+        nextPosition = currentPosition - 1;
+        break;
+      case "ArrowRight":
+      case "ArrowUp":
+        nextPosition = currentPosition + 1;
+        break;
+      case "PageDown":
+        nextPosition = currentPosition - 10;
+        break;
+      case "PageUp":
+        nextPosition = currentPosition + 10;
+        break;
+      case "Home":
+        nextPosition = 0;
+        break;
+      case "End":
+        nextPosition = 100;
+        break;
+    }
+
+    if (nextPosition === undefined) return;
+    event.preventDefault();
+    applyPosition(nextPosition);
   }
 
   return (
@@ -85,16 +128,20 @@ export default function WireframeReveal() {
           </span>
         </div>
 
-        <input
-          type="range"
-          min="0"
-          max="100"
-          step="1"
-          defaultValue="54"
-          onInput={handleInput}
+        <button
+          ref={handleRef}
+          type="button"
+          role="slider"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={54}
+          aria-orientation="horizontal"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
-          className="peer absolute top-1/2 z-30 h-11 w-11 -translate-x-1/2 -translate-y-1/2 touch-none cursor-ew-resize opacity-0"
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          onKeyDown={handleKeyDown}
+          className="peer absolute top-1/2 z-30 h-11 w-11 -translate-x-1/2 -translate-y-1/2 touch-none select-none cursor-ew-resize opacity-0"
           style={{
             left: "clamp(1.375rem, var(--reveal-position), calc(100% - 1.375rem))",
             willChange: "left",
