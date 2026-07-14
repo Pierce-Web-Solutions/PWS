@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
@@ -10,7 +11,7 @@ import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
   "About Jacob Pierce",
-  "Meet Jacob Pierce, a North Georgia developer helping local businesses with websites, practical systems, and long-term technical support.",
+  "Meet Jacob Pierce, a Marine Corps reservist and North Georgia developer helping local businesses with websites, practical systems, and long-term technical support.",
   "/about",
 );
 
@@ -56,6 +57,55 @@ export default function AboutPage() {
                 </>
               }
             />
+          </div>
+        </div>
+        <div
+          id="service-member-owned"
+          className="container-x mt-16 grid scroll-mt-28 items-center gap-9 border-y border-charcoal/15 py-9 md:grid-cols-[0.75fr_1.25fr] lg:mt-20 lg:gap-14 lg:py-11"
+        >
+          <figure className="pointer-events-none mx-auto w-full max-w-[420px] select-none">
+            <div className="relative pb-2.5 pr-2.5">
+              <div
+                className="absolute bottom-0 right-0 h-[calc(100%-0.625rem)] w-[calc(100%-0.625rem)] border border-brass/50"
+                aria-hidden="true"
+              />
+              <div className="relative aspect-[4/5] overflow-hidden border border-brass/35 bg-charcoal sm:aspect-[5/4]">
+                <Image
+                  src="/images/jacob-marine-corps-reserve.png"
+                  alt="Jacob Pierce in a United States Marine Corps uniform"
+                  fill
+                  sizes="(max-width: 767px) 90vw, 420px"
+                  quality={85}
+                  draggable={false}
+                  className="pointer-events-none select-none object-cover object-[50%_42%] saturate-[0.76] sepia-[0.1]"
+                />
+                <div
+                  className="absolute inset-0 bg-[#c7aa6a]/15 mix-blend-color"
+                  aria-hidden="true"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-charcoal/25 via-transparent to-ivory/5"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
+            <figcaption className="mt-3 text-center text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-taupe">
+              Jacob Pierce <span className="text-brass">&middot;</span> Marine
+              Corps Reserve
+            </figcaption>
+          </figure>
+          <div className="max-w-2xl">
+            <p className="eyebrow">Service-member-owned</p>
+            <h2 className="heading-serif mt-3 text-[clamp(2rem,4vw,3.35rem)] text-charcoal">
+              Service, carried into the work
+            </h2>
+            <p className="mt-5 text-charcoal-soft">
+              Pierce Web Solutions is a service-member-owned business. I
+              currently serve in the United States Marine Corps Reserve, and
+              that experience reinforces the same qualities I bring to client
+              work: preparation, accountability, clear communication, and
+              dependable follow-through.
+            </p>
           </div>
         </div>
       </section>
