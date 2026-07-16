@@ -4,9 +4,11 @@ import { ArrowRight } from "lucide-react";
 export default function CTASection({
   title = "Let’s build something useful for your business.",
   copy = "Start with a practical conversation about where you are, what is getting in the way, and what the right next step could look like.",
+  buttonLabel = "Request a Consultation",
 }: {
   title?: string;
   copy?: string;
+  buttonLabel?: string;
 }) {
   return (
     <section className="relative overflow-hidden bg-foothill-deep py-20 text-ivory md:py-28">
@@ -29,7 +31,7 @@ export default function CTASection({
           data-analytics-location="section_cta"
           data-analytics-target="contact"
         >
-          Request a Consultation{" "}
+          {buttonLabel}{" "}
           <ArrowRight
             size={18}
             className="transition-transform group-hover:translate-x-1"
