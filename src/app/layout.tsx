@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import WindowFrame from "@/components/WindowFrame";
 import Navbar from "@/components/Navbar";
@@ -92,6 +93,20 @@ export default function RootLayout({
       className={`${playfair.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <Script
+          id="google-ads-tag-loader"
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18304491645"
+          strategy="beforeInteractive"
+        />
+        <Script id="google-ads-tag-config" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18304491645');`}
+        </Script>
+      </head>
       <body className="bg-ivory font-sans text-charcoal antialiased">
         <AttributionCapture />
         <a href="#main-content" className="skip-link">
