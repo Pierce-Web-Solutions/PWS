@@ -13,8 +13,8 @@ export default function Hero() {
           src="/images/hero7.jpg"
           alt="Golden-hour aerial view of a North Georgia lake and wooded shoreline"
           fill
-          priority
-          quality={100}
+          preload
+          quality={75}
           sizes="100vw"
           className="
       animate-slow-zoom
@@ -46,20 +46,28 @@ export default function Hero() {
       <div className="container-x relative grid min-h-[100svh] items-center lg:min-h-[calc(100dvh-5rem)]">
         <div className="hero-content max-w-xl pb-16 pt-24 lg:max-w-3xl lg:pb-8 lg:pt-24 xl:max-w-4xl">
           <p className="hero-eyebrow eyebrow mb-6 text-foothill-light">
-            Helping North Georgia Businesses Grow
+            Solving Business Problems Across North Georgia
           </p>
 
-          <h1 className="heading-serif text-[clamp(2.25rem,10vw,4.4rem)] text-ivory sm:text-[clamp(2.6rem,5.2vw,4.4rem)]">
-            Modern Technology.
-            <br />
-            Built Around{" "}
-            <span className="italic text-[#9eab77]">Your Business.</span>
+          <h1
+            aria-label="Better Operations. Built Around Your Business."
+            className="heading-serif text-[clamp(2.25rem,10vw,4.4rem)] text-ivory sm:text-[clamp(2.6rem,5.2vw,4.4rem)]"
+          >
+            <span aria-hidden="true">
+              Better Operations.
+              <br />
+              Built Around{" "}
+              <span className="italic text-[#9eab77]">Your Business.</span>
+            </span>
           </h1>
 
           <p className="hero-description mt-7 max-w-lg text-lg text-ivory/78 lg:max-w-xl xl:max-w-2xl">
-            Custom websites, practical systems, and reliable support for small
-            businesses across North Georgia.
+            We find where time and money are being lost, then design and
+            implement the right solution—from a simpler process to a custom
+            business system, website, or growth platform.
           </p>
+
+          
 
           <div className="hero-actions mt-9 flex flex-wrap gap-4">
             <Link
@@ -91,7 +99,7 @@ export default function Hero() {
               <span className="text-[#9eab77]">&#9670;</span>
             </div>
             <p className="text-center font-serif text-lg italic text-ivory/60">
-              Modern technology. Local partnership.
+              Business understanding. Practical solutions.
             </p>
           </div>
         </div>

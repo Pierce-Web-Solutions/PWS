@@ -10,6 +10,7 @@ import Brand from "./Brand";
 const links = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/services/automation", label: "Custom Systems" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -70,7 +71,9 @@ export default function Navbar() {
 
   const active = (href: string) =>
     pathname === href ||
-    (href === "/services" && pathname.startsWith("/services/"));
+    (href === "/services" &&
+      pathname.startsWith("/services/") &&
+      pathname !== "/services/automation");
   const lightAtTop = pathname === "/" && !scrolled && !open;
 
   return (

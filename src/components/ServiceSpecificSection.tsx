@@ -80,7 +80,7 @@ function WhatCustomUnlocksSection() {
             data-analytics-location="web_design_custom_unlocks"
             data-analytics-target="build"
           >
-            View Website Packages
+            View Website Pricing
           </Link>
           <Link
             href="/contact"
@@ -239,59 +239,96 @@ function WebsiteCareSection() {
 }
 
 function AutomationSection() {
-  const examples = [
+  const approaches = [
     {
-      title: "Lead routing",
-      start: "New inquiry",
-      middle: "Identify service or territory",
-      end: "Assign the right person and trigger follow-up",
-      copy: "Reduce manual forwarding and give each qualified inquiry a clear next owner.",
+      title: "Improve the process",
+      copy: "Clarify ownership, handoffs, and decisions when a change in the way work is done will solve the constraint.",
     },
     {
-      title: "Appointment follow-up",
-      start: "Booking confirmed",
-      middle: "Send timely reminders",
-      end: "Request feedback or schedule the next step",
-      copy: "Keep customers informed while reducing repetitive messages for the team.",
+      title: "Use or connect existing tools",
+      copy: "Configure an appropriate platform or integrate the systems already in use when that meets the need reliably.",
     },
     {
-      title: "Internal approvals",
-      start: "Request submitted",
-      middle: "Route to the correct reviewer",
-      end: "Record the decision and notify stakeholders",
-      copy: "Replace scattered messages with a visible, consistent approval path.",
+      title: "Build a custom application",
+      copy: "Create a portal, internal tool, dashboard, or workflow application when standard products cannot support the business well.",
     },
   ];
+  const stages = [
+    [
+      "01",
+      "Diagnose",
+      "Map the workflow, users, exceptions, current tools, and cost of the problem.",
+    ],
+    [
+      "02",
+      "Architect",
+      "Compare approaches and define requirements, ownership, support, timeline, and investment in a written proposal.",
+    ],
+    [
+      "03",
+      "Implement",
+      "Build or configure the agreed solution, test it with real scenarios, and prepare the team to use it.",
+    ],
+    [
+      "04",
+      "Improve",
+      "Review agreed indicators, gather feedback, and plan changes that produce practical value.",
+    ],
+  ];
   return (
-    <section className="section-pad bg-ivory">
-      <div className="container-x">
-        <SectionHeading
-          eyebrow="Automation in Practice"
-          title="Three practical workflows, not technology for its own sake"
-          copy="The exact tools depend on the systems already in place, but useful automation usually connects a clear trigger, a business rule, and a visible outcome."
-        />
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {examples.map((example) => (
-            <article
-              key={example.title}
-              className="border border-charcoal/15 bg-ivory-deep p-7"
-            >
-              <h3 className="font-serif text-2xl text-charcoal">
-                {example.title}
-              </h3>
-              <div className="my-6 grid gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-foothill-deep">
-                <span>{example.start}</span>
-                <ArrowRight size={15} aria-hidden="true" />
-                <span>{example.middle}</span>
-                <ArrowRight size={15} aria-hidden="true" />
-                <span>{example.end}</span>
-              </div>
-              <p className="text-sm text-charcoal-soft">{example.copy}</p>
-            </article>
-          ))}
+    <>
+      <section className="section-pad bg-ivory">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="Choosing the Approach"
+            title="The recommendation fits the constraint"
+            copy="The right choice depends on the workflow, existing software, team, and cost of ownership."
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {approaches.map((approach) => (
+              <article
+                key={approach.title}
+                className="border border-charcoal/15 bg-ivory-deep p-7"
+              >
+                <h3 className="font-serif text-2xl text-charcoal">
+                  {approach.title}
+                </h3>
+                <p className="mt-5 text-sm text-charcoal-soft">
+                  {approach.copy}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section className="section-pad bg-charcoal text-ivory">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="How a Systems Engagement Works"
+            title="A defined path from diagnosis to improvement"
+            copy="Substantial systems work is scoped around the business problem and technical requirements. Smaller improvements can be proposed separately when a custom build is unnecessary."
+            light
+          />
+          <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {stages.map(([number, title, copy]) => (
+              <li key={number} className="border-t border-ivory/20 pt-6">
+                <span className="font-serif text-xl italic text-brass-light">
+                  {number}
+                </span>
+                <h3 className="mt-3 font-serif text-2xl">{title}</h3>
+                <p className="mt-3 text-sm text-ivory/65">{copy}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-10 max-w-3xl border-l-2 border-brass pl-5 text-ivory/70">
+            Measures might include time spent on a task, handoff delays, error
+            rates, or visibility into work. Baselines and targets are agreed
+            with the client when the necessary data exists; outcomes are not
+            guaranteed.
+          </p>
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -358,33 +395,11 @@ function AdvertisingSection() {
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foothill-light">
               Start at launch
             </p>
-            <h3 className="mt-3 font-serif text-2xl">Lead Generation Launch</h3>
+            <h3 className="mt-3 font-serif text-2xl">Campaign setup</h3>
             <p className="mt-3 text-sm text-ivory/65">
-              This add-on can accompany a new website project with campaign
-              setup, conversion tracking, landing-page alignment, and the first
-              90 days of Local Ads Management. Ongoing management is optional
-              after that initial period.
-            </p>
-            <Link
-              href="/pricing#launch"
-              data-analytics-event="Pricing Navigation Clicked"
-              data-analytics-location="advertising_service"
-              data-analytics-target="launch"
-              className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ivory underline decoration-foothill-light underline-offset-4"
-            >
-              View launch pricing <ArrowRight size={16} aria-hidden="true" />
-            </Link>
-          </article>
-          <article>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foothill-light">
-              Continue as needed
-            </p>
-            <h3 className="mt-3 font-serif text-2xl">Advertising management</h3>
-            <p className="mt-3 text-sm text-ivory/65">
-              Advertising Oversight, Local Ads Management, and Growth Ads
-              Management support different account sizes and optimization needs.
-              The focus remains qualified leads and measurable business
-              outcomes.
+              A campaign can begin with a new website or an existing one. Setup,
+              conversion tracking, landing-page alignment, and any ongoing
+              management are defined in the written scope.
             </p>
             <Link
               href="/pricing#grow"
@@ -393,7 +408,28 @@ function AdvertisingSection() {
               data-analytics-target="grow"
               className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ivory underline decoration-foothill-light underline-offset-4"
             >
-              Compare management plans{" "}
+              View advertising pricing{" "}
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </article>
+          <article>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foothill-light">
+              Continue as needed
+            </p>
+            <h3 className="mt-3 font-serif text-2xl">Advertising management</h3>
+            <p className="mt-3 text-sm text-ivory/65">
+              Management scope depends on account size, platforms, locations,
+              and optimization needs. The focus remains qualified leads and
+              useful reporting on business outcomes.
+            </p>
+            <Link
+              href="/pricing#grow"
+              data-analytics-event="Pricing Navigation Clicked"
+              data-analytics-location="advertising_service"
+              data-analytics-target="grow"
+              className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ivory underline decoration-foothill-light underline-offset-4"
+            >
+              View management starting points{" "}
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </article>

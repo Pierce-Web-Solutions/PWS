@@ -4,15 +4,15 @@ import CTASection from "./CTASection";
 import GrowthLifecycle from "./GrowthLifecycle";
 import DirectSupportSection from "./DirectSupportSection";
 import SimplifiedProcess from "./SimplifiedProcess";
-import { services } from "@/lib/site";
+import { featuredServices } from "@/lib/site";
 
 const homepageServiceCopy: Record<string, string> = {
   "web-design":
-    "A custom website that explains your value clearly and turns visits into qualified inquiries.",
+    "A clear, dependable customer experience when your website is the right place to improve.",
   "website-care":
     "Ongoing monitoring, updates, and direct support that keep your website reliable after launch.",
   automation:
-    "Connected workflows and custom tools that reduce repetitive work and improve follow-through.",
+    "Custom applications, integrations, and operational tools designed around the real work your team does.",
   advertising:
     "Focused campaigns, landing pages, and tracking designed around qualified leads and bookings.",
 };
@@ -24,8 +24,8 @@ export default function HomeSections() {
         <div className="container-x">
           <SectionHeading
             eyebrow="What We Do"
-            title="Practical technology for a growing business"
-            copy="Choose the right starting point, then connect services as your needs evolve."
+            title="Start with the problem. Choose the right solution."
+            copy="Business systems are our flagship capability. Websites, care, and advertising remain available when they fit the need."
           />
           <p className="mt-6 max-w-3xl border-l-2 border-brass pl-5 text-charcoal-soft">
             Built for service companies, professional offices, contractors,
@@ -33,7 +33,7 @@ export default function HomeSections() {
             Georgia.
           </p>
           <div className="mt-12">
-            {services.map((service) => (
+            {featuredServices.map((service) => (
               <ServiceSummary
                 key={service.slug}
                 service={service}

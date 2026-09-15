@@ -7,8 +7,17 @@
 3. Create or verify a Google Search Console Domain property for `piercewebsolutions.com` using DNS verification.
 4. Submit `https://www.piercewebsolutions.com/sitemap.xml` in Search Console.
 5. Use URL Inspection on the homepage and each core service URL, confirm the declared canonical is the `www` URL, and request indexing.
-6. Check Search Console weekly for indexing errors, duplicate canonicals, Core Web Vitals, queries, and pages receiving impressions.
-7. Add the site to Bing Webmaster Tools and submit the same sitemap.
+6. Run PageSpeed Insights for the homepage, services, pricing, and contact pages after the production cache is warm. Review both mobile field data and the lab diagnostics.
+7. Test the homepage and service structured data with Google's Rich Results Test.
+8. Check Search Console weekly for indexing errors, duplicate canonicals, Core Web Vitals, queries, and pages receiving impressions.
+9. Add the site to Bing Webmaster Tools and submit the same sitemap.
+
+## Ongoing maintenance
+
+- Update `site.contentUpdatedAt` in `src/lib/site.ts` after substantive site-wide content changes so sitemap dates remain accurate.
+- Keep page titles, descriptions, canonicals, and one clear H1 aligned whenever a page's purpose changes.
+- Add case studies only when the client, Jacob's role, and any reported result can be attributed accurately.
+- Recheck image dimensions, alternative text, keyboard navigation, form delivery, and Core Web Vitals when adding a new page or major component.
 
 ## Local organic visibility
 

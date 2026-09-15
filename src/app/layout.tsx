@@ -9,6 +9,8 @@ import AttributionCapture from "@/components/AttributionCapture";
 import { Analytics } from "@vercel/analytics/next";
 import AnalyticsClickTracker from "@/components/AnalyticsClickTracker";
 
+const isPreview = process.env.VERCEL_ENV === "preview";
+
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -26,17 +28,18 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Pierce Web Solutions | North Georgia Web Design & Technology",
+    default: "Pierce Web Solutions | Business Systems & Practical Solutions",
     template: "%s | Pierce Web Solutions",
   },
   description: site.description,
   applicationName: site.name,
+  // Preview deployments should point at the production canonical without being indexed.
   robots: {
-    index: true,
-    follow: true,
+    index: !isPreview,
+    follow: !isPreview,
     googleBot: {
-      index: true,
-      follow: true,
+      index: !isPreview,
+      follow: !isPreview,
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
@@ -51,12 +54,13 @@ const structuredData = {
       "@type": "Organization",
       "@id": `${site.url}/#organization`,
       name: site.name,
+      legalName: "Pierce Business Group LLC",
       url: site.url,
       description: site.description,
       email: site.email,
       logo: {
         "@type": "ImageObject",
-        url: `${site.url}/logos/pws-icon.png`,
+        url: `${site.url}/icon.png`,
       },
       areaServed: [
         "North Georgia",
@@ -98,9 +102,9 @@ export default function RootLayout({
           id="google-ads-tag-loader"
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-18304491645"
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-ads-tag-config" strategy="beforeInteractive">
+        <Script id="google-ads-tag-config" strategy="lazyOnload">
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

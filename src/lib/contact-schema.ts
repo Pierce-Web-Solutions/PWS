@@ -39,7 +39,7 @@ export const contactSchema = z
       .string()
       .trim()
       .pipe(
-        z.enum(serviceOptions, { error: "Choose a valid service interest." }),
+        z.enum(serviceOptions, { error: "Choose a valid starting point." }),
       ),
     budget: z
       .string()

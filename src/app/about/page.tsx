@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
   "About Jacob Pierce",
-  "Meet Jacob Pierce, a Marine Corps reservist and North Georgia developer helping local businesses with websites, practical systems, and long-term technical support.",
+  "Meet Jacob Pierce, a North Georgia solutions architect focused on business diagnosis, practical systems, websites, and direct support.",
   "/about",
 );
 
@@ -33,26 +33,26 @@ export default function AboutPage() {
       </PageHero>
       <section className="section-pad bg-ivory">
         <div className="container-x grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <FounderPortrait eager />
+          <FounderPortrait />
           <div>
             <SectionHeading
               eyebrow="Meet Jacob Pierce"
-              title="A developer focused on the business behind the technology"
+              title="A solutions architect focused on the business behind the technology"
               copy={
                 <>
                   <p>
-                    I’m Jacob Pierce, a North Georgia developer who helps local
-                    businesses replace outdated websites and disconnected
-                    systems with technology built around how they actually
-                    operate.
+                    I’m Jacob Pierce. I work with North Georgia businesses to
+                    understand operational constraints, choose practical
+                    solutions, and implement the systems or customer-facing
+                    experiences those solutions require.
                   </p>
                   <p className="mt-5">
                     I started Pierce Web Solutions to offer the kind of
-                    technical partnership small businesses deserve: direct
-                    communication, careful work, honest recommendations, and
-                    support that continues after launch. Clients work with me
-                    from the initial conversation through design, development,
-                    launch, and ongoing improvement.
+                    partnership businesses deserve: direct communication,
+                    careful work, honest recommendations, and support that
+                    continues after launch. I stay involved from the first
+                    conversation through architecture, implementation, and
+                    ongoing improvement.
                   </p>
                 </>
               }
@@ -75,7 +75,7 @@ export default function AboutPage() {
                   alt="Jacob Pierce in a United States Marine Corps uniform"
                   fill
                   sizes="(max-width: 767px) 90vw, 420px"
-                  quality={85}
+                  quality={75}
                   draggable={false}
                   className="pointer-events-none select-none object-cover object-[50%_42%] saturate-[0.76] sepia-[0.1]"
                 />
@@ -133,7 +133,7 @@ export default function AboutPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="How I Work"
-            title="Business-first problem solving"
+            title="Understand the business before choosing the technology"
             copy="The best technical solution is not always the largest or most complicated one. It is the one that addresses the real constraint, fits the team, and can be supported over time."
           />
           <div className="mt-14 grid border-y border-charcoal/15 md:grid-cols-3">

@@ -4,11 +4,11 @@ import SectionHeading from "@/components/SectionHeading";
 import ServiceSummary from "@/components/ServiceSummary";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
-import { pageMetadata, services } from "@/lib/site";
+import { pageMetadata, featuredServices } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Web & Technology Services in North Georgia",
-  "Web design, website care, automation, custom systems, and advertising for North Georgia small businesses.",
+  "Business Solutions & Custom Systems",
+  "Operational problem diagnosis, custom business systems, websites, website care, and advertising for North Georgia businesses.",
   "/services",
 );
 
@@ -27,18 +27,18 @@ export default function ServicesPage() {
           </>
         }
       >
-        From a clearer website to a better internal workflow, every engagement
-        begins with understanding the business problem and choosing an
-        appropriate solution.
+        We understand the business problem before recommending a process change,
+        existing platform, integration, custom application, website, or
+        advertising system.
       </PageHero>
       <section id="service-options" className="section-pad bg-ivory">
         <div className="container-x">
           <SectionHeading
             eyebrow="Four Ways We Can Help"
-            title="Focused services, connected by one business-first approach"
+            title="Custom systems lead. Each service follows the problem."
           />
           <div className="mt-14">
-            {services.map((service) => (
+            {featuredServices.map((service) => (
               <ServiceSummary key={service.slug} service={service} />
             ))}
           </div>

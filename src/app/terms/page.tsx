@@ -13,10 +13,11 @@ export default function TermsPage() {
     <LegalPage title="Website Terms" updated="July 11, 2026">
       <h2>Informational website</h2>
       <p>
-        This website provides general information about Pierce Web Solutions and
-        its services. Website content is not a binding proposal, professional
-        legal advice, or a guarantee of project availability, cost, timing,
-        rankings, leads, revenue, advertising performance, or other results.
+        This website provides general information about Pierce Web Solutions, a
+        brand of Pierce Business Group LLC, and its services. Website content is
+        not a binding proposal, professional legal advice, or a guarantee of
+        project availability, cost, timing, rankings, leads, revenue,
+        advertising performance, or other results.
       </p>
       <h2>Project engagements</h2>
       <p>

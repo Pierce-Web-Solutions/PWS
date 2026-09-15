@@ -1,13 +1,7 @@
 import Image from "next/image";
 import clsx from "clsx";
 
-export default function FounderPortrait({
-  className,
-  eager = false,
-}: {
-  className?: string;
-  eager?: boolean;
-}) {
+export default function FounderPortrait({ className }: { className?: string }) {
   return (
     <figure
       className={clsx(
@@ -26,8 +20,7 @@ export default function FounderPortrait({
             alt="Jacob Pierce, founder of Pierce Web Solutions"
             fill
             sizes="(max-width: 640px) 86vw, 460px"
-            quality={90}
-            loading={eager ? "eager" : "lazy"}
+            quality={75}
             draggable={false}
             className="pointer-events-none origin-center scale-[1.2] select-none object-cover object-[58%_center]"
           />

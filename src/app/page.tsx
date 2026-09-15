@@ -5,8 +5,8 @@ import Footer from "@/components/Footer";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "North Georgia Web Design & Technology Partner",
-  "Custom websites, practical systems, advertising, and reliable support for small businesses across North Georgia and beyond.",
+  "Pierce Web Solutions | Business Systems in North Georgia",
+  "Pierce Web Solutions diagnoses operational problems and architects practical solutions, including custom business systems, websites, and advertising.",
   "/",
 );
 
