@@ -57,6 +57,20 @@ test("valid submission succeeds and normalizes email", async () => {
   if (result.ok) assert.equal(result.submission.email, "jacob@example.com");
 });
 
+test("an operational problem and substantial system budget can be submitted", async () => {
+  const result = await processContactSubmission(
+    {
+      ...valid,
+      service: "Operational Problem / Not Sure What Solution",
+      budget: "$15,000–$24,999",
+      message:
+        "Our team repeats the same handoffs across three tools each day.",
+    },
+    dependencies(),
+  );
+  assert.equal(result.ok, true);
+});
+
 test("optional attribution and contact fields may be omitted", async () => {
   const {
     phone,

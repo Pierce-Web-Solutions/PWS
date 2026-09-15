@@ -53,7 +53,7 @@ export function internalEmail(
     ["Phone", submission.phone],
     ["Business", submission.business],
     ["Current website", submission.website],
-    ["Service interest", submission.service],
+    ["Likely starting point", submission.service],
     ["Estimated budget", submission.budget],
     ["Desired timeline", submission.timeline],
     ["Referral source", submission.referral],

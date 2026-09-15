@@ -9,8 +9,8 @@ import Footer from "@/components/Footer";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Website Pricing & Service Investment",
-  "Explore starting prices for North Georgia web design and custom web development, website care, digital advertising management, business automation, and custom systems.",
+  "Business Systems & Website Pricing",
+  "Transparent starting points for websites, website care, advertising, and focused improvements; substantial custom systems are scoped individually.",
   "/pricing",
 );
 
@@ -28,20 +28,20 @@ type PricingCategory = {
 const pricingCategories: PricingCategory[] = [
   {
     id: "build",
-    number: "01",
+    number: "02",
     frameLabel: "WEBSITES",
     title: "Custom Websites",
-    price: "Most professional website projects begin around $3,000.",
+    price: "Focused business websites begin around $3,000.",
     details: [
-      "Growth-focused websites with expanded content, conversion tracking, or integrations commonly begin around $5,500.",
-      "Custom platforms and more advanced web applications are scoped individually based on their functionality and technical requirements.",
+      "Broader website projects with expanded content, conversion tracking, or integrations begin around $5,500.",
+      "Customer-facing website integrations are scoped with the website. Substantial custom business applications are considered separately.",
     ],
     qualifier:
       "Final website pricing depends on scope, content, integrations, technical requirements, and business goals.",
   },
   {
     id: "care",
-    number: "02",
+    number: "03",
     frameLabel: "ONGOING SUPPORT",
     title: "Website Care",
     price: "Plans range from $149 to $599 per month.",
@@ -54,7 +54,7 @@ const pricingCategories: PricingCategory[] = [
   {
     id: "grow",
     aliases: ["launch"],
-    number: "03",
+    number: "04",
     frameLabel: "DIGITAL ADVERTISING",
     title: "Advertising Management",
     price: "Ongoing management begins at $299 per month.",
@@ -66,16 +66,25 @@ const pricingCategories: PricingCategory[] = [
   },
   {
     id: "evolve",
-    number: "04",
-    frameLabel: "AUTOMATION & SYSTEMS",
-    title: "Automation & Custom Systems",
-    price: "Focused automation projects typically begin around $2,000.",
+    number: "01",
+    frameLabel: "BUSINESS SYSTEMS",
+    title: "Custom Systems & Practical Improvements",
+    price:
+      "Substantial custom systems are scoped individually after discovery.",
     details: [
-      "More complex integrations, internal tools, portals, and custom business systems require discovery and custom scoping.",
+      "Focused automation or integration projects typically begin around $2,000 when the problem can be solved within a limited scope.",
+      "Custom applications, portals, internal tools, and multi-system workflows require a defined architecture and proposal based on their requirements.",
     ],
     qualifier:
-      "Every client receives a defined proposal before automation or custom development begins.",
+      "The proposal distinguishes the cost of diagnosis, implementation, third-party tools, ownership, and ongoing support as applicable.",
   },
+];
+
+const orderedPricingCategories = [
+  pricingCategories[3],
+  pricingCategories[0],
+  pricingCategories[1],
+  pricingCategories[2],
 ];
 
 const engagementNotes = [
@@ -108,9 +117,9 @@ export default function PricingPage() {
           </>
         }
       >
-        Use these ranges to decide whether Pierce Web Solutions is likely to fit
-        your budget. Final pricing is confirmed after the project, website, or
-        account has been reviewed.
+        Use these starting points to judge fit. Website, care, advertising, and
+        focused-project prices stay visible; larger systems receive a written
+        scope and investment after the business problem has been reviewed.
       </PageHero>
 
       <section
@@ -120,11 +129,11 @@ export default function PricingPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Qualified Transparency"
-            title="Useful ranges, without forcing your project into a package"
-            copy="These starting points reflect common engagements. The right investment depends on what the business needs, what already exists, and what the work must accomplish."
+            title="Clear starting points and a defined custom scope"
+            copy="The right investment depends on the problem, existing tools, users, technical requirements, and support needs. We recommend a simpler approach when it fits."
           />
           <div className="mt-14 grid items-stretch gap-6 md:auto-rows-fr md:grid-cols-2">
-            {pricingCategories.map((category) => (
+            {orderedPricingCategories.map((category) => (
               <PricingCategoryCard key={category.id} category={category} />
             ))}
           </div>

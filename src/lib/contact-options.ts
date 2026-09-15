@@ -1,12 +1,12 @@
 export const serviceOptions = [
+  "Operational Problem / Not Sure What Solution",
+  "Custom Business System or Web Application",
+  "Focused Integration or Automation",
   "New Website",
   "Website Redesign",
   "Website Care",
-  "Business Automation",
   "Advertising Management",
   "Landing Page",
-  "Custom Development",
-  "Not Sure Yet",
 ] as const;
 
 export const budgetOptions = [
@@ -14,7 +14,8 @@ export const budgetOptions = [
   "$3,000–$5,499",
   "$5,500–$8,999",
   "$9,000–$15,000",
-  "$15,000+",
+  "$15,000–$24,999",
+  "$25,000+",
   "Not sure yet",
 ] as const;
 

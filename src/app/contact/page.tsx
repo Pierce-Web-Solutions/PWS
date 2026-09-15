@@ -5,8 +5,8 @@ import Footer from "@/components/Footer";
 import { pageMetadata, site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Contact a North Georgia Web Developer",
-  "Talk directly with Pierce Web Solutions about web design, website care, automation, advertising, or custom development in North Georgia.",
+  "Discuss a Business Problem or Project",
+  "Tell Pierce Web Solutions about an operational bottleneck, custom-system need, website, website care, or advertising project in North Georgia.",
   "/contact",
 );
 
@@ -23,8 +23,9 @@ export default function ContactPage() {
           </>
         }
       >
-        Share the challenge, opportunity, or idea you are considering. You will
-        typically receive an initial response within one business day.
+        Share where work is getting stuck, what it may be costing, or the
+        website or advertising service you need. You will typically receive an
+        initial response within one business day.
       </PageHero>
       <section className="section-pad bg-ivory-deep">
         <div className="container-x grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:gap-20">

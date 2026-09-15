@@ -21,29 +21,18 @@ export default function Brand({
       )}
     >
       <Image
-        src="/logos/pws-half-lockup-dark.png"
+        src={
+          light
+            ? "/logos/pws-half-lockup-dark.png"
+            : "/logos/pws-half-lockup.png"
+        }
         alt=""
         aria-hidden="true"
-        width={1287}
-        height={399}
-        priority
+        width={344}
+        height={107}
         className={clsx(
-          "absolute left-0 top-1/2 w-auto -translate-y-1/2 transition-[height,opacity,transform] duration-500 ease-out group-hover:-translate-y-[52%]",
+          "absolute left-0 top-1/2 w-auto -translate-y-1/2 transition-[height,transform] duration-500 ease-out group-hover:-translate-y-[52%]",
           compact ? "h-10 md:h-11" : "h-11 md:h-12",
-          light ? "opacity-100" : "opacity-0",
-        )}
-      />
-      <Image
-        src="/logos/pws-half-lockup.png"
-        alt=""
-        aria-hidden="true"
-        width={1287}
-        height={399}
-        priority
-        className={clsx(
-          "absolute left-0 top-1/2 w-auto -translate-y-1/2 transition-[height,opacity,transform] duration-500 ease-out group-hover:-translate-y-[52%]",
-          compact ? "h-10 md:h-11" : "h-11 md:h-12",
-          light ? "opacity-0" : "delay-150 opacity-100",
         )}
       />
     </Link>

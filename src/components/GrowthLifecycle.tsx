@@ -5,21 +5,21 @@ import SectionHeading from "./SectionHeading";
 const stages = [
   {
     number: "01",
-    label: "Website foundation",
-    title: "Start with a strong website",
-    copy: "A clear, professional foundation built around the business.",
+    label: "Understand the constraint",
+    title: "Find where work breaks down",
+    copy: "Map the people, steps, tools, and costs before choosing an approach.",
   },
   {
     number: "02",
-    label: "Connected tools",
-    title: "Connect the tools you use",
-    copy: "Integrate forms, scheduling, payments, communication, reporting, and other systems.",
+    label: "Architect the approach",
+    title: "Choose the simplest sound solution",
+    copy: "Improve a process, use an existing platform, connect systems, or plan a custom build.",
   },
   {
     number: "03",
-    label: "Custom systems",
-    title: "Add custom systems as you grow",
-    copy: "Introduce automation, portals, dashboards, workflows, and custom applications when the business needs them.",
+    label: "Implement and improve",
+    title: "Build, measure, and refine",
+    copy: "Launch carefully, train the team, and assess improvement against agreed measures.",
   },
 ] as const;
 
@@ -32,20 +32,19 @@ export default function GrowthLifecycle() {
       <div className="container-x">
         <div className="grid items-end gap-8 lg:grid-cols-[1fr_auto]">
           <SectionHeading
-            eyebrow="/ Built Beyond the Template"
-            title="A foundation that can grow with the business"
+            eyebrow="/ From Diagnosis to Delivery"
+            title="The solution follows the business problem"
             light
-            copy="Start with what is useful now, then add connected systems as the need becomes clear."
+            copy="Good architecture begins with understanding the work. The right answer is sometimes a custom system and sometimes something simpler."
           />
           <Link
-            href="/services/web-design"
+            href="/services/automation"
             className="inline-flex w-fit items-center gap-2 font-medium text-ivory underline decoration-brass underline-offset-4 hover:text-brass-light"
             data-analytics-event="Service Explored"
             data-analytics-location="homepage_growth_lifecycle"
-            data-analytics-target="web-design"
+            data-analytics-target="automation"
           >
-            Explore custom web design{" "}
-            <ArrowRight size={17} aria-hidden="true" />
+            Explore custom systems <ArrowRight size={17} aria-hidden="true" />
           </Link>
         </div>
 

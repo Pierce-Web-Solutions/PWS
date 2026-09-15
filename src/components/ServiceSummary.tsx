@@ -11,9 +11,9 @@ import type { Service } from "@/lib/site";
 import InspectionFrame from "./InspectionFrame";
 
 const frameLabels: Record<string, string> = {
-  "web-design": "01 / WEB",
-  "website-care": "02 / CARE",
-  automation: "03 / SYSTEMS",
+  "web-design": "02 / WEB",
+  "website-care": "03 / CARE",
+  automation: "01 / SYSTEMS",
   advertising: "04 / GROWTH",
 };
 

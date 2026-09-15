@@ -13,9 +13,9 @@ export default function PrivacyPage() {
     <LegalPage title="Privacy Policy" updated="July 11, 2026">
       <h2>Purpose of this notice</h2>
       <p>
-        This policy explains how Pierce Web Solutions may handle information
-        submitted through this website and information generated through normal
-        website use.
+        This policy explains how Pierce Web Solutions, a brand of Pierce
+        Business Group LLC, may handle information submitted through this
+        website and information generated through normal website use.
       </p>
       <h2>Information you choose to provide</h2>
       <p>

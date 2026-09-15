@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   allowedDevOrigins: ["192.168.1.47"],
   images: {
-    qualities: [75, 90, 100],
+    qualities: [75],
   },
 };
 

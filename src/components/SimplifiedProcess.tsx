@@ -3,18 +3,18 @@ import SectionHeading from "./SectionHeading";
 const steps = [
   {
     number: "01",
-    title: "Understand",
-    copy: "Your business, customers, systems, and goals.",
+    title: "Diagnose",
+    copy: "Understand the workflow, constraint, cost, and desired outcome.",
   },
   {
     number: "02",
-    title: "Build",
-    copy: "A practical solution designed around what you actually need.",
+    title: "Architect & implement",
+    copy: "Select the right approach, define scope, and deliver it carefully.",
   },
   {
     number: "03",
-    title: "Improve",
-    copy: "Launch carefully, measure performance, and continue refining.",
+    title: "Measure & improve",
+    copy: "Review agreed indicators and refine the solution as work changes.",
   },
 ] as const;
 
@@ -24,8 +24,8 @@ export default function SimplifiedProcess() {
       <div className="container-x">
         <SectionHeading
           eyebrow="A Simple Process"
-          title="From understanding to useful progress"
-          copy="Three clear stages keep the work focused and the next step visible."
+          title="From business diagnosis to measurable improvement"
+          copy="The proposal defines the approach, work, investment, and realistic measures before implementation begins."
         />
         <ol className="simple-process mt-12">
           {steps.map((step) => (

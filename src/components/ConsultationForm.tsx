@@ -238,8 +238,9 @@ export default function ConsultationForm() {
       <div className="mb-8 border-l border-brass/60 pl-4">
         <p className="eyebrow">/ Start a Project</p>
         <p className="mt-2 max-w-2xl text-sm text-charcoal-soft">
-          Four short sections designed to give me enough context for a useful
-          first conversation.
+          Tell me where work is getting stuck, or select the service you already
+          know you need. Four short sections provide context for a useful first
+          conversation.
         </p>
       </div>
       <div
@@ -359,7 +360,7 @@ export default function ConsultationForm() {
             <div className="grid gap-6 xl:grid-cols-3">
               <SelectField
                 name="service"
-                label="Service interest"
+                label="Likely starting point"
                 options={serviceOptions}
                 error={errors.service}
                 annotation="SELECT / SERVICE"
@@ -409,7 +410,7 @@ export default function ConsultationForm() {
                 aria-invalid={Boolean(errors.message)}
                 aria-describedby={errors.message ? "message-error" : undefined}
                 className={inputClass}
-                placeholder="What would you like to improve or build?"
+                placeholder="What is getting in the way? How much time, money, or follow-through might it be costing? If you need a website, care, or advertising, tell me what you have in mind."
               />
               {errors.message && (
                 <ErrorText id="message-error">{errors.message}</ErrorText>

@@ -75,8 +75,16 @@ export default function ServiceDetailPage({ service }: { service: Service }) {
       <section className="section-pad bg-ivory-deep">
         <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <SectionHeading
-            eyebrow="Typical Deliverables"
-            title="A focused scope built around your goals"
+            eyebrow={
+              service.slug === "automation"
+                ? "Possible Deliverables"
+                : "Typical Deliverables"
+            }
+            title={
+              service.slug === "automation"
+                ? "Scope follows the business problem"
+                : "A focused scope built around your goals"
+            }
             copy="The final project may include a combination of the following, confirmed in a written proposal after discovery."
           />
           <ul className="grid gap-x-10 sm:grid-cols-2">
@@ -115,7 +123,11 @@ export default function ServiceDetailPage({ service }: { service: Service }) {
         </div>
       </section>
       <CTASection
-        title={`Let’s talk about ${service.shortTitle.toLowerCase()}.`}
+        title={
+          service.slug === "automation"
+            ? "Let’s understand what is slowing your business down."
+            : `Let’s talk about ${service.shortTitle.toLowerCase()}.`
+        }
       />
       <Footer />
     </>

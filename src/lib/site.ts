@@ -6,8 +6,9 @@ export const site = {
   email: "contact@piercewebsolutions.com",
   location: "North Georgia",
   area: "Gwinnett, Hall, Barrow, Forsyth, and surrounding North Georgia communities",
+  contentUpdatedAt: "2026-09-15",
   description:
-    "Custom websites, practical systems, and reliable support for small businesses across North Georgia.",
+    "Business-first solutions, custom systems, websites, and ongoing support for organizations across North Georgia.",
 };
 
 export function pageMetadata(
@@ -29,11 +30,11 @@ export function pageMetadata(
       locale: "en_US",
       images: [
         {
-          url: "/images/landing-preview.png",
+          url: "/opengraph-image",
           width: 1200,
           height: 630,
           type: "image/png",
-          alt: "Pierce Web Solutions homepage featuring a North Georgia lake and custom website services",
+          alt: "Pierce Web Solutions business systems and practical solutions social preview",
         },
       ],
     },
@@ -41,7 +42,7 @@ export function pageMetadata(
       card: "summary_large_image",
       title,
       description,
-      images: ["/images/landing-preview.png"],
+      images: ["/opengraph-image"],
     },
   };
 }
@@ -62,7 +63,7 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "web-design",
-    number: "01",
+    number: "02",
     shortTitle: "Web Design & Development",
     title: "Web Design & Development for North Georgia Businesses",
     description:
@@ -88,7 +89,7 @@ export const services: Service[] = [
   },
   {
     slug: "website-care",
-    number: "02",
+    number: "03",
     shortTitle: "Website Care & Support",
     title: "Responsive Website Care After Launch",
     description:
@@ -115,29 +116,29 @@ export const services: Service[] = [
   },
   {
     slug: "automation",
-    number: "03",
-    shortTitle: "Automation & Custom Systems",
-    title: "Practical Systems Built Around Your Workflow",
+    number: "01",
+    shortTitle: "Custom Business Systems & Applications",
+    title: "Custom Business Systems Built for Your Operations",
     description:
-      "Practical tools, integrations, dashboards, and workflows built around the way your business actually operates.",
+      "Diagnose operational friction, choose the right approach, and build or connect the systems your team needs.",
     problem:
-      "Disconnected tools and repeated manual tasks cost time, create inconsistent follow-up, and make it harder to see what is happening across the business.",
-    fit: "Growing service companies and professional teams with a clear operational bottleneck, repetitive workflow, or reporting need.",
+      "Work gets harder to manage when information is scattered, decisions are repeated, and people have to bridge gaps between tools by hand.",
+    fit: "Growing organizations with an operational bottleneck, disconnected workflow, reporting need, or process that existing software does not handle well.",
     intro:
-      "Useful automation starts with understanding the real workflow. The goal is not technology for its own sake. It is a simpler, more reliable way to move work forward.",
+      "We begin by understanding the work, its costs, and the people involved. The recommendation might be a process change, an existing platform, an integration, automation, or a custom application. The solution should fit the problem and be maintainable by the team using it.",
     deliverables: [
-      "Lead routing",
-      "Automated follow-up",
-      "Appointment reminders",
-      "Review requests",
-      "Internal dashboards",
-      "CRM connections",
-      "Approval workflows",
-      "Business reporting",
-      "Custom business tools",
+      "Workflow and requirements mapping",
+      "Solution architecture and implementation plan",
+      "Custom web applications and internal tools",
+      "Client, staff, or partner portals",
+      "Dashboards and business reporting",
+      "Platform selection and integrations",
+      "Approval and operational workflows",
+      "Focused automation where useful",
+      "Launch, documentation, and improvement planning",
     ],
     closing:
-      "Projects begin by mapping the people, tools, decisions, and exceptions involved so the resulting system supports the way your team actually works.",
+      "Every proposal defines the problem, recommended approach, scope, ownership, support needs, and the measures we can reasonably use to assess improvement.",
   },
   {
     slug: "advertising",
@@ -165,4 +166,11 @@ export const services: Service[] = [
     closing:
       "Advertising spend is separate from management fees. Results cannot be guaranteed, and client advertising accounts should remain client-owned.",
   },
+];
+
+export const featuredServices = [
+  services[2],
+  services[0],
+  services[1],
+  services[3],
 ];
