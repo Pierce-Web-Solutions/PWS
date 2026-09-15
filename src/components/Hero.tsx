@@ -67,6 +67,8 @@ export default function Hero() {
             business system, website, or growth platform.
           </p>
 
+          
+
           <div className="hero-actions mt-9 flex flex-wrap gap-4">
             <Link
               href="/contact"
