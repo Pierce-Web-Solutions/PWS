@@ -28,7 +28,10 @@ export function GET(request: NextRequest) {
   const response = NextResponse.redirect(destination, 303);
   response.cookies.set(INTAKE_COOKIE_NAME, session, {
     httpOnly: true,
-    sameSite: "strict",
+    // Email clients and security redirectors create a cross-site top-level
+    // navigation. Lax allows that GET navigation to carry the newly issued
+    // session through the redirect while still blocking cross-site POSTs.
+    sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     path: "/",
     maxAge: INTAKE_SESSION_MAX_AGE,

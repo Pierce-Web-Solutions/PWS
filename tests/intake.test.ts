@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { NextRequest } from "next/server";
+import { GET as grantIntakeAccess } from "../src/app/api/intake/access/route";
 import { processIntakeSubmission } from "../src/lib/intake-service";
 import {
   intakeConfirmationEmail,
@@ -124,6 +126,30 @@ test("intake invite and derived session reject the wrong secret", () => {
     assert.equal(Boolean(session), true);
     assert.equal(intakeSessionIsValid(session), true);
     assert.equal(intakeSessionIsValid("wrong-session"), false);
+  } finally {
+    if (before === undefined) delete process.env.PROJECT_INTAKE_ACCESS_TOKEN;
+    else process.env.PROJECT_INTAKE_ACCESS_TOKEN = before;
+  }
+});
+
+test("email invite grants a Lax cookie before redirecting", () => {
+  const before = process.env.PROJECT_INTAKE_ACCESS_TOKEN;
+  const token = "abcdef0123456789abcdef0123456789abcdef0123456789";
+  process.env.PROJECT_INTAKE_ACCESS_TOKEN = token;
+  try {
+    const response = grantIntakeAccess(
+      new NextRequest(
+        `https://www.piercewebsolutions.com/api/intake/access?token=${token}`,
+      ),
+    );
+    const cookie = response.headers.get("set-cookie") || "";
+    assert.equal(response.status, 303);
+    assert.equal(
+      response.headers.get("location"),
+      "https://www.piercewebsolutions.com/project-intake",
+    );
+    assert.match(cookie, /SameSite=lax/i);
+    assert.match(cookie, /HttpOnly/i);
   } finally {
     if (before === undefined) delete process.env.PROJECT_INTAKE_ACCESS_TOKEN;
     else process.env.PROJECT_INTAKE_ACCESS_TOKEN = before;
