@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata(
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" updated="July 11, 2026">
+    <LegalPage title="Privacy Policy" updated="September 15, 2026">
       <h2>Purpose of this notice</h2>
       <p>
         This policy explains how Pierce Web Solutions, a brand of Pierce
@@ -20,10 +20,11 @@ export default function PrivacyPage() {
       <h2>Information you choose to provide</h2>
       <p>
         If you contact Pierce Web Solutions by email or through a connected
-        consultation form, you may provide contact details, business
-        information, project details, and other information included in your
-        message. Please do not submit sensitive personal, financial, medical, or
-        account information through a general inquiry.
+        consultation form or an invited project intake, you may provide contact
+        details, business information, project details, and other information
+        included in your answers. Please do not submit passwords, account
+        credentials, payment information, sensitive customer data, or medical
+        information through these forms.
       </p>
       <h2>Website and analytics information</h2>
       <p>
@@ -38,7 +39,7 @@ export default function PrivacyPage() {
         Information may be used to respond to inquiries, evaluate a potential
         project, provide requested services, maintain website security, and
         understand how the website is used. Pierce Web Solutions does not sell
-        information submitted through the contact form.
+        information submitted through these forms.
       </p>
       <h2>Service providers and retention</h2>
       <p>

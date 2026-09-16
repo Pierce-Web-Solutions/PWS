@@ -74,7 +74,8 @@ export default function Navbar() {
     (href === "/services" &&
       pathname.startsWith("/services/") &&
       pathname !== "/services/automation");
-  const lightAtTop = pathname === "/" && !scrolled && !open;
+  const hasDarkHero = pathname === "/" || pathname === "/project-intake";
+  const lightAtTop = hasDarkHero && !scrolled && !open;
 
   return (
     <header
